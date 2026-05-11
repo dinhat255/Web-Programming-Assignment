@@ -370,4 +370,22 @@ class Admin extends DB {
         // Xóa category
         return $this->query("DELETE FROM category WHERE category_id = :id", ['id' => $categoryId]);
     }
+
+    // Lấy danh sách bình luận của 1 bài viết cụ thể
+    public function getCommentsByArticle($newsId) {
+        $sql = "SELECT c.*, u.fullname 
+                FROM comments c
+                JOIN users u ON c.user_id = u.user_id
+                WHERE c.news_id = :news_id
+                ORDER BY c.created_at DESC";
+        
+        $result = $this->query($sql, [':news_id' => $newsId]);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Xóa 1 bình luận
+    public function deleteComment($id) {
+        $sql = "DELETE FROM comments WHERE id = :id";
+        return $this->query($sql, [':id' => $id]);
+    }
 }

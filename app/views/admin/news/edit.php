@@ -252,6 +252,50 @@
                     </button>
                 </div>
             </form>
+<<<<<<< HEAD
+=======
+            <hr class="my-5"> <div class="card shadow mb-4 mt-4">
+    <div class="card-header py-3 bg-dark text-white">
+        <h6 class="m-0 font-weight-bold"><i class="fas fa-comments"></i> Quản lý bình luận bài viết này</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th width="15%">Người dùng</th>
+                        <th width="50%">Nội dung bình luận</th>
+                        <th width="20%">Thời gian</th>
+                        <th width="15%">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (isset($comments) && !empty($comments)): ?>
+                        <?php foreach ($comments as $cmt): ?>
+                            <tr>
+                                <td><strong><?= htmlspecialchars($cmt['fullname']) ?></strong></td>
+                                <td><?= nl2br(htmlspecialchars($cmt['content'])) ?></td>
+                                <td><?= date('d/m/Y H:i', strtotime($cmt['created_at'])) ?></td>
+                                <td class="text-center">
+                                    <a href="<?= BASE_URL ?>admin/deleteArticleComment?id=<?= $cmt['id'] ?>&article_id=<?= $article['id'] ?>" 
+                                       class="btn btn-sm btn-danger"
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa bình luận này?');">
+                                        <i class="fas fa-trash"></i> Xóa
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-3">Bài viết này chưa có bình luận nào.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+>>>>>>> master
         <?php endif; ?>
     </div>
 </div>

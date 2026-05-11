@@ -183,14 +183,27 @@ class AdminController extends Controller {
             $this->adminModel->updateArticle($id, $data);
             $this->redirect('admin/news');
         }
+        $comments = $this->adminModel->getCommentsByArticle($id);
 
         $data = [
             'title' => 'Sửa bài viết',
             'page' => 'news',
             'article' => $this->adminModel->getArticleById($id),
+            'comments' => $comments,
             'contentFile' => APP_ROOT . '/views/admin/news/edit.php'
         ];
         $this->view('admin/admin', $data);
+    }
+
+    public function deleteArticleComment() {
+        $comment_id = $_GET['id'] ?? 0;
+        $article_id = $_GET['article_id'] ?? 0; 
+        
+        if ($comment_id > 0) {
+            $this->adminModel->deleteComment($comment_id);
+        }
+        
+        $this->redirect('admin/editNews?id=' . $article_id);
     }
 
     public function deleteNews() {
@@ -522,4 +535,5 @@ class AdminController extends Controller {
         }
         $this->redirect('admin/categories');
     }
+
 }
