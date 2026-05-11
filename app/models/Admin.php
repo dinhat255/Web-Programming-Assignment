@@ -370,4 +370,11 @@ class Admin extends DB {
         // Xóa category
         return $this->query("DELETE FROM category WHERE category_id = :id", ['id' => $categoryId]);
     }
+    public function updateContactStatus($id, $status) {
+        return $this->query("UPDATE contacts SET status = :status WHERE id = :id", [
+            'status' => $status,
+            'id' => $id
+        ]);
+    }
+
 }

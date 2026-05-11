@@ -18,9 +18,19 @@ class AdminController extends Controller {
     }
 
     public function index() {
+        // Lấy danh sách sản phẩm và đếm tổng số lượng
+        $products = $this->productModel->getAllProductsForAdmin();
+        $totalProducts = is_array($products) ? count($products) : 0;
+
+        // Lấy thống kê đơn hàng từ Admin Model
+        $orderStats = $this->adminModel->getOrderStats();
+        $totalOrders = isset($orderStats['total_orders']) ? $orderStats['total_orders'] : 0;
+
         $data = [
             'title' => 'Dashboard',
             'page' => 'dashboard',
+            'totalProducts' => $totalProducts, // Truyền số lượng sản phẩm ra View
+            'totalOrders' => $totalOrders,     // Truyền số lượng đơn hàng ra View
             'contentFile' => APP_ROOT . '/views/admin/dashboard/index.php'
         ];
         $this->view('admin/admin', $data);
@@ -70,6 +80,16 @@ class AdminController extends Controller {
     public function deleteContact() {
         if ($this->isPost()) {
             $this->adminModel->deleteContact($_POST['id']);
+            $this->redirect('admin/contacts');
+        }
+    }
+    public function updateContactStatus() {
+        if ($this->isPost()) {
+            $id = $_POST['id'] ?? 0;
+            $status = $_POST['status'] ?? 'unread';
+            if ($id > 0) {
+                $this->adminModel->updateContactStatus($id, $status);
+            }
             $this->redirect('admin/contacts');
         }
     }
