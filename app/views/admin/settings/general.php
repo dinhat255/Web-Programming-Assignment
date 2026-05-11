@@ -1,4 +1,4 @@
-﻿<?php require_once APP_ROOT . '/views/admin/layout/header.php'; ?>
+﻿<!-- <?php require_once APP_ROOT . '/views/admin/layout/header.php'; ?>
 
 <div class="row row-cards">
     <div class="col-md-12">
@@ -35,4 +35,4 @@
     </div>
 </div>
 
-<?php require_once APP_ROOT . '/views/admin/layout/footer.php'; ?>
+<?php require_once APP_ROOT . '/views/admin/layout/footer.php'; ?> -->

@@ -388,4 +388,11 @@ class Admin extends DB {
         $sql = "DELETE FROM comments WHERE id = :id";
         return $this->query($sql, [':id' => $id]);
     }
+    public function updateContactStatus($id, $status) {
+        return $this->query("UPDATE contacts SET status = :status WHERE id = :id", [
+            'status' => $status,
+            'id' => $id
+        ]);
+    }
+
 }
