@@ -24,10 +24,9 @@ class NewsController extends Controller {
         $search = trim($_GET['search'] ?? '');
         $category = $_GET['category'] ?? '';
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $limit = 9; // Số bài viết trên mỗi trang
+        $limit = 9; 
         $offset = ($page - 1) * $limit;
 
-        // Lấy dữ liệu từ database
         $options = [
             'search' => $search,
             'category' => $category,
@@ -38,9 +37,9 @@ class NewsController extends Controller {
         $articles = $this->newsModel->getFilteredNews($options);
         $totalArticles = $this->newsModel->countFilteredNews($options);
         $totalPages = ceil($totalArticles / $limit);
-
-        // Lấy danh sách category
         $categories = $this->newsModel->getAllCategories();
+                $latestNews = $this->newsModel->getLatestNews(3);
+        $hotNews = $this->newsModel->getHotNews(5);
 
         $data = [
             'title' => 'Tin tức - ' . APP_NAME,
@@ -51,7 +50,9 @@ class NewsController extends Controller {
             'selectedCategory' => $category,
             'currentPage' => $page,
             'totalPages' => $totalPages,
-            'totalArticles' => $totalArticles
+            'totalArticles' => $totalArticles,
+            'latestNews' => $latestNews, 
+            'hotNews' => $hotNews       
         ];
 
         $this->view('news/index', $data);

@@ -1,14 +1,12 @@
 <?php require_once APP_ROOT . '/views/components/header.php'; ?>
 
 <style>
-    /* BREADCRUMB & TITLE */
     .breadcrumb-section { background-color: var(--sachhay-light-gray); padding: 15px 0; margin-bottom: 30px; }
     .breadcrumb { margin-bottom: 0; padding: 0; background: none; }
     .breadcrumb-item a { color: var(--sachhay-gray); text-decoration: none; }
     .page-title { color: var(--sachhay-red); font-weight: 700; margin-bottom: 30px; padding-bottom: 15px; position: relative; }
     .page-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 3px; background-color: var(--sachhay-orange); }
 
-    /* LỌC & TÌM KIẾM TỔNG QUAN */
     .filter-search-wrapper { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; }
     .search-input { position: relative; flex: 1; min-width: 250px; }
     .search-input input { width: 100%; padding: 12px 45px 12px 20px; border: 1px solid #e0e0e0; border-radius: 30px; font-size: 15px; outline: none; transition: border-color 0.3s; }
@@ -45,12 +43,10 @@
         .fahasa-control { display: none;  }
     }
 
-    /* GRID & THẺ TIN TỨC */
     .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px; }
     .news-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: all 0.3s; text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%; }
     .news-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.15); }
     
-    /* Hiệu ứng Image Zoom */
     .news-image-wrapper { height: 220px; overflow: hidden; position: relative; }
     .news-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
     .news-card:hover .news-image { transform: scale(1.1); }
@@ -68,7 +64,6 @@
     .read-more-btn { color: var(--sachhay-red); font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 5px; }
     .news-card:hover .read-more-btn i { transform: translateX(5px); transition: 0.3s; }
 
-    /* SIDEBAR - TIN ĐỌC NHIỀU */
     .sidebar-widget { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
     .widget-title { font-size: 18px; font-weight: 700; color: var(--sachhay-dark); margin-bottom: 20px; position: relative; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; display: flex; align-items: center; gap: 10px; }
     .widget-title i { color: var(--sachhay-red); }
@@ -83,7 +78,6 @@
     .hot-news-item:hover .hot-news-title { color: var(--sachhay-red); }
     .hot-news-meta { font-size: 12px; color: var(--sachhay-gray); }
 
-    /* NEWSLETTER WIDGET */
     .newsletter-widget { background: linear-gradient(135deg, var(--sachhay-red) 0%, var(--sachhay-orange) 100%); color: white; text-align: center; }
     .newsletter-widget .widget-title { color: white; border-bottom-color: rgba(255,255,255,0.2); }
     .newsletter-widget .widget-title::after { background: white; }
@@ -91,15 +85,9 @@
     .newsletter-btn { width: 100%; padding: 12px; background: var(--sachhay-dark); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
     .newsletter-btn:hover { background: white; color: var(--sachhay-red); }
 
-    /* PAGINATION */
     .pagination { display: flex; justify-content: center; margin-top: 30px; gap: 8px; }
     .page-link { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50% !important; border: 1px solid #e0e0e0; color: var(--sachhay-dark); font-weight: 600; transition: all 0.3s; }
     .page-item.active .page-link, .page-link:hover { background-color: var(--sachhay-red); color: white; border-color: var(--sachhay-red); box-shadow: 0 4px 10px rgba(201, 33, 39, 0.3); }
-
-    @media (max-width: 991px) {
-        .hero-news-item { height: 350px; }
-        .hero-title { font-size: 20px; }
-    }
 </style>
 
 <div class="breadcrumb-section">
@@ -132,37 +120,36 @@
         </form>
     </div>
 
-    <?php if (empty($search) && empty($selectedCategory) && $currentPage == 1 && !empty($latestNews)): ?>
-    <div id="featuredNewsCarousel" class="carousel slide hero-news-slider carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
-        <div class="carousel-indicators">
-            <?php foreach($latestNews as $index => $news): ?>
-                <button type="button" data-bs-target="#featuredNewsCarousel" data-bs-slide-to="<?= $index ?>" class="<?= $index === 0 ? 'active' : '' ?>"></button>
+    <?php if (empty($search) && (empty($selectedCategory) || $selectedCategory == 'all') && $currentPage == 1 && !empty($hotNews)): ?>    
+    <div id="hotNewsFahasaBanner" class="carousel slide fahasa-banner-wrapper" data-bs-ride="carousel" data-bs-interval="3500">
+        <div class="carousel-indicators fahasa-indicators">
+            <?php foreach($hotNews as $index => $news): ?>
+                <button type="button" data-bs-target="#hotNewsFahasaBanner" data-bs-slide-to="<?= $index ?>" class="<?= $index === 0 ? 'active' : '' ?>" aria-label="Slide <?= $index + 1 ?>"></button>
             <?php endforeach; ?>
         </div>
         
         <div class="carousel-inner">
-            <?php foreach($latestNews as $index => $news): ?>
+            <?php foreach($hotNews as $index => $news): ?>
             <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                <a href="<?= BASE_URL ?>news/detail/<?= $news['id'] ?>" class="hero-news-item d-block">
-                    <img src="<?= BASE_URL . ($news['image_url'] ?? 'images/news-page/default.jpg') ?>" class="hero-news-img" alt="<?= htmlspecialchars($news['title']) ?>">
-                    <div class="hero-news-overlay">
-                        <span class="hero-badge"><i class="fas fa-bolt"></i> Mới nhất</span>
-                        <h2 class="hero-title"><?= htmlspecialchars($news['title']) ?></h2>
-                        <div class="hero-meta">
-                            <span><i class="fas fa-user-edit"></i> <?= htmlspecialchars($news['author_name'] ?? 'Admin') ?></span>
-                            <span><i class="far fa-calendar-alt"></i> <?= date('d/m/Y', strtotime($news['published_date'] ?? $news['created_at'])) ?></span>
-                            <span><i class="far fa-eye"></i> <?= $news['views'] ?? 0 ?> lượt xem</span>
+                <a href="<?= BASE_URL ?>news/detail/<?= $news['id'] ?>" class="fahasa-banner-item">
+                    <img src="<?= BASE_URL . ($news['image_url'] ?? 'images/news-page/default-banner.jpg') ?>" class="fahasa-banner-img" alt="<?= htmlspecialchars($news['title']) ?>">
+                    
+                    <div class="fahasa-banner-overlay">
+                        <h2 class="fahasa-banner-title"><?= htmlspecialchars($news['title']) ?></h2>
+                        <div class="fahasa-banner-meta">
+                            <span><i class="far fa-eye"></i> <?= $news['views'] ?? 0 ?> lượt xem quan tâm</span>
                         </div>
                     </div>
                 </a>
             </div>
             <?php endforeach; ?>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#featuredNewsCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+        <button class="carousel-control-prev fahasa-control fahasa-control-prev" type="button" data-bs-target="#hotNewsFahasaBanner" data-bs-slide="prev">
+            <span class="fahasa-control-icon"><i class="fas fa-chevron-left"></i></span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#featuredNewsCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <button class="carousel-control-next fahasa-control fahasa-control-next" type="button" data-bs-target="#hotNewsFahasaBanner" data-bs-slide="next">
+            <span class="fahasa-control-icon"><i class="fas fa-chevron-right"></i></span>
         </button>
     </div>
     <?php endif; ?>
@@ -179,7 +166,6 @@
             <?php if (!empty($articles)): ?>
                 <div class="news-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
                     <?php foreach ($articles as $article): 
-                        // Ước tính thời gian đọc (giả sử 250 từ/phút)
                         $wordCount = str_word_count(strip_tags($article['content'] ?? ''));
                         $readTime = max(1, ceil($wordCount / 250));
                     ?>
@@ -230,7 +216,6 @@
         </div>
 
         <div class="col-lg-4 mt-5 mt-lg-0">
-            
             <div class="sidebar-widget">
                 <h3 class="widget-title"><i class="fas fa-fire-alt"></i> Đang được quan tâm</h3>
                 <div class="hot-news-list">
@@ -274,39 +259,5 @@
         </div>
     </div>
 </div>
-<?php if (empty($search) && (empty($selectedCategory) || $selectedCategory == 'all') && $currentPage == 1 && !empty($hotNews)): ?>    
-    <div id="hotNewsFahasaBanner" class="carousel slide fahasa-banner-wrapper" data-bs-ride="carousel" data-bs-interval="3500">
-        
-        <div class="carousel-indicators fahasa-indicators">
-            <?php foreach($hotNews as $index => $news): ?>
-                <button type="button" data-bs-target="#hotNewsFahasaBanner" data-bs-slide-to="<?= $index ?>" class="<?= $index === 0 ? 'active' : '' ?>" aria-label="Slide <?= $index + 1 ?>"></button>
-            <?php endforeach; ?>
-        </div>
-        
-        <div class="carousel-inner">
-            <?php foreach($hotNews as $index => $news): ?>
-            <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                <a href="<?= BASE_URL ?>news/detail/<?= $news['id'] ?>" class="fahasa-banner-item">
-                    <img src="<?= BASE_URL . ($news['image_url'] ?? 'images/news-page/default-banner.jpg') ?>" class="fahasa-banner-img" alt="<?= htmlspecialchars($news['title']) ?>">
-                    
-                    <div class="fahasa-banner-overlay">
-                        <h2 class="fahasa-banner-title"><?= htmlspecialchars($news['title']) ?></h2>
-                        <div class="fahasa-banner-meta">
-                            <span><i class="far fa-eye"></i> <?= $news['views'] ?? 0 ?> lượt xem quan tâm</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <?php endforeach; ?>
-        </div>
-
-        <button class="carousel-control-prev fahasa-control fahasa-control-prev" type="button" data-bs-target="#hotNewsFahasaBanner" data-bs-slide="prev">
-            <span class="fahasa-control-icon"><i class="fas fa-chevron-left"></i></span>
-        </button>
-        <button class="carousel-control-next fahasa-control fahasa-control-next" type="button" data-bs-target="#hotNewsFahasaBanner" data-bs-slide="next">
-            <span class="fahasa-control-icon"><i class="fas fa-chevron-right"></i></span>
-        </button>
-    </div>
-    <?php endif; ?>
 
 <?php require_once APP_ROOT . '/views/components/footer.php'; ?>
