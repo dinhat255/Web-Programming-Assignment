@@ -623,6 +623,8 @@
             <div class="comment-form-container">
                 <h4 class="comment-form-title">Để lại bình luận của bạn</h4>
                 <form class="comment-form" id="commentForm">
+
+                    <input type="hidden" name="news_id" value="<?= $article['id'] ?>">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <input type="text" class="form-control" name="name" placeholder="Họ và tên *" required>
@@ -650,85 +652,36 @@
             <div class="comments-list">
                 <h4 class="comments-list-title">Các bình luận</h4>
                 
-                <!-- Sample Comments (Mock Data) -->
-                <div class="comment-item">
-                    <div class="comment-avatar">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <div class="comment-content">
-                        <div class="comment-header">
-                            <span class="comment-author">Nguyễn Văn An</span>
-                            <span class="comment-date">2 ngày trước</span>
+
+                <?php if (isset($comments) && !empty($comments)): ?>
+                    <?php foreach ($comments as $comment): ?>
+                    <div class="comment-item">
+                        <div class="comment-avatar">
+                            <i class="fas fa-user-circle"></i>
                         </div>
-                        <div class="comment-text">
-                            Bài viết rất hay và bổ ích! Tôi đã học được nhiều điều từ bài viết này. Cảm ơn tác giả đã chia sẻ những kiến thức quý báu.
-                        </div>
-                        <div class="comment-actions">
-                            <button class="comment-action-btn"><i class="fas fa-thumbs-up"></i> Thích (5)</button>
-                            <button class="comment-action-btn"><i class="fas fa-reply"></i> Trả lời</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="comment-item">
-                    <div class="comment-avatar">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <div class="comment-content">
-                        <div class="comment-header">
-                            <span class="comment-author">Trần Thị Bình</span>
-                            <span class="comment-date">5 ngày trước</span>
-                        </div>
-                        <div class="comment-text">
-                            Thông tin trong bài viết rất hữu ích. Mình đã áp dụng một số phương pháp và thấy hiệu quả rõ rệt. Chúc tác giả có nhiều sức khỏe để tiếp tục viết thêm nhiều bài hay!
-                        </div>
-                        <div class="comment-actions">
-                            <button class="comment-action-btn"><i class="fas fa-thumbs-up"></i> Thích (3)</button>
-                            <button class="comment-action-btn"><i class="fas fa-reply"></i> Trả lời</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="comment-item">
-                    <div class="comment-avatar">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <div class="comment-content">
-                        <div class="comment-header">
-                            <span class="comment-author">Lê Quang Khải</span>
-                            <span class="comment-date">1 tuần trước</span>
-                        </div>
-                        <div class="comment-text">
-                            Cảm ơn tác giả đã chia sẻ! Mình rất thích phần phân tích chi tiết và rõ ràng. Hy vọng sẽ có thêm nhiều bài viết về chủ đề này.
-                        </div>
-                        <div class="comment-actions">
-                            <button class="comment-action-btn"><i class="fas fa-thumbs-up"></i> Thích (8)</button>
-                            <button class="comment-action-btn"><i class="fas fa-reply"></i> Trả lời</button>
-                        </div>
-                        
-                        <!-- Reply Comment -->
-                        <div class="comment-reply">
-                            <div class="comment-item">
-                                <div class="comment-avatar">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="comment-content">
-                                    <div class="comment-header">
-                                        <span class="comment-author"><?= htmlspecialchars($article['author']) ?></span>
-                                        <span class="comment-badge">Tác giả</span>
-                                        <span class="comment-date">6 ngày trước</span>
-                                    </div>
-                                    <div class="comment-text">
-                                        Cảm ơn bạn đã quan tâm! Mình sẽ cố gắng viết thêm nhiều bài về chủ đề này trong thời gian tới.
-                                    </div>
-                                    <div class="comment-actions">
-                                        <button class="comment-action-btn"><i class="fas fa-thumbs-up"></i> Thích (2)</button>
-                                    </div>
-                                </div>
+                        <div class="comment-content">
+                            <div class="comment-header">
+                                <span class="comment-author"><?= htmlspecialchars($comment['fullname'] ?? 'Người dùng Ẩn danh') ?></span>
+                                <span class="comment-date"><?= date('d/m/Y H:i', strtotime($comment['created_at'])) ?></span>
+                            </div>
+                            <div class="comment-text">
+                                <?= nl2br(htmlspecialchars($comment['content'])) ?>
+                            </div>
+                            <div class="comment-actions">
+                                <button class="comment-action-btn"><i class="fas fa-thumbs-up"></i> Thích</button>
+                                <button class="comment-action-btn"><i class="fas fa-reply"></i> Trả lời</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="alert alert-light text-center">
+                        Chưa có bình luận nào. Hãy là người đầu tiên bình luận bài viết này!
+                    </div>
+                <?php endif; ?>
+                
+                
+            </div>
                 
                 <!-- Load More Button -->
                 <div class="text-center mt-4">
@@ -786,61 +739,75 @@ document.addEventListener('DOMContentLoaded', function() {
     commentForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const formData = {
-            name: commentForm.querySelector('input[name="name"]').value.trim(),
-            email: commentForm.querySelector('input[name="email"]').value.trim(),
-            comment: commentForm.querySelector('textarea[name="comment"]').value.trim()
-        };
+
+        // Kiểm tra xem người dùng đã đăng nhập chưa (do NewsController yêu cầu)
+        const isLoggedIn = <?= isset($_SESSION['users_id']) ? 'true' : 'false' ?>;
+        if (!isLoggedIn) {
+            alert('Bạn cần đăng nhập để gửi bình luận!');
+            window.location.href = '<?= BASE_URL ?>auth/login';
+            return;
+        }
+
+        const newsId = commentForm.querySelector('input[name="news_id"]').value;
+        const contentInput = commentForm.querySelector('textarea[name="comment"]').value.trim();
         
         // Validation
-        if (!formData.name || !formData.email || !formData.comment) {
-            alert('Vui lòng điền đầy đủ thông tin!');
+        if (!contentInput) {
+            alert('Vui lòng nhập nội dung!');
             return;
         }
         
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(formData.email)) {
-            alert('Email không hợp lệ!');
-            return;
-        }
-        
-        // Save user info if checkbox is checked
-        if (saveInfoCheckbox.checked) {
-            localStorage.setItem('commentUserName', formData.name);
-            localStorage.setItem('commentUserEmail', formData.email);
-        } else {
-            localStorage.removeItem('commentUserName');
-            localStorage.removeItem('commentUserEmail');
-        }
-        
-        // Simulate AJAX submission
-        // In production, this would send data to server
         const submitBtn = commentForm.querySelector('.comment-submit-btn');
         const originalText = submitBtn.innerHTML;
+        
+        // Đổi trạng thái nút
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
         submitBtn.disabled = true;
         
-        setTimeout(function() {
-            // Success simulation
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Đã gửi!';
-            
-            // Show success message
-            const successMessage = document.createElement('div');
-            successMessage.className = 'alert alert-success mt-3';
-            successMessage.innerHTML = '<i class="fas fa-check-circle"></i> Bình luận của bạn đã được gửi thành công! Chúng tôi sẽ xem xét và phê duyệt trong thời gian sớm nhất.';
-            commentForm.parentNode.insertBefore(successMessage, commentForm.nextSibling);
-            
-            // Reset form
-            commentForm.querySelector('textarea[name="comment"]').value = '';
-            
-            // Restore button after 3 seconds
-            setTimeout(function() {
+        // Tạo dữ liệu gửi lên (Lưu ý: Map 'comment' ở frontend thành 'content' cho backend)
+        const formData = new URLSearchParams();
+        formData.append('news_id', newsId);
+        formData.append('content', contentInput);
+
+        // GỌI AJAX THỰC SỰ LÊN SERVER
+        fetch('<?= BASE_URL ?>news/addComment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData.toString()
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Hiển thị thành công
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Đã gửi!';
+                
+                const successMessage = document.createElement('div');
+                successMessage.className = 'alert alert-success mt-3';
+                successMessage.innerHTML = '<i class="fas fa-check-circle"></i> ' + data.message;
+                commentForm.parentNode.insertBefore(successMessage, commentForm.nextSibling);
+                
+                // Xóa nội dung đã nhập
+                commentForm.querySelector('textarea[name="comment"]').value = '';
+                
+                // Tự động load lại trang sau 1.5s để hiển thị bình luận mới
+                setTimeout(function() {
+                    location.reload(); 
+                }, 1500);
+            } else {
+                // Báo lỗi từ server
+                alert(data.message || 'Có lỗi xảy ra!');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-                successMessage.remove();
-            }, 3000);
-        }, 1500);
+            }
+        })
+        .catch(error => {
+            console.error('Lỗi gọi API:', error);
+            alert('Đã bình luận');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
     });
     
     // Handle "Load More Comments" button

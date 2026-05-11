@@ -349,14 +349,14 @@
             <h3>Danh mục bài viết</h3>
         </div>
         <div class="category-filter">
-            <a href="?category=all" class="category-btn <?= $category == 'all' || $category == '' ? 'active' : '' ?>">Tất cả</a>
-            <a href="?category=kien-thuc" class="category-btn <?= $category == 'kien-thuc' ? 'active' : '' ?>">Kiến thức</a>
-            <a href="?category=sach-hay" class="category-btn <?= $category == 'sach-hay' ? 'active' : '' ?>">Sách hay</a>
-            <a href="?category=van-hoa" class="category-btn <?= $category == 'van-hoa' ? 'active' : '' ?>">Văn hóa đọc</a>
-            <a href="?category=giao-duc" class="category-btn <?= $category == 'giao-duc' ? 'active' : '' ?>">Giáo dục</a>
-            <a href="?category=cong-nghe" class="category-btn <?= $category == 'cong-nghe' ? 'active' : '' ?>">Công nghệ</a>
-            <a href="?category=ky-nang" class="category-btn <?= $category == 'ky-nang' ? 'active' : '' ?>">Kỹ năng sống</a>
-        </div>
+        <a href="?category=all" class="category-btn <?= !isset($selectedCategory) || $selectedCategory == 'all' || $selectedCategory == '' ? 'active' : '' ?>">Tất cả</a>
+        <a href="?category=kien-thuc" class="category-btn <?= (isset($selectedCategory) && $selectedCategory == 'kien-thuc') ? 'active' : '' ?>">Kiến thức</a>
+        <a href="?category=sach-hay" class="category-btn <?= (isset($selectedCategory) && $selectedCategory == 'sach-hay') ? 'active' : '' ?>">Sách hay</a>
+        <a href="?category=van-hoa" class="category-btn <?= (isset($selectedCategory) && $selectedCategory == 'van-hoa') ? 'active' : '' ?>">Văn hóa đọc</a>
+        <a href="?category=giao-duc" class="category-btn <?= (isset($selectedCategory) && $selectedCategory == 'giao-duc') ? 'active' : '' ?>">Giáo dục</a>
+        <a href="?category=cong-nghe" class="category-btn <?= (isset($selectedCategory) && $selectedCategory == 'cong-nghe') ? 'active' : '' ?>">Công nghệ</a>
+        <a href="?category=ky-nang" class="category-btn <?= (isset($selectedCategory) && $selectedCategory == 'ky-nang') ? 'active' : '' ?>">Kỹ năng sống</a>
+    </div>
     </div>
 
     <!-- Sort and Results Info -->
