@@ -252,8 +252,7 @@
                     </button>
                 </div>
             </form>
-<<<<<<< HEAD
-=======
+
             <hr class="my-5"> <div class="card shadow mb-4 mt-4">
     <div class="card-header py-3 bg-dark text-white">
         <h6 class="m-0 font-weight-bold"><i class="fas fa-comments"></i> Quản lý bình luận bài viết này</h6>
@@ -295,7 +294,6 @@
         </div>
     </div>
 </div>
->>>>>>> master
         <?php endif; ?>
     </div>
 </div>
