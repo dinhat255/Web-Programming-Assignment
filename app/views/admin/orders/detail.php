@@ -1,16 +1,21 @@
 ﻿<style>
+    /* ================================================== */
+    /* BỘ CSS SCI-FI CHO CHI TIẾT ĐƠN HÀNG                 */
+    /* ================================================== */
     .admin-card {
-        background: white;
+        background: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 242, 255, 0.2);
         border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         margin-bottom: 20px;
         overflow: hidden;
     }
 
     .card-header {
         padding: 20px 25px;
-        border-bottom: 1px solid #e0e0e0;
-        background: #f8f9fa;
+        border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+        background: rgba(15, 23, 42, 0.6);
     }
 
     .card-header-actions {
@@ -18,17 +23,22 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px 25px;
-        border-bottom: 1px solid #e0e0e0;
+        border-bottom: 1px solid rgba(0, 242, 255, 0.2);
     }
 
     .card-title {
+        font-family: 'Orbitron', sans-serif;
+        color: #00f2ff;
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 700;
         margin: 0;
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
     }
 
     .card-body {
         padding: 25px;
+        color: #e2e8f0;
     }
 
     .order-header {
@@ -41,22 +51,54 @@
     .order-id {
         font-size: 24px;
         font-weight: 700;
-        color: #c92127;
+        color: #00f2ff;
+        text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
     }
 
     .badge {
         padding: 8px 16px;
         border-radius: 6px;
-        font-size: 13px;
-        font-weight: 600;
+        font-size: 12px;
+        font-weight: 700;
         display: inline-block;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
-    .badge.pending { background: #fef3c7; color: #92400e; }
-    .badge.processing { background: #dbeafe; color: #1e40af; }
-    .badge.completed { background: #d1fae5; color: #065f46; }
-    .badge.cancelled { background: #fee2e2; color: #991b1b; }
-    .badge.shipped { background: #e0e7ff; color: #3730a3; }
+    .badge.pending {
+        background: rgba(255, 204, 0, 0.1);
+        color: #ffcc00;
+        border: 1px solid #ffcc00;
+        box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+    }
+
+    .badge.processing {
+        background: rgba(0, 242, 255, 0.1);
+        color: #00f2ff;
+        border: 1px solid #00f2ff;
+        box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+    }
+
+    .badge.completed {
+        background: rgba(0, 255, 136, 0.1);
+        color: #00ff88;
+        border: 1px solid #00ff88;
+        box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    }
+
+    .badge.cancelled {
+        background: rgba(255, 0, 60, 0.1);
+        color: #ff003c;
+        border: 1px solid #ff003c;
+        box-shadow: 0 0 10px rgba(255, 0, 60, 0.3);
+    }
+
+    .badge.shipped {
+        background: rgba(148, 163, 184, 0.1);
+        color: #94a3b8;
+        border: 1px solid #94a3b8;
+        box-shadow: 0 0 10px rgba(148, 163, 184, 0.3);
+    }
 
     .info-grid {
         display: grid;
@@ -66,25 +108,27 @@
     }
 
     .info-section {
-        background: #f9fafb;
+        background: rgba(15, 23, 42, 0.6);
         padding: 20px;
         border-radius: 8px;
+        border: 1px solid rgba(0, 242, 255, 0.2);
     }
 
     .info-section h3 {
-        font-size: 14px;
-        font-weight: 600;
-        color: #666;
+        font-size: 12px;
+        font-weight: 700;
+        color: #00f2ff;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
         margin-bottom: 15px;
+        font-family: 'Orbitron', sans-serif;
     }
 
     .info-row {
         display: flex;
         justify-content: space-between;
         padding: 10px 0;
-        border-bottom: 1px solid #e5e7eb;
+        border-bottom: 1px solid rgba(0, 242, 255, 0.1);
     }
 
     .info-row:last-child {
@@ -92,14 +136,15 @@
     }
 
     .info-label {
-        color: #666;
-        font-size: 14px;
+        color: #94a3b8;
+        font-size: 13px;
     }
 
     .info-value {
         font-weight: 600;
-        font-size: 14px;
+        font-size: 13px;
         text-align: right;
+        color: #e2e8f0;
     }
 
     .table-container {
@@ -111,25 +156,22 @@
         border-collapse: collapse;
     }
 
-    thead {
-        background: #f8f9fa;
-    }
-
     th {
         padding: 15px;
         text-align: left;
         font-weight: 600;
         font-size: 13px;
-        color: #666;
+        color: #00f2ff;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        border-bottom: 2px solid #e0e0e0;
+        border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+        font-family: 'Orbitron', sans-serif;
     }
 
     td {
         padding: 15px;
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         vertical-align: middle;
+        color: #e2e8f0;
     }
 
     .product-info {
@@ -143,69 +185,82 @@
         height: 75px;
         object-fit: cover;
         border-radius: 4px;
+        border: 1px solid rgba(0, 242, 255, 0.2);
     }
 
     .product-name {
-        font-weight: 500;
+        font-weight: 600;
         font-size: 14px;
     }
 
     .btn {
-        padding: 10px 20px;
+        padding: 8px 16px;
         border-radius: 8px;
-        border: none;
-        font-weight: 500;
+        font-weight: 600;
         cursor: pointer;
         transition: all 0.3s;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
+        font-size: 12px;
+        background: transparent;
+        font-family: 'Orbitron', sans-serif;
     }
 
     .btn-secondary {
-        background: #64748b;
-        color: white;
+        color: #94a3b8;
+        border: 1px solid #94a3b8;
     }
 
     .btn-secondary:hover {
-        background: #475569;
+        background: #94a3b8;
+        color: #000;
+        box-shadow: 0 0 15px #94a3b8;
     }
 
     .btn-primary {
-        background: #c92127;
-        color: white;
+        color: #00f2ff;
+        border: 1px solid #00f2ff;
     }
 
     .btn-primary:hover {
-        background: #a01b20;
+        background: #00f2ff;
+        color: #000;
+        box-shadow: 0 0 15px #00f2ff;
     }
 
     .btn-success {
-        background: #10b981;
-        color: white;
+        color: #00ff88;
+        border: 1px solid #00ff88;
     }
 
     .btn-success:hover {
-        background: #059669;
+        background: #00ff88;
+        color: #000;
+        box-shadow: 0 0 15px #00ff88;
     }
 
     .btn-warning {
-        background: #f59e0b;
-        color: white;
+        color: #ffcc00;
+        border: 1px solid #ffcc00;
     }
 
     .btn-warning:hover {
-        background: #d97706;
+        background: #ffcc00;
+        color: #000;
+        box-shadow: 0 0 15px #ffcc00;
     }
 
     .btn-danger {
-        background: #ef4444;
-        color: white;
+        color: #ff003c;
+        border: 1px solid #ff003c;
     }
 
     .btn-danger:hover {
-        background: #dc2626;
+        background: #ff003c;
+        color: #000;
+        box-shadow: 0 0 15px #ff003c;
     }
 
     .status-actions {
@@ -215,10 +270,11 @@
     }
 
     .order-summary {
-        background: #f9fafb;
+        background: rgba(15, 23, 42, 0.6);
         padding: 20px;
         border-radius: 8px;
         margin-top: 20px;
+        border: 1px solid rgba(0, 242, 255, 0.2);
     }
 
     .summary-row {
@@ -229,12 +285,12 @@
     }
 
     .summary-row.total {
-        border-top: 2px solid #e0e0e0;
+        border-top: 1px solid rgba(0, 242, 255, 0.3);
         margin-top: 10px;
         padding-top: 15px;
         font-size: 18px;
         font-weight: 700;
-        color: #c92127;
+        color: #00f2ff;
     }
 
     .text-muted {
@@ -255,7 +311,7 @@
             <div class="order-id">Đơn hàng #<?= $order['order_id'] ?></div>
             <div>
                 <?php
-                $statusClass = match($order['status']) {
+                $statusClass = match ($order['status']) {
                     'pending' => 'pending',
                     'processing' => 'processing',
                     'shipped' => 'shipped',
@@ -263,7 +319,7 @@
                     'cancelled' => 'cancelled',
                     default => 'pending'
                 };
-                $statusText = match($order['status']) {
+                $statusText = match ($order['status']) {
                     'pending' => 'Chờ xử lý',
                     'processing' => 'Đang xử lý',
                     'shipped' => 'Đang giao',
@@ -321,10 +377,10 @@
         </div>
 
         <?php if (!empty($order['note'])): ?>
-        <div class="info-section">
-            <h3>Ghi chú</h3>
-            <p style="margin: 0; padding: 10px 0;"><?= nl2br(htmlspecialchars($order['note'])) ?></p>
-        </div>
+            <div class="info-section">
+                <h3>Ghi chú</h3>
+                <p style="margin: 0; padding: 10px 0;"><?= nl2br(htmlspecialchars($order['note'])) ?></p>
+            </div>
         <?php endif; ?>
     </div>
 </div>
@@ -348,22 +404,22 @@
                 <?php if (!empty($items)): ?>
                     <?php
                     $subtotal = 0;
-                    foreach($items as $item):
+                    foreach ($items as $item):
                         $subtotal += $item['subtotal'];
                     ?>
-                    <tr>
-                        <td>
-                            <div class="product-info">
-                                <img src="<?= BASE_URL . ($item['image_url'] ?? 'images/default-book.jpg') ?>"
-                                     alt="<?= htmlspecialchars($item['title']) ?>"
-                                     class="product-img">
-                                <div class="product-name"><?= htmlspecialchars($item['title']) ?></div>
-                            </div>
-                        </td>
-                        <td><?= number_format($item['price']) ?>đ</td>
-                        <td><?= $item['quantity'] ?></td>
-                        <td style="font-weight: 600;"><?= number_format($item['subtotal']) ?>đ</td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <div class="product-info">
+                                    <img src="<?= BASE_URL . ($item['image_url'] ?? 'images/default-book.jpg') ?>"
+                                        alt="<?= htmlspecialchars($item['title']) ?>"
+                                        class="product-img">
+                                    <div class="product-name"><?= htmlspecialchars($item['title']) ?></div>
+                                </div>
+                            </td>
+                            <td><?= number_format($item['price']) ?>đ</td>
+                            <td><?= $item['quantity'] ?></td>
+                            <td style="font-weight: 600;"><?= number_format($item['subtotal']) ?>đ</td>
+                        </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
@@ -375,20 +431,20 @@
     </div>
 
     <?php if (!empty($items)): ?>
-    <div class="order-summary">
-        <div class="summary-row">
-            <span>Tạm tính:</span>
-            <span><?= number_format($subtotal) ?>đ</span>
+        <div class="order-summary">
+            <div class="summary-row">
+                <span>Tạm tính:</span>
+                <span><?= number_format($subtotal) ?>đ</span>
+            </div>
+            <div class="summary-row">
+                <span>Phí vận chuyển:</span>
+                <span><?= number_format($order['shipping_fee']) ?>đ</span>
+            </div>
+            <div class="summary-row total">
+                <span>Tổng cộng:</span>
+                <span><?= number_format($order['total']) ?>đ</span>
+            </div>
         </div>
-        <div class="summary-row">
-            <span>Phí vận chuyển:</span>
-            <span><?= number_format($order['shipping_fee']) ?>đ</span>
-        </div>
-        <div class="summary-row total">
-            <span>Tổng cộng:</span>
-            <span><?= number_format($order['total']) ?>đ</span>
-        </div>
-    </div>
     <?php endif; ?>
 </div>
 
@@ -432,4 +488,3 @@
         </form>
     </div>
 </div>
-
