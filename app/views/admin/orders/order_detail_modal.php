@@ -1,5 +1,7 @@
 ﻿<style>
-    /* Modal Styles */
+    /* ================================================== */
+    /* MODAL SCI-FI CHO CHI TIẾT ĐƠN HÀNG                 */
+    /* ================================================== */
     .modal-overlay {
         display: none;
         position: fixed;
@@ -7,9 +9,10 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(3, 7, 18, 0.85);
         z-index: 9998;
         animation: fadeIn 0.3s ease;
+        backdrop-filter: blur(6px);
     }
 
     .modal-overlay.active {
@@ -20,41 +23,46 @@
     }
 
     .modal-container {
-        background: white;
+        background: rgba(15, 23, 42, 0.95);
         border-radius: 16px;
         width: 90%;
         max-width: 900px;
         max-height: 90vh;
         overflow-y: auto;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        border: 1px solid rgba(0, 242, 255, 0.25);
         animation: slideUp 0.3s ease;
+        color: #e2e8f0;
     }
 
     .modal-header {
         padding: 25px 30px;
-        border-bottom: 2px solid #e0e0e0;
+        border-bottom: 1px solid rgba(0, 242, 255, 0.2);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: linear-gradient(135deg, #c92127 0%, #a01b20 100%);
-        color: white;
+        background: rgba(30, 41, 59, 0.9);
+        color: #00f2ff;
         border-radius: 16px 16px 0 0;
         position: sticky;
         top: 0;
         z-index: 10;
+        text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
+        font-family: 'Orbitron', sans-serif;
     }
 
     .modal-header h3 {
         margin: 0;
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 700;
+        letter-spacing: 1px;
     }
 
     .modal-close {
-        background: rgba(255, 255, 255, 0.2);
-        border: none;
-        color: white;
-        font-size: 24px;
+        background: rgba(255, 0, 60, 0.15);
+        border: 1px solid rgba(255, 0, 60, 0.6);
+        color: #ff003c;
+        font-size: 22px;
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -66,7 +74,9 @@
     }
 
     .modal-close:hover {
-        background: rgba(255, 255, 255, 0.3);
+        background: #ff003c;
+        color: #000;
+        box-shadow: 0 0 15px #ff003c;
         transform: rotate(90deg);
     }
 
@@ -82,25 +92,26 @@
     }
 
     .info-item {
-        background: #f9fafb;
+        background: rgba(30, 41, 59, 0.6);
         padding: 15px 20px;
         border-radius: 10px;
-        border-left: 4px solid #c92127;
+        border: 1px solid rgba(0, 242, 255, 0.2);
     }
 
     .info-label {
-        font-size: 12px;
-        color: #666;
+        font-size: 11px;
+        color: #00f2ff;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 5px;
-        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+        font-weight: 700;
+        font-family: 'Orbitron', sans-serif;
     }
 
     .info-value {
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 600;
-        color: #1f2937;
+        color: #e2e8f0;
     }
 
     .order-items-section {
@@ -108,31 +119,33 @@
     }
 
     .section-title {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 700;
         margin-bottom: 15px;
-        color: #1f2937;
+        color: #00f2ff;
         padding-bottom: 10px;
-        border-bottom: 2px solid #e0e0e0;
+        border-bottom: 1px solid rgba(0, 242, 255, 0.2);
         display: flex;
         align-items: center;
         gap: 10px;
+        font-family: 'Orbitron', sans-serif;
+        letter-spacing: 1px;
     }
 
     .order-item-card {
         display: flex;
         gap: 20px;
         padding: 15px;
-        background: #f9fafb;
+        background: rgba(15, 23, 42, 0.6);
         border-radius: 10px;
         margin-bottom: 15px;
         align-items: center;
-        border: 1px solid #e0e0e0;
+        border: 1px solid rgba(0, 242, 255, 0.15);
         transition: all 0.3s;
     }
 
     .order-item-card:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 242, 255, 0.15);
         transform: translateY(-2px);
     }
 
@@ -141,7 +154,7 @@
         height: 80px;
         object-fit: cover;
         border-radius: 8px;
-        border: 2px solid #e0e0e0;
+        border: 1px solid rgba(0, 242, 255, 0.2);
         flex-shrink: 0;
     }
 
@@ -152,94 +165,100 @@
     .item-name {
         font-weight: 600;
         font-size: 15px;
-        color: #1f2937;
+        color: #e2e8f0;
         margin-bottom: 5px;
     }
 
     .item-meta {
-        font-size: 13px;
-        color: #666;
+        font-size: 12px;
+        color: #94a3b8;
         margin-top: 5px;
     }
 
     .item-price {
         font-weight: 700;
-        color: #c92127;
+        color: #00ff88;
         font-size: 16px;
         text-align: right;
         flex-shrink: 0;
     }
 
     .order-summary {
-        background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+        background: rgba(15, 23, 42, 0.6);
         padding: 25px;
         border-radius: 12px;
         margin-top: 30px;
-        border: 2px solid #e0e0e0;
+        border: 1px solid rgba(0, 242, 255, 0.2);
     }
 
     .summary-row {
         display: flex;
         justify-content: space-between;
         padding: 12px 0;
-        font-size: 15px;
+        font-size: 14px;
         align-items: center;
     }
 
     .summary-row .label {
-        color: #666;
+        color: #94a3b8;
         font-weight: 500;
     }
 
     .summary-row .value {
         font-weight: 600;
-        color: #1f2937;
+        color: #e2e8f0;
     }
 
     .summary-row.total {
-        border-top: 3px solid #c92127;
+        border-top: 1px solid rgba(0, 242, 255, 0.3);
         margin-top: 15px;
         padding-top: 20px;
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .summary-row.total .label {
-        color: #1f2937;
+        color: #00f2ff;
         font-weight: 700;
     }
 
     .summary-row.total .value {
-        color: #c92127;
+        color: #00ff88;
         font-weight: 700;
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .shipping-address {
-        background: #f9fafb;
+        background: rgba(15, 23, 42, 0.6);
         padding: 20px;
         border-radius: 10px;
         margin-top: 20px;
-        border-left: 4px solid #3b82f6;
+        border-left: 3px solid #00f2ff;
     }
 
     .address-title {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 700;
-        color: #1f2937;
+        color: #00f2ff;
         margin-bottom: 10px;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
+        font-family: 'Orbitron', sans-serif;
     }
 
     .address-content {
-        color: #666;
+        color: #94a3b8;
         font-size: 14px;
         line-height: 1.6;
     }
 
     @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
 
     @keyframes slideUp {
@@ -247,6 +266,7 @@
             opacity: 0;
             transform: translateY(50px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
@@ -256,33 +276,33 @@
     .loading-spinner {
         text-align: center;
         padding: 60px;
-        color: #666;
+        color: #94a3b8;
     }
+</style>
+.loading-spinner i {
+font-size: 48px;
+color: #c92127;
+animation: spin 1s linear infinite;
+}
 
-    .loading-spinner i {
-        font-size: 48px;
-        color: #c92127;
-        animation: spin 1s linear infinite;
-    }
+.loading-text {
+margin-top: 15px;
+font-size: 14px;
+color: #999;
+}
 
-    .loading-text {
-        margin-top: 15px;
-        font-size: 14px;
-        color: #999;
-    }
+@keyframes spin {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
 
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-
-    .status-badge-large {
-        display: inline-block;
-        padding: 8px 16px;
-        border-radius: 8px;
-        font-size: 13px;
-        font-weight: 600;
-    }
+.status-badge-large {
+display: inline-block;
+padding: 8px 16px;
+border-radius: 8px;
+font-size: 13px;
+font-weight: 600;
+}
 </style>
 
 <!-- Order Detail Modal -->
@@ -304,61 +324,61 @@
 </div>
 
 <script>
-// Modal Functions
-function openOrderDetailModal(orderId) {
-    const modal = document.getElementById('orderDetailModal');
-    const content = document.getElementById('orderDetailContent');
+    // Modal Functions
+    function openOrderDetailModal(orderId) {
+        const modal = document.getElementById('orderDetailModal');
+        const content = document.getElementById('orderDetailContent');
 
-    // Show modal with loading state
-    modal.classList.add('active');
-    content.innerHTML = `
+        // Show modal with loading state
+        modal.classList.add('active');
+        content.innerHTML = `
         <div class="loading-spinner">
             <i class="fas fa-circle-notch"></i>
             <div class="loading-text">Đang tải thông tin đơn hàng...</div>
         </div>
     `;
 
-    // Fetch order details (for now, show sample data)
-    // TODO: Replace with actual AJAX call to fetch order details
-    setTimeout(() => {
-        loadOrderDetails(orderId);
-    }, 500);
-}
+        // Fetch order details (for now, show sample data)
+        // TODO: Replace with actual AJAX call to fetch order details
+        setTimeout(() => {
+            loadOrderDetails(orderId);
+        }, 500);
+    }
 
-function closeOrderDetailModal() {
-    const modal = document.getElementById('orderDetailModal');
-    modal.classList.remove('active');
-}
+    function closeOrderDetailModal() {
+        const modal = document.getElementById('orderDetailModal');
+        modal.classList.remove('active');
+    }
 
-async function loadOrderDetails(orderId) {
-    const content = document.getElementById('orderDetailContent');
+    async function loadOrderDetails(orderId) {
+        const content = document.getElementById('orderDetailContent');
 
-    try {
-        const response = await fetch(`<?= BASE_URL ?>admin/getOrderDetailAjax?order_id=${orderId}`);
-        const result = await response.json();
+        try {
+            const response = await fetch(`<?= BASE_URL ?>admin/getOrderDetailAjax?order_id=${orderId}`);
+            const result = await response.json();
 
-        if (!result.success) {
-            content.innerHTML = `
+            if (!result.success) {
+                content.innerHTML = `
                 <div style="text-align: center; padding: 40px; color: #ef4444;">
                     <i class="fas fa-exclamation-circle" style="font-size: 48px; margin-bottom: 15px;"></i>
                     <div>${result.message || 'Lỗi khi tải thông tin đơn hàng'}</div>
                 </div>
             `;
-            return;
-        }
+                return;
+            }
 
-        const order = result.order;
-        const items = result.items;
+            const order = result.order;
+            const items = result.items;
 
-        // Format date
-        const orderDate = new Date(order.created_date);
-        const formattedDate = orderDate.toLocaleDateString('vi-VN');
+            // Format date
+            const orderDate = new Date(order.created_date);
+            const formattedDate = orderDate.toLocaleDateString('vi-VN');
 
-        // Build items HTML
-        let itemsHtml = '';
-        items.forEach(item => {
-            const imageUrl = item.image_url ? `<?= BASE_URL ?>${item.image_url}` : '<?= BASE_URL ?>public/images/default-book.jpg';
-            itemsHtml += `
+            // Build items HTML
+            let itemsHtml = '';
+            items.forEach(item => {
+                const imageUrl = item.image_url ? `<?= BASE_URL ?>${item.image_url}` : '<?= BASE_URL ?>public/images/default-book.jpg';
+                itemsHtml += `
                 <div class="order-item-card">
                     <img src="${imageUrl}" alt="${item.title}" class="item-image">
                     <div class="item-details">
@@ -371,9 +391,9 @@ async function loadOrderDetails(orderId) {
                     <div class="item-price">${Number(item.subtotal).toLocaleString('vi-VN')}đ</div>
                 </div>
             `;
-        });
+            });
 
-        content.innerHTML = `
+            content.innerHTML = `
             <div class="order-info-grid">
                 <div class="info-item">
                     <div class="info-label"><i class="fas fa-hashtag"></i> Mã đơn hàng</div>
@@ -437,29 +457,28 @@ async function loadOrderDetails(orderId) {
                 </div>
             </div>
         `;
-    } catch (error) {
-        console.error('Error loading order details:', error);
-        content.innerHTML = `
+        } catch (error) {
+            console.error('Error loading order details:', error);
+            content.innerHTML = `
             <div style="text-align: center; padding: 40px; color: #ef4444;">
                 <i class="fas fa-exclamation-circle" style="font-size: 48px; margin-bottom: 15px;"></i>
                 <div>Lỗi khi tải thông tin đơn hàng. Vui lòng thử lại!</div>
             </div>
         `;
+        }
     }
-}
 
-// Close modal when clicking outside
-document.getElementById('orderDetailModal')?.addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeOrderDetailModal();
-    }
-});
+    // Close modal when clicking outside
+    document.getElementById('orderDetailModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeOrderDetailModal();
+        }
+    });
 
-// Close modal with ESC key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeOrderDetailModal();
-    }
-});
+    // Close modal with ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeOrderDetailModal();
+        }
+    });
 </script>
-

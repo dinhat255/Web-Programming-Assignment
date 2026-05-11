@@ -194,8 +194,8 @@ git clone https://github.com/dinhat255/Web-Programming-Assignment.git
 Mở `httpd.conf` và chỉnh `DocumentRoot` trỏ vào thư mục `public` của dự án:
 
 ```apache
-DocumentRoot "D:/Source/WebProgramingAssigment/BTL_SachHay/public"
-<Directory "D:/Source/WebProgramingAssigment/BTL_SachHay/public">
+DocumentRoot "D:/duong-dan/BTL_SachHay/public"
+<Directory "D:/duong-dan/BTL_SachHay/public">
     AllowOverride All
     Require all granted
 </Directory>
