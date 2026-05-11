@@ -201,13 +201,18 @@ INSERT INTO `customer` (`user_id`, `member_type`, `total_fpoint`) VALUES
 --
 
 CREATE TABLE `news` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
+  `summary` text DEFAULT NULL,
   `content` text NOT NULL,
+  `category` varchar(100) DEFAULT NULL,
   `image_url` varchar(255) DEFAULT NULL,
+  `published_date` date DEFAULT NULL,
   `author_id` int(11) NOT NULL COMMENT 'ID của admin viết bài',
+  `views` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------

@@ -1,52 +1,48 @@
-﻿    <!-- Footer -->
+    <!-- Footer -->
     <footer class="footer mt-5" role="contentinfo" aria-label="footer navigation">
         <div class="footer-top">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <h5 id="about-heading">Về SachHay</h5>
-                        <ul class="list-unstyled" aria-labelledby="about-heading">
-                            <li><a href="<?= BASE_URL ?>home/about" title="Giới thiệu về SachHay">Giới thiệu về SachHay</a></li>
-                            <li><a href="#" title="Thông tin tuyển dụng">Tuyển dụng</a></li>
-                            <li><a href="#" title="Chính sách bảo mật thông tin">Chính sách bảo mật</a></li>
-                            <li><a href="#" title="Điều khoản sử dụng dịch vụ">Điều khoản sử dụng</a></li>
+                <div class="footer-grid">
+                    <div class="footer-col footer-brand">
+                        <h5 id="about-heading">SachHay</h5>
+                        <p class="footer-text">Gợi ý sách hay, đặt mua nhanh, hỗ trợ rõ ràng và trải nghiệm đọc tốt hơn mỗi ngày.</p>
+                        <ul class="list-unstyled footer-links" aria-labelledby="about-heading">
+                            <li><a href="<?= BASE_URL ?>home/about"><i class="fas fa-circle-info" aria-hidden="true"></i> Giới thiệu</a></li>
+                            <li><a href="#"><i class="fas fa-briefcase" aria-hidden="true"></i> Tuyển dụng</a></li>
+                            <li><a href="#"><i class="fas fa-shield-halved" aria-hidden="true"></i> Bảo mật</a></li>
+                            <li><a href="#"><i class="fas fa-file-lines" aria-hidden="true"></i> Điều khoản</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
-                        <h5 id="support-heading">Hỗ trợ khách hàng</h5>
-                        <ul class="list-unstyled" aria-labelledby="support-heading">
-                            <li><a href="<?= BASE_URL ?>home/qa" title="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li>
-                            <li><a href="#" title="Chính sách đổi trả sản phẩm">Chính sách đổi trả</a></li>
-                            <li><a href="#" title="Phương thức thanh toán">Phương thức thanh toán</a></li>
-                            <li><a href="#" title="Hướng dẫn mua hàng">Hướng dẫn mua hàng</a></li>
+
+                    <div class="footer-col">
+                        <h5 id="support-heading">Hỗ trợ</h5>
+                        <ul class="list-unstyled footer-links" aria-labelledby="support-heading">
+                            <li><a href="<?= BASE_URL ?>home/qa"><i class="fas fa-circle-question" aria-hidden="true"></i> Hỏi / Đáp</a></li>
+                            <li><a href="#"><i class="fas fa-rotate-left" aria-hidden="true"></i> Đổi trả</a></li>
+                            <li><a href="#"><i class="fas fa-credit-card" aria-hidden="true"></i> Thanh toán</a></li>
+                            <li><a href="#"><i class="fas fa-book-open-reader" aria-hidden="true"></i> Hướng dẫn mua hàng</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
+
+                    <div class="footer-col">
                         <h5 id="contact-heading">Liên hệ</h5>
-                        <ul class="list-unstyled" aria-labelledby="contact-heading">
-                            <li><span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>60-62 Lê Lợi, Q.1, TP.HCM</span></span></li>
-                            <li><span><i class="fas fa-phone" aria-hidden="true"></i> <span>1900-6656</span></span></li>
-                            <li><span><i class="fas fa-envelope" aria-hidden="true"></i> <span>info@sachhay.vn</span></span></li>
+                        <ul class="list-unstyled footer-contact" aria-labelledby="contact-heading">
+                            <li><i class="fas fa-location-dot" aria-hidden="true"></i> 268 Lý Thường Kiệt, Quận 10, TP.HCM</li>
+                            <li><i class="fas fa-phone-volume" aria-hidden="true"></i> <a href="tel:19006656">1900-6656</a></li>
+                            <li><i class="fas fa-envelope" aria-hidden="true"></i> info@sachhay.vn</li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
-                        <h5 id="social-heading">Kết nối với chúng tôi</h5>
+
+                    <div class="footer-col footer-social">
+                        <h5 id="social-heading">Kết nối</h5>
                         <div class="social-links" aria-labelledby="social-heading">
-                            <a href="#" class="social-icon" aria-label="Facebook">
-                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" class="social-icon" aria-label="Instagram">
-                                <i class="fab fa-instagram" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" class="social-icon" aria-label="YouTube">
-                                <i class="fab fa-youtube" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" class="social-icon" aria-label="TikTok">
-                                <i class="fab fa-tiktok" aria-hidden="true"></i>
-                            </a>
+                            <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                            <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                            <a href="#" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                            <a href="#" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
                         </div>
-                        <div class="mt-3">
-                            <h6 id="payment-heading">Phương thức thanh toán</h6>
+                        <div class="payment-block mt-3">
+                            <h6 id="payment-heading">Thanh toán</h6>
                             <div class="payment-methods" aria-labelledby="payment-heading">
                                 <i class="fab fa-cc-visa" aria-label="Visa" role="img"></i>
                                 <i class="fab fa-cc-mastercard" aria-label="MasterCard" role="img"></i>
@@ -57,13 +53,10 @@
                 </div>
             </div>
         </div>
+
         <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <p class="mb-0" role="contentinfo">&copy; 2024 <?= APP_NAME ?>. All rights reserved.</p>
-                    </div>
-                </div>
+            <div class="container text-center">
+                <p class="mb-0" role="contentinfo">&copy; 2026 <?= APP_NAME ?>. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -72,83 +65,166 @@
         .footer {
             background: linear-gradient(180deg, #3a261b 0%, #271911 100%);
             color: white;
-            margin-top: 50px;
+            margin-top: 30px;
+            border-top: 3px solid #5c3d2e;
         }
 
         .footer-top {
-            padding: 40px 0;
+            padding: 24px 0;
+        }
+
+        .footer-grid {
+            display: flex;
+            gap: 22px;
+            align-items: flex-start;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 0;
+            padding-left: 18px;
+            border-left: 1px solid rgba(215, 176, 125, 0.22);
+        }
+
+        .footer-col:first-child {
+            padding-left: 0;
+            border-left: none;
+        }
+
+        .footer-brand {
+            flex: 1.15;
         }
 
         .footer h5 {
             color: #d7b07d;
-            margin-bottom: 20px;
-            font-weight: 600;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.2px;
         }
 
         .footer h6 {
-            color: white;
-            font-size: 14px;
-            margin-bottom: 10px;
+            color: #f2e6d6;
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
-        .footer ul li {
-            margin-bottom: 10px;
+        .footer-text {
+            color: #d7d0cb;
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 12px;
         }
 
-        .footer ul li a {
-            color: #cccccc;
+        .footer-links,
+        .footer-contact {
+            margin: 0;
+        }
+
+        .footer-links li,
+        .footer-contact li {
+            margin-bottom: 8px;
+            color: #cfc6bf;
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .footer-links a,
+        .footer-contact a {
+            color: #cfc6bf;
             text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
+            transition: color 0.2s ease;
         }
 
-        .footer ul li a:hover {
+        .footer-links a:hover,
+        .footer-contact a:hover {
             color: #f1d2a5;
         }
 
-        .footer ul li i {
-            margin-right: 8px;
+        .footer-links i,
+        .footer-contact i {
             color: #d7b07d;
+            margin-right: 8px;
+            width: 14px;
+            text-align: center;
         }
 
         .social-links {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .social-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            color: white;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #fff;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
         }
 
         .social-icon:hover {
             background-color: #c89b5c;
-            color: white;
-            transform: translateY(-3px);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .payment-methods i {
-            font-size: 24px;
-            margin-right: 10px;
+            font-size: 26px;
             color: #d7b07d;
         }
 
         .footer-bottom {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.18);
+            padding: 14px 0;
         }
 
         .footer-bottom p {
-            color: #cccccc;
-            font-size: 14px;
+            color: #b7aea8;
+            font-size: 12px;
+            letter-spacing: 0.4px;
+        }
+
+        @media (max-width: 991px) {
+            .footer-grid {
+                flex-wrap: wrap;
+            }
+
+            .footer-col {
+                min-width: calc(50% - 11px);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .footer-col {
+                min-width: 100%;
+                padding-left: 0;
+                border-left: none;
+                border-top: 1px solid rgba(215, 176, 125, 0.18);
+                padding-top: 16px;
+            }
+
+            .footer-col:first-child {
+                border-top: none;
+                padding-top: 0;
+            }
+
+            .footer-top {
+                padding: 20px 0;
+            }
         }
     </style>
 
@@ -157,18 +233,14 @@
 
     <!-- Global site scripts -->
     <script>
-        // Global image lazy loading and performance improvements
         document.addEventListener('DOMContentLoaded', function() {
-            // Add lazy loading to all images that don't have it
             const images = document.querySelectorAll('img:not([loading])');
             images.forEach(img => {
                 img.setAttribute('loading', 'lazy');
             });
 
-            // Add performance observer for Core Web Vitals simulation
             if ('requestIdleCallback' in window) {
                 requestIdleCallback(function() {
-                    // Defer non-critical tasks
                     const links = document.querySelectorAll('a');
                     links.forEach(link => {
                         if (link.hostname !== window.location.hostname && !link.getAttribute('target')) {
@@ -206,13 +278,11 @@
                     btn.disabled = false;
                     btn.innerHTML = orig;
                     if (res.success) {
-                        // Visual feedback
                         btn.classList.remove('btn-outline-danger');
                         btn.classList.add('text-danger');
                         btn.innerHTML = '<i class="fas fa-heart"></i>';
                         showToast('Đã thêm vào yêu thích');
                     } else if (res.need_login) {
-                        // nếu server yêu cầu login
                         window.location.href = '<?= BASE_URL ?>auth/login';
                     } else if (res.guest) {
                         btn.classList.add('text-danger');

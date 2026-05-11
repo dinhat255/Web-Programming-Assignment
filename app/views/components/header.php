@@ -95,31 +95,27 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
         }
 
         /* Header Styles */
-        .top-header {
-            background-color: var(--sachhay-red);
-            color: white;
-            padding: 8px 0;
-            font-size: 13px;
-        }
-
-        .top-header a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .top-header a:hover {
-            text-decoration: underline;
-        }
-
         .main-header {
             background-color: rgba(255, 251, 246, 0.95);
-            box-shadow: 0 8px 24px rgba(80, 48, 26, 0.08);
+            box-shadow: 0 10px 24px rgba(80, 48, 26, 0.08);
             padding: 12px 0;
+            border-bottom: 1px solid #e9d8c8;
+            border-radius: 0 0 18px 18px;
             backdrop-filter: blur(8px);
         }
 
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
         .logo {
-            font-size: 26px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
             font-weight: 700;
             color: var(--sachhay-red);
             text-decoration: none;
@@ -127,6 +123,26 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
 
         .logo:hover {
             color: var(--sachhay-orange);
+        }
+
+        .header-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: #fff7f0;
+            border: 1px solid #ead5c3;
+            color: var(--sachhay-red);
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(80, 48, 26, 0.06);
+        }
+
+        .header-phone:hover {
+            color: #704526;
+            background: #fff0e2;
         }
 
         .search-box {
@@ -157,23 +173,27 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
         }
 
         .nav-menu {
-            background-color: var(--sachhay-light-gray);
-            padding: 10px 0;
+            background: linear-gradient(90deg, var(--sachhay-light-gray) 0%, #ffffff 100%);
+            padding: 10px 0 12px;
         }
 
         .nav-menu .nav-link {
             color: var(--sachhay-dark);
             font-weight: 500;
-            padding: 8px 14px;
+            padding: 6px 14px;
+            font-size: 15px;
             text-decoration: none;
-            transition: all 0.2s;
-            border-radius: 4px;
+            transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+            border-radius: 999px;
+            border-bottom: 3px solid transparent;
+            background-color: rgba(255, 255, 255, 0.75);
         }
 
         .nav-menu .nav-link:hover,
         .nav-menu .nav-link.active {
             color: var(--sachhay-red);
-            background-color: rgba(139, 94, 60, 0.08);
+            background-color: #fff6ef;
+            border-bottom-color: var(--sachhay-red);
         }
 
         .header-icons .dropdown-menu a {
@@ -188,16 +208,68 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
             color: var(--sachhay-dark);
         }
 
+        .header-actions {
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .header-icons>a,
+        .header-icons .btn-group>.btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            border-radius: 999px;
+        }
+
+        .header-icons>a {
+            width: 42px;
+            height: 42px;
+            background-color: #fff7f0;
+            border: 1px solid #ead5c3;
+            color: var(--sachhay-red);
+            box-shadow: 0 4px 10px rgba(80, 48, 26, 0.06);
+        }
+
+        .header-icons>a:hover {
+            background-color: #fff0e2;
+            color: #704526;
+        }
+
+        .header-icons>a.cart-link {
+            margin-left: 0;
+        }
+
+        .header-icons .btn-group>.btn {
+            background-color: #fff7f0;
+            border: 1px solid #ead5c3;
+            color: var(--sachhay-dark);
+            padding: 0 14px;
+            box-shadow: 0 4px 10px rgba(80, 48, 26, 0.06);
+        }
+
+        .header-icons .btn-group>.btn:hover {
+            background-color: #fff0e2;
+            color: var(--sachhay-red);
+        }
+
+        .header-icons .btn-group .dropdown-toggle::after {
+            margin-left: 8px;
+        }
+
         .cart-badge {
             position: absolute;
-            top: -8px;
-            right: -10px;
+            top: -6px;
+            right: -6px;
             background-color: var(--sachhay-red);
             color: white;
             border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 11px;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -226,8 +298,21 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
                 padding-right: 44px;
             }
 
-            .header-icons a {
-                margin-left: 10px;
+            .header-brand {
+                gap: 10px;
+            }
+
+            .header-phone {
+                font-size: 12px;
+                padding: 5px 12px;
+            }
+
+            .header-actions {
+                justify-content: flex-start;
+            }
+
+            .logo {
+                font-size: 24px;
             }
         }
     </style>
@@ -253,70 +338,60 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
 <body>
 
     <div class="header-wrapper">
-        <!-- Top Header -->
-        <div class="top-header" role="banner">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-7 col-sm-6">
-                        <i class="fas fa-phone" aria-hidden="true"></i>
-                        <span class="visually-hidden">Hotline:</span>
-                        <a href="tel:19006656" class="ms-1" style="color:inherit; text-decoration: none;">1900-6656</a>
-                    </div>
-                    <div class="col-5 col-sm-6 text-end">
-                        <?php if ($user): ?>
-                            <span class="me-2"><i class="fas fa-user"></i> <?= e($user['name'] ?? $user['email'] ?? 'Người dùng') ?></span>
-                            <?php if (isset($user['role']) && $user['role'] === 'admin'): ?>
-                                <a href="<?= $base ?>admin" class="me-2 text-danger fw-bold"><i class="fas fa-cog"></i> Quản trị</a>
-                            <?php endif; ?>
-                            <a href="<?= $base ?>auth/logout" class="me-2" style="color:inherit;"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Đăng xuất</a>
-                        <?php else: ?>
-                            <a href="<?= $base ?>auth/login" class="me-2"><i class="fas fa-user"></i> Đăng nhập</a>
-                            <span class="mx-1">|</span>
-                            <a href="<?= $base ?>auth/register" class="ms-2"><i class="fas fa-user-plus"></i> Đăng ký</a>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Main Header -->
         <header class="main-header" role="navigation" aria-label="Main navigation">
             <div class="container">
                 <div class="row align-items-center g-3">
 
-                    <div class="col-9 col-md-3">
-                        <a href="<?= $base ?>" class="logo" aria-label="Trang chủ SachHay">
-                            <i class="fas fa-book-open" aria-hidden="true"></i> SachHay
-                        </a>
+                    <div class="col-12 col-md-5">
+                        <div class="header-brand">
+                            <a href="<?= $base ?>" class="logo" aria-label="Trang chủ SachHay">
+                                <i class="fas fa-book-bookmark" aria-hidden="true"></i> SachHay
+                            </a>
+                            <a href="tel:19009999" class="header-phone" aria-label="Gọi hotline 1900 9999">
+                                <i class="fas fa-phone-volume" aria-hidden="true"></i>
+                                <span>1900 9999</span>
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="col-3 col-md-9 d-flex justify-content-end align-items-center">
-                        <div class="header-icons d-inline-flex align-items-center">
-
-                            <a href="<?= $base ?>cart" title="Giỏ hàng" aria-label="Giỏ hàng" class="position-relative ms-3">
-                                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-                                <?php if ($cartCount > 0): ?>
-                                    <span class="cart-badge" aria-live="polite" aria-atomic="true"><?= e($cartCount) ?></span>
+                    <div class="col-12 col-md-7 d-flex justify-content-md-end align-items-center">
+                        <div class="header-actions">
+                            <div class="header-icons d-inline-flex align-items-center">
+                                <?php if ($user): ?>
+                                    <div class="btn-group d-none d-md-inline-flex">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-circle-user" aria-hidden="true"></i>
+                                            <span class="account-name"><?= e($user['name'] ?? $user['email']) ?></span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a class="dropdown-item" href="<?= $base ?>customer"><i class="fas fa-user me-2"></i>Thông tin tài khoản</a></li>
+                                            <li><a class="dropdown-item" href="<?= $base ?>customer/orders"><i class="fas fa-box me-2"></i>Đơn hàng của tôi</a></li>
+                                            <li><a class="dropdown-item" href="<?= $base ?>customer/wishlist"><i class="fas fa-heart me-2"></i>Sản phẩm yêu thích</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item text-danger" href="<?= $base ?>auth/logout"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
+                                        </ul>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="d-none d-md-inline-flex align-items-center gap-2 me-1">
+                                        <a href="<?= $base ?>auth/login" class="btn btn-sm btn-outline-secondary px-3" aria-label="Đăng nhập">
+                                            <i class="fas fa-right-to-bracket me-1" aria-hidden="true"></i>Đăng nhập
+                                        </a>
+                                        <a href="<?= $base ?>auth/register" class="btn btn-sm btn-outline-secondary px-3" aria-label="Đăng ký">
+                                            <i class="fas fa-user-plus me-1" aria-hidden="true"></i>Đăng ký
+                                        </a>
+                                    </div>
                                 <?php endif; ?>
-                            </a>
 
-                            <?php if ($user): ?>
-                                <div class="btn-group ms-3 d-none d-md-block"> <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-user-circle" aria-hidden="true"></i>
-                                        <span class="account-name"><?= e($user['name'] ?? $user['email']) ?></span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="<?= $base ?>customer"><i class="fas fa-user me-2"></i>Thông tin tài khoản</a></li>
-                                        <li><a class="dropdown-item" href="<?= $base ?>customer/orders"><i class="fas fa-box me-2"></i>Đơn hàng của tôi</a></li>
-                                        <!-- <li><a class="dropdown-item" href="<?= $base ?>customer/notifications"><i class="fas fa-bell me-2"></i>Thông báo</a></li> -->
-                                        <li><a class="dropdown-item" href="<?= $base ?>customer/wishlist"><i class="fas fa-heart me-2"></i>Sản phẩm yêu thích</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item text-danger" href="<?= $base ?>auth/logout"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
-                                    </ul>
-                                </div>
-                            <?php endif; ?>
+                                <a href="<?= $base ?>cart" title="Giỏ hàng" aria-label="Giỏ hàng" class="position-relative cart-link">
+                                    <i class="fas fa-basket-shopping" aria-hidden="true"></i>
+                                    <?php if ($cartCount > 0): ?>
+                                        <span class="cart-badge" aria-live="polite" aria-atomic="true"><?= e($cartCount) ?></span>
+                                    <?php endif; ?>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -328,22 +403,22 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
             <div class="container">
                 <div class="d-flex flex-wrap gap-2">
                     <a href="<?= $base ?>home" class="nav-link <?= ($page ?? '') == 'home' ? 'active' : '' ?>" aria-current="<?= ($page ?? '') == 'home' ? 'page' : 'false' ?>">
-                        <i class="fas fa-home" aria-hidden="true"></i> Trang chủ
+                        <i class="fas fa-house" aria-hidden="true"></i> Trang chủ
                     </a>
                     <a href="<?= $base ?>home/about" class="nav-link <?= ($page ?? '') == 'about' ? 'active' : '' ?>">
-                        <i class="fas fa-info-circle" aria-hidden="true"></i> Giới thiệu
+                        <i class="fas fa-circle-info" aria-hidden="true"></i> Giới thiệu
                     </a>
                     <a href="<?= $base ?>home/qa" class="nav-link <?= ($page ?? '') == 'qa' ? 'active' : '' ?>">
-                        <i class="fas fa-question-circle" aria-hidden="true"></i> Hỏi/Đáp
+                        <i class="fas fa-comments" aria-hidden="true"></i> Hỏi/Đáp
                     </a>
                     <a href="<?= $base ?>product" class="nav-link <?= ($page ?? '') == 'product' ? 'active' : '' ?>">
-                        <i class="fas fa-book" aria-hidden="true"></i> Sản phẩm
+                        <i class="fas fa-boxes-stacked" aria-hidden="true"></i> Sản phẩm
                     </a>
                     <a href="<?= $base ?>news" class="nav-link <?= ($page ?? '') == 'news' ? 'active' : '' ?>">
                         <i class="fas fa-newspaper" aria-hidden="true"></i> Tin tức
                     </a>
                     <a href="<?= $base ?>contact" class="nav-link <?= ($page ?? '') == 'contact' ? 'active' : '' ?>">
-                        <i class="fas fa-phone" aria-hidden="true"></i> Liên hệ
+                        <i class="fas fa-phone-flip" aria-hidden="true"></i> Liên hệ
                     </a>
                 </div>
             </div>
@@ -367,4 +442,3 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
 </body>
 
 </html>
-

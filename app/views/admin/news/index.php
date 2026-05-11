@@ -18,6 +18,15 @@
 <div class="page-body">
     <div class="container-xl">
         <div class="card">
+
+        <div class="row mb-3">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" id="newsSearchInput" class="form-control" placeholder="Tìm kiếm bài viết theo tiêu đề hoặc danh mục...">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div>
+    </div>
+</div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap datatable">
                     <thead>
@@ -61,3 +70,23 @@
         </div>
     </div>
 </div>
+
+
+<script>
+document.getElementById('newsSearchInput').addEventListener('keyup', function() {
+    let value = this.value.toLowerCase();
+    let rows = document.querySelectorAll('table tbody tr');
+
+    rows.forEach(row => {
+        // Tìm kiếm ở cột Tiêu đề (cột 2) và Danh mục (cột 3)
+        let title = row.cells[1] ? row.cells[1].textContent.toLowerCase() : '';
+        let category = row.cells[2] ? row.cells[2].textContent.toLowerCase() : '';
+        
+        if (title.includes(value) || category.includes(value)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+</script>
