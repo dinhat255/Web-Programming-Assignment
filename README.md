@@ -134,7 +134,7 @@ Website bán sách trực tuyến **BTL SachHay** là một nền tảng thươn
 
 - **Responsive Design** - Tương thích mobile, tablet, desktop
 - **Bootstrap 5** - Grid system và components hiện đại
-  -- **SachHay-inspired** - Màu sắc và layout theo phong cách ấm áp, phù hợp dự án
+- **SachHay-inspired** - Màu sắc và layout theo phong cách ấm áp, phù hợp dự án
 - **Font Awesome Icons** - Hơn 2000 icons miễn phí
 - **Smooth Animations** - Transitions và hover effects
 
@@ -188,11 +188,17 @@ Website bán sách trực tuyến **BTL SachHay** là một nền tảng thươn
 
 ```bash
 # Clone từ Git
-git clone https://github.com/Binh205/BTL_SachHay.git
+git clone https://github.com/dinhat255/Web-Programming-Assignment.git
+```
 
-Mở httpd.conf và chỉnh DocumentRoot trỏ vào thư mục public của dự án
-DocumentRoot "../BTL_SachHay/public"
-<Directory "../BTL_SachHay/public"> ...
+Mở `httpd.conf` và chỉnh `DocumentRoot` trỏ vào thư mục `public` của dự án:
+
+```apache
+DocumentRoot "D:/Source/WebProgramingAssigment/BTL_SachHay/public"
+<Directory "D:/Source/WebProgramingAssigment/BTL_SachHay/public">
+    AllowOverride All
+    Require all granted
+</Directory>
 ```
 
 ### Bước 2: Import Database
@@ -235,7 +241,7 @@ chmod 755 public/images/uploads
 ### Bước 5: Khởi động server
 
 1. Bật **Apache** và **MySQL** trong XAMPP Control Panel
-2. Truy cập: `http://localhost/BTL_Fahasa/public/`
+2. Truy cập: `http://localhost/`
 
 ### Bước 6: Đăng nhập Admin (tùy chọn)
 
@@ -857,15 +863,9 @@ orders (1) ----< (N) order_details
 
 ---
 
-## 👥 Nhóm phát triển - L01_6
+## 👤 Thông tin dự án
 
-| Thành viên       | MSSV    | Email              | Nhiệm vụ                     |
-| ---------------- | ------- | ------------------ | ---------------------------- |
-| **Nguyễn Văn A** | 2211xxx | email@hcmut.edu.vn | Team Lead, Backend, Database |
-| **Trần Thị B**   | 2211xxx | email@hcmut.edu.vn | Frontend, UI/UX Design       |
-| **Lê Văn C**     | 2211xxx | email@hcmut.edu.vn | Backend, Admin Panel         |
-
-**Giảng viên hướng dẫn:** Nguyễn Hữu Hiếu
+- **Repository owner:** @dinhat255
 
 ---
 
@@ -885,7 +885,7 @@ orders (1) ----< (N) order_details
 3. **Thiết kế ứng dụng** - Database, MVC architecture, tính năng hệ thống
 4. **Hiện thực** - Screenshots, code snippets quan trọng
 5. **Hướng dẫn cài đặt** - Chi tiết từng bước
-6. **Phân công công việc** - Team contributions
+6. **Triển khai** - Quy trình phát triển và cập nhật tính năng
 7. **Tài liệu tham khảo** - References
 
 ### 🎬 Demo
@@ -926,7 +926,7 @@ orders (1) ----< (N) order_details
 Dự án này được phát triển cho **mục đích học tập** (Bài Tập Lớn môn Lập Trình Web - HCMUT).
 
 ```
-Copyright (c) 2024 Nhóm L01_6
+Copyright (c) 2024 Dinhat255
 Trường Đại học Bách Khoa - ĐHQG TP.HCM
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -963,13 +963,13 @@ Chúng em xin gửi lời cảm ơn chân thành đến:
 
 ### GitHub Repository
 
-- **URL:** https://github.com/Binh205/BTL_SachHay
-- **Issues:** https://github.com/Binh205/BTL_SachHay/issues
+- **URL:** https://github.com/dinhat255/Web-Programming-Assignment
+- **Issues:** https://github.com/dinhat255/Web-Programming-Assignment/issues
 - **Pull Requests:** Welcome!
 
-### Liên hệ nhóm phát triển
+### Liên hệ
 
-- **Email:** htbinh205@gmail.com
+- **Email:** nguyenduynhat.250505@gmail.com
 - **Facebook Group:** [Link]
 
 ---
@@ -995,7 +995,7 @@ Mọi đóng góp đều được chào đón! Nếu bạn muốn cải thiện 
 
 ## 📈 Changelog
 
-### Version 1.0.0 (2024-12-09)
+### Version 1.0.0 (2026-5-11)
 
 ✅ **Initial Release**
 
@@ -1017,7 +1017,7 @@ Mọi đóng góp đều được chào đón! Nếu bạn muốn cải thiện 
 
 **🎉 Chúc bạn triển khai thành công! 🎉**
 
-Made with ❤️ by **Nhóm L01_6** - HCMUT
+Made with ❤️ by **Dinhat255**
 
 [⬆ Back to top](#-btl-sachhay---website-bán-sách-trực-tuyến)
 
