@@ -2,11 +2,13 @@
 require_once APP_ROOT . '/models/Order.php';
 require_once APP_ROOT . '/models/CartModel.php';
 
-class OrderController extends Controller {
+class OrderController extends Controller
+{
     private $orderModel;
     private $cartModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->orderModel = new Order();
         $this->cartModel = new CartModel();
     }
@@ -14,12 +16,11 @@ class OrderController extends Controller {
     /**
      * Submit đơn hàng (AJAX)
      */
-    public function submitOrder() {
-        header('Content-Type: application/json');
-
+    public function submitOrder()
+    {
         // Kiểm tra đăng nhập
         if (!isset($_SESSION['user_id']) && !isset($_SESSION['users_id'])) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Vui lòng đăng nhập để đặt hàng'
             ]);
@@ -41,7 +42,7 @@ class OrderController extends Controller {
 
         // Validate thông tin cơ bản
         if (empty($recipientName) || empty($recipientPhone) || empty($shippingAddress)) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Vui lòng điền đầy đủ thông tin giao hàng'
             ]);
@@ -50,7 +51,7 @@ class OrderController extends Controller {
 
         // Validate phone number
         if (!preg_match('/(84|0[3|5|7|8|9])+([0-9]{8})\b/', $recipientPhone)) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Số điện thoại không hợp lệ'
             ]);
@@ -60,7 +61,7 @@ class OrderController extends Controller {
         // Parse products
         $products = json_decode($productsJson, true);
         if (empty($products) || !is_array($products)) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Không có sản phẩm nào được chọn'
             ]);
@@ -70,7 +71,7 @@ class OrderController extends Controller {
         // Validate products
         foreach ($products as $product) {
             if (empty($product['product_id']) || empty($product['quantity']) || empty($product['price'])) {
-                echo json_encode([
+                $this->jsonResponse([
                     'success' => false,
                     'message' => 'Thông tin sản phẩm không hợp lệ'
                 ]);
@@ -100,15 +101,14 @@ class OrderController extends Controller {
             foreach ($products as $product) {
                 $this->cartModel->removeFromCart($userId, $product['product_id']);
             }
-
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => true,
                 'message' => 'Đặt hàng thành công',
                 'order_id' => $orderId,
                 'redirect_url' => BASE_URL . 'customer/orders'
             ]);
         } else {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Lỗi khi tạo đơn hàng. Vui lòng thử lại!'
             ]);
@@ -118,7 +118,8 @@ class OrderController extends Controller {
     /**
      * Hiển thị danh sách đơn hàng của user (trang customer/orders)
      */
-    public function index() {
+    public function index()
+    {
         // Kiểm tra đăng nhập
         if (!isset($_SESSION['user_id']) && !isset($_SESSION['users_id'])) {
             header('Location: ' . BASE_URL . 'auth/login');
@@ -183,7 +184,8 @@ class OrderController extends Controller {
     /**
      * Xem chi tiết đơn hàng
      */
-    public function detail($orderId) {
+    public function detail($orderId)
+    {
         // Kiểm tra đăng nhập
         if (!isset($_SESSION['user_id']) && !isset($_SESSION['users_id'])) {
             header('Location: ' . BASE_URL . 'auth/login');
@@ -213,11 +215,10 @@ class OrderController extends Controller {
     /**
      * Hủy đơn hàng (AJAX)
      */
-    public function cancelOrder() {
-        header('Content-Type: application/json');
-
+    public function cancelOrder()
+    {
         if (!isset($_SESSION['user_id']) && !isset($_SESSION['users_id'])) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Vui lòng đăng nhập'
             ]);
@@ -228,7 +229,7 @@ class OrderController extends Controller {
         $orderId = $_POST['order_id'] ?? 0;
 
         if (!$orderId) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Thiếu order_id'
             ]);
@@ -238,16 +239,29 @@ class OrderController extends Controller {
         $success = $this->orderModel->cancelOrder($orderId, $userId);
 
         if ($success) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => true,
                 'message' => 'Đã hủy đơn hàng'
             ]);
         } else {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Không thể hủy đơn hàng (Đơn hàng đã được xử lý)'
             ]);
         }
     }
-}
 
+    /**
+     * Helper: sạch sẽ trả về JSON (dọn buffer trước, set header)
+     */
+    private function jsonResponse($data)
+    {
+        while (ob_get_level() > 0) {
+            ob_end_clean();
+        }
+
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+}

@@ -85,7 +85,7 @@
         background-color: white;
         padding: 20px;
         border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         margin-bottom: 30px;
     }
 
@@ -157,7 +157,7 @@
         background: white;
         border-radius: 8px;
         overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s, box-shadow 0.3s;
         text-decoration: none;
         color: inherit;
@@ -166,7 +166,7 @@
 
     .product-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
     }
 
     .product-badge {
@@ -194,7 +194,7 @@
         color: var(--sachhay-gray);
         font-size: 1.1rem;
         cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         transition: all 0.3s;
         display: flex;
         align-items: center;
@@ -204,7 +204,7 @@
 
     .btn-wishlist:hover {
         transform: scale(1.1);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .btn-wishlist.active {
@@ -216,10 +216,23 @@
     }
 
     @keyframes heartBeat {
-        0%, 100% { transform: scale(1); }
-        25% { transform: scale(1.3); }
-        50% { transform: scale(1.1); }
-        75% { transform: scale(1.2); }
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        25% {
+            transform: scale(1.3);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+
+        75% {
+            transform: scale(1.2);
+        }
     }
 
     .product-image {
@@ -341,11 +354,11 @@
         .product-grid {
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         }
-        
+
         .search-form {
             flex-direction: column;
         }
-        
+
         .sort-section {
             flex-direction: column;
             align-items: stretch;
@@ -373,10 +386,10 @@
     <div class="search-section">
         <form method="GET" action="<?= BASE_URL ?>product" class="search-form">
             <div class="search-input">
-                <input type="text" 
-                       name="search" 
-                       placeholder="Tìm kiếm sách, tác giả, thể loại..." 
-                       value="<?= htmlspecialchars($search ?? '') ?>">
+                <input type="text"
+                    name="search"
+                    placeholder="Tìm kiếm sách, tác giả, thể loại..."
+                    value="<?= htmlspecialchars($search ?? '') ?>">
             </div>
             <button type="submit" class="btn" style="background-color: var(--sachhay-red); color: white; border: none; padding: 8px 20px; border-radius: 4px;">
                 <i class="fas fa-search"></i> Tìm kiếm
@@ -411,16 +424,16 @@
                 cho từ khóa "<strong><?= htmlspecialchars($search) ?></strong>"
             <?php endif;
             ?>
-            <?php if (!empty($selectedCategory) && $selectedCategory != 'all'): 
+            <?php if (!empty($selectedCategory) && $selectedCategory != 'all'):
             ?>
-                <?php 
-                    $categoryName = '';
-                    foreach ($categories as $cat) {
-                        if ($cat['category_id'] == $selectedCategory) {
-                            $categoryName = $cat['category_name'];
-                            break;
-                        }
+                <?php
+                $categoryName = '';
+                foreach ($categories as $cat) {
+                    if ($cat['category_id'] == $selectedCategory) {
+                        $categoryName = $cat['category_name'];
+                        break;
                     }
+                }
                 ?>
                 trong danh mục <strong><?= htmlspecialchars($categoryName) ?></strong>
             <?php endif;
@@ -439,7 +452,7 @@
     </div>
 
     <!-- Product Grid -->
-    <?php if (!empty($products)): 
+    <?php if (!empty($products)):
     ?>
         <div class="product-grid">
             <?php foreach ($products as $product):
@@ -457,9 +470,9 @@
                     <?php endif;
                     ?>
                     <button class="btn-wishlist <?= $isInWishlist ? 'active' : '' ?>"
-                            data-product-id="<?= $product['product_id'] ?>"
-                            onclick="event.preventDefault(); toggleWishlist(this);"
-                            title="<?= $isInWishlist ? 'Xóa khỏi yêu thích' : 'Thêm vào yêu thích' ?>">
+                        data-product-id="<?= $product['product_id'] ?>"
+                        onclick="event.preventDefault(); toggleWishlist(this);"
+                        title="<?= $isInWishlist ? 'Xóa khỏi yêu thích' : 'Thêm vào yêu thích' ?>">
                         <i class="<?= $isInWishlist ? 'fas' : 'far' ?> fa-heart"></i>
                     </button>
                     <div class="product-image">
@@ -470,7 +483,7 @@
                         <div class="product-author"><?= htmlspecialchars($product['author']) ?></div>
                         <div class="product-price">
                             <?= number_format($product['price']) ?>đ
-                            <?php if ($isDiscounted): 
+                            <?php if ($isDiscounted):
                                 // Display old price if the product is discounted
                             ?>
                                 <span class="product-old-price"><?= number_format($product['old_price']) ?>đ</span>
@@ -489,7 +502,8 @@
                                     <?php endif; ?>
                                 <?php endfor; */ ?>
                             </div>
-                            <div class="rating-count">(<?php //= $product['reviews'] ?>)</div>
+                            <div class="rating-count">(<?php //= $product['reviews'] 
+                                                        ?>)</div>
                         </div>
                         -->
                     </div>
@@ -499,7 +513,7 @@
         </div>
 
         <!-- Pagination -->
-        <?php if ($totalPages > 1): 
+        <?php if ($totalPages > 1):
             // Determine the range of pages to display, showing current page and a few around it
             $startPage = max(1, $currentPage - 2);
             $endPage = min($totalPages, $currentPage + 2);
@@ -554,40 +568,41 @@
         const endpoint = isActive ? 'customer/removeWishlist' : 'customer/addWishlist';
 
         fetch('<?= BASE_URL ?>' + endpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: 'product_id=' + encodeURIComponent(productId)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Toggle state
-                btn.classList.toggle('active');
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'product_id=' + encodeURIComponent(productId)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data || !data.success) {
+                    showToast((data && data.message) ? data.message : 'Có lỗi xảy ra!', 'error');
+                    return;
+                }
 
-                if (btn.classList.contains('active')) {
+                const nextState = typeof data.state === 'boolean' ? data.state : !isActive;
+                btn.classList.toggle('active', nextState);
+
+                if (nextState) {
                     icon.classList.remove('far');
                     icon.classList.add('fas');
                     btn.title = 'Xóa khỏi yêu thích';
-                    showToast('Đã thêm vào danh sách yêu thích!', 'success');
+                    showToast(data.message || 'Đã thêm vào danh sách yêu thích!', 'success');
                 } else {
                     icon.classList.remove('fas');
                     icon.classList.add('far');
                     btn.title = 'Thêm vào yêu thích';
-                    showToast('Đã xóa khỏi danh sách yêu thích!', 'info');
+                    showToast(data.message || 'Đã xóa khỏi danh sách yêu thích!', 'info');
                 }
-            } else {
-                showToast(data.message || 'Có lỗi xảy ra!', 'error');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            showToast('Không thể kết nối đến server!', 'error');
-        })
-        .finally(() => {
-            btn.disabled = false;
-        });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('Không thể kết nối đến server!', 'error');
+            })
+            .finally(() => {
+                btn.disabled = false;
+            });
     }
 
     // Show toast notification
@@ -643,5 +658,3 @@
 </script>
 
 <?php require_once APP_ROOT . '/views/components/footer.php'; ?>
-
-

@@ -188,7 +188,14 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 0;
+    }
+
+    .cart-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
     }
 
     .quantity-btn {
@@ -264,6 +271,17 @@
         border: 1px solid #f5c6cb;
     }
 
+    /* Local add-to-cart alert (inline next to quantity) */
+    .local-alert {
+        display: none;
+        padding: 10px 14px;
+        border-radius: 6px;
+        min-width: 180px;
+        max-width: 320px;
+        text-align: left;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
     .related-products {
         margin-top: 50px;
     }
@@ -296,7 +314,7 @@
         background: white;
         border-radius: 8px;
         overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s, box-shadow 0.3s;
         text-decoration: none;
         color: inherit;
@@ -304,7 +322,7 @@
 
     .related-product-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
     }
 
     .related-product-image {
@@ -363,11 +381,11 @@
         .product-detail {
             flex-direction: column;
         }
-        
+
         .product-title {
             font-size: 1.4rem;
         }
-        
+
         .current-price {
             font-size: 1.4rem;
         }
@@ -395,11 +413,11 @@
                 <img src="<?= BASE_URL . $product['image_url'] ?>" alt="<?= htmlspecialchars($product['title']) ?>">
             </div>
         </div>
-        
+
         <div class="product-info-section">
             <h1 class="product-title"><?= htmlspecialchars($product['title']) ?></h1>
             <div class="product-author">Tác giả: <?= htmlspecialchars($product['author']) ?></div>
-            
+
             <div class="product-price">
                 <span class="current-price"><?= number_format($product['price']) ?>đ</span>
                 <?php if (isset($product['old_price']) && $product['old_price'] > $product['price']): ?>
@@ -407,7 +425,7 @@
                     <span class="discount-percent">-<?= round(100 - ($product['price'] / $product['old_price']) * 100) ?>%</span>
                 <?php endif; ?>
             </div>
-            
+
             <!-- Tạm thời ẩn phần đánh giá sản phẩm để tránh lỗi "Undefined array key \"rating\". Sẽ bổ sung sau. -->
             <!-- 
             <div class="product-rating">
@@ -420,35 +438,36 @@
                         <?php endif; ?>
                     <?php endfor; */ ?>
                 </div>
-                <div class="rating-count">(<?php //= $product['reviews'] ?> đánh giá)</div>
+                <div class="rating-count">(<?php //= $product['reviews'] 
+                                            ?> đánh giá)</div>
             </div>
             -->
-            
+
             <div class="product-meta">
                 <div class="meta-item">
                     <span class="meta-label">Nhà xuất bản</span>
                     <span class="meta-value"><?= htmlspecialchars($product['publisher']) ?></span>
                 </div>
                 <?php if (isset($product['published_date']) && !empty($product['published_date'])): ?>
-                <div class="meta-item">
-                    <span class="meta-label">Ngày xuất bản</span>
-                    <span class="meta-value"><?= date('d/m/Y', strtotime($product['published_date'])) ?></span>
-                </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Ngày xuất bản</span>
+                        <span class="meta-value"><?= date('d/m/Y', strtotime($product['published_date'])) ?></span>
+                    </div>
                 <?php endif; ?>
                 <?php if (isset($product['pages']) && !empty($product['pages'])): ?>
-                <div class="meta-item">
-                    <span class="meta-label">Số trang</span>
-                    <span class="meta-value"><?= htmlspecialchars($product['pages']) ?></span>
-                </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Số trang</span>
+                        <span class="meta-value"><?= htmlspecialchars($product['pages']) ?></span>
+                    </div>
                 <?php endif; ?>
                 <?php if (isset($product['dimensions']) && !empty($product['dimensions'])): ?>
-                <div class="meta-item">
-                    <span class="meta-label">Kích thước</span>
-                    <span class="meta-value"><?= htmlspecialchars($product['dimensions']) ?></span>
-                </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Kích thước</span>
+                        <span class="meta-value"><?= htmlspecialchars($product['dimensions']) ?></span>
+                    </div>
                 <?php endif; ?>
             </div>
-            
+
             <div class="stock-status <?= ($product['stock_quantity'] > 0) ? 'available' : '' ?>">
                 <?php if ($product['stock_quantity'] > 0): ?>
                     <i class="fas fa-check-circle"></i> Còn hàng (<?= $product['stock_quantity'] ?> sản phẩm)
@@ -456,50 +475,54 @@
                     <i class="fas fa-times-circle"></i> Hết hàng
                 <?php endif; ?>
             </div>
-            
+
             <div class="product-description">
                 <h4>Giới thiệu sản phẩm</h4>
                 <p><?= htmlspecialchars($product['description']) ?></p>
             </div>
-            
+
             <div class="cart-section">
-                <div class="quantity-control">
-                    <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
-                    <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="<?= $product['stock_quantity'] ?>">
-                    <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+                <div class="cart-top">
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                        <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="<?= $product['stock_quantity'] ?>">
+                        <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+                    </div>
+
+                    <div id="localAddCartAlert" class="alert local-alert" role="status" aria-live="polite"></div>
                 </div>
-                
-                <button class="btn-add-to-cart" onclick="addToCart(<?= $product['product_id'] ?>)" <?= ($product['stock_quantity'] <= 0) ? 'disabled' : '' ?> >
+
+                <button class="btn-add-to-cart" onclick="addToCart(<?= $product['product_id'] ?>)" <?= ($product['stock_quantity'] <= 0) ? 'disabled' : '' ?>>
                     <?= ($product['stock_quantity'] <= 0) ? 'Hết hàng' : 'Thêm vào giỏ hàng' ?>
                 </button>
-                
-                <button class="btn-buy-now" onclick="buyNow(<?= $product['product_id'] ?>)" <?= ($product['stock_quantity'] <= 0) ? 'disabled' : '' ?> >
+
+                <button class="btn-buy-now" onclick="buyNow(<?= $product['product_id'] ?>)" <?= ($product['stock_quantity'] <= 0) ? 'disabled' : '' ?>>
                     <?= ($product['stock_quantity'] <= 0) ? 'Hết hàng' : 'Mua ngay' ?>
                 </button>
             </div>
         </div>
     </div>
-    
+
     <?php if (!empty($relatedProducts)): ?>
-    <div class="related-products">
-        <h2 class="section-title">Sản phẩm liên quan</h2>
-        <div class="related-products-grid">
-            <?php foreach ($relatedProducts as $related): ?>
-                <a href="<?= BASE_URL ?>product/detail/<?= $related['product_id'] ?>" class="related-product-card">
-                    <div class="related-product-image">
-                        <img src="<?= BASE_URL . $related['image_url'] ?>" alt="<?= htmlspecialchars($related['title']) ?>">
-                    </div>
-                    <div class="related-product-info">
-                        <h3 class="related-product-title"><?= htmlspecialchars($related['title']) ?></h3>
-                        <div class="related-product-author"><?= htmlspecialchars($related['author']) ?></div>
-                        <div class="related-product-price">
-                            <?= number_format($related['price']) ?>đ
+        <div class="related-products">
+            <h2 class="section-title">Sản phẩm liên quan</h2>
+            <div class="related-products-grid">
+                <?php foreach ($relatedProducts as $related): ?>
+                    <a href="<?= BASE_URL ?>product/detail/<?= $related['product_id'] ?>" class="related-product-card">
+                        <div class="related-product-image">
+                            <img src="<?= BASE_URL . $related['image_url'] ?>" alt="<?= htmlspecialchars($related['title']) ?>">
                         </div>
-                    </div>
-                </a>
-            <?php endforeach; ?>
+                        <div class="related-product-info">
+                            <h3 class="related-product-title"><?= htmlspecialchars($related['title']) ?></h3>
+                            <div class="related-product-author"><?= htmlspecialchars($related['author']) ?></div>
+                            <div class="related-product-price">
+                                <?= number_format($related['price']) ?>đ
+                            </div>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            </div>
         </div>
-    </div>
     <?php endif; ?>
 </div>
 
@@ -515,7 +538,7 @@
             input.value = value + 1;
         }
     }
-    
+
     function decreaseQuantity() {
         const input = document.getElementById('quantity');
         let value = parseInt(input.value) || 1;
@@ -523,9 +546,15 @@
             input.value = value - 1;
         }
     }
-    
+
     // Add to cart function
     async function addToCart(productId) {
+        // Kiểm tra đã đăng nhập chưa
+        if (!window.isLoggedIn) {
+            window.location.href = '<?= BASE_URL ?>auth/login';
+            return;
+        }
+
         const quantity = parseInt(document.getElementById('quantity').value) || 1;
 
         try {
@@ -538,10 +567,16 @@
                 body: `product_id=${productId}&quantity=${quantity}`
             });
 
-            const result = await response.json();
+            const raw = await response.text();
+            const jsonStart = raw.indexOf('{');
+            const jsonEnd = raw.lastIndexOf('}');
+            if (jsonStart === -1 || jsonEnd === -1 || jsonEnd < jsonStart) {
+                throw new Error('Invalid JSON response');
+            }
+            const result = JSON.parse(raw.slice(jsonStart, jsonEnd + 1));
 
             if (result.success) {
-                showMessage(result.message, 'success');
+                showLocalMessage(result.message, 'success');
 
                 // ✅ XỬ LÝ: Nếu chưa login, lưu vào localStorage
                 if (result.storage === 'local' && typeof cartManager !== 'undefined') {
@@ -553,11 +588,11 @@
                     updateCartBadge(result.cartCount);
                 }
             } else {
-                showMessage(result.message || 'Lỗi khi thêm sản phẩm vào giỏ hàng', 'error');
+                showLocalMessage(result.message || 'Lỗi khi thêm sản phẩm vào giỏ hàng', 'error');
             }
         } catch (error) {
             console.error('Add to cart error:', error);
-            showMessage('Lỗi kết nối khi thêm sản phẩm vào giỏ hàng', 'error');
+            showLocalMessage('Lỗi kết nối khi thêm sản phẩm vào giỏ hàng', 'error');
         }
     }
 
@@ -569,26 +604,44 @@
             badge.style.display = count > 0 ? 'inline-block' : 'none';
         });
     }
-    
+
     // Buy now function (redirects to cart page with product)
     function buyNow(productId) {
+        // Kiểm tra đã đăng nhập chưa
+        if (!window.isLoggedIn) {
+            window.location.href = '<?= BASE_URL ?>auth/login';
+            return;
+        }
         const quantity = document.getElementById('quantity').value;
         window.location.href = `<?= BASE_URL ?>cart?product_id=${productId}&quantity=${quantity}`;
     }
-    
+
     // Show message function
     function showMessage(message, type) {
         const alertDiv = document.getElementById('messageAlert');
         alertDiv.textContent = message;
         alertDiv.className = `alert alert-${type}`;
         alertDiv.style.display = 'block';
-        
+
         // Hide message after 3 seconds
         setTimeout(() => {
             alertDiv.style.display = 'none';
         }, 3000);
     }
+
+    // Show local message under product image (for add-to-cart feedback)
+    function showLocalMessage(message, type) {
+        const local = document.getElementById('localAddCartAlert');
+        if (!local) return showMessage(message, type);
+        local.textContent = message;
+        local.className = `alert local-alert alert-${type}`;
+        local.style.display = 'block';
+
+        // Auto hide after 3s
+        setTimeout(() => {
+            local.style.display = 'none';
+        }, 3000);
+    }
 </script>
 
 <?php require_once APP_ROOT . '/views/components/footer.php'; ?>
-

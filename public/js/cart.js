@@ -24,6 +24,12 @@ class CartManager {
 
   // Thêm sản phẩm vào giỏ
   async addToCart(productId, quantity = 1) {
+    // Kiểm tra đã đăng nhập chưa
+    if (!window.isLoggedIn) {
+      window.location.href = BASE_URL + "auth/login";
+      return;
+    }
+
     try {
       const response = await fetch(BASE_URL + "cart/add", {
         method: "POST",
@@ -31,7 +37,13 @@ class CartManager {
         body: `product_id=${productId}&quantity=${quantity}`,
       });
 
-      const data = await response.json();
+      const raw = await response.text();
+      const jsonStart = raw.indexOf("{");
+      const jsonEnd = raw.lastIndexOf("}");
+      if (jsonStart === -1 || jsonEnd === -1 || jsonEnd < jsonStart) {
+        throw new Error("Invalid JSON response");
+      }
+      const data = JSON.parse(raw.slice(jsonStart, jsonEnd + 1));
 
       if (data.success) {
         if (data.storage === "local") {
@@ -99,7 +111,7 @@ class CartManager {
   // Cập nhật số hiển thị trên icon cart
   updateCartCount(count) {
     const badges = document.querySelectorAll(".cart-badge, .cart-count");
-    badges.forEach(badge => {
+    badges.forEach((badge) => {
       badge.textContent = count;
       badge.style.display = count > 0 ? "inline-block" : "none";
     });
@@ -113,6 +125,8 @@ class CartManager {
 }
 
 // Khởi tạo
+const cartManager = new CartManager();
+
 // Sync cart khi load trang (nếu user vừa login)
 if (window.needSyncCart === true && localStorage.getItem("sachhay_cart")) {
   console.log("Detected need to sync cart, syncing...");
@@ -128,11 +142,10 @@ if (window.needSyncCart === true && localStorage.getItem("sachhay_cart")) {
 window.cartManager = cartManager;
 
 // Export global function để update cart badge
-window.updateCartBadge = function(count) {
+window.updateCartBadge = function (count) {
   const badges = document.querySelectorAll(".cart-badge, .cart-count");
-  badges.forEach(badge => {
+  badges.forEach((badge) => {
     badge.textContent = count;
     badge.style.display = count > 0 ? "inline-block" : "none";
   });
 };
-

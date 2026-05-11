@@ -1,12 +1,15 @@
 ﻿<?php
 // app/controllers/CustomerController.php
-class CustomerController extends Controller {
-    public function __construct() {
+class CustomerController extends Controller
+{
+    public function __construct()
+    {
         if (session_status() === PHP_SESSION_NONE) session_start();
     }
 
     // Profile page
-    public function index() {
+    public function index()
+    {
         // Kiểm tra đăng nhập
         if (!isset($_SESSION['users_id']) || empty($_SESSION['users_id'])) {
             header('Location: ' . BASE_URL . 'auth/login');
@@ -34,18 +37,17 @@ class CustomerController extends Controller {
     }
 
     // API cập nhật thông tin cá nhân
-    public function updateProfile() {
-        header('Content-Type: application/json');
-
+    public function updateProfile()
+    {
         // Kiểm tra method
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            echo json_encode(['success' => false, 'message' => 'Method not allowed']);
+            $this->jsonResponse(['success' => false, 'message' => 'Method not allowed']);
             return;
         }
 
         // Kiểm tra đăng nhập
         if (!isset($_SESSION['users_id']) || empty($_SESSION['users_id'])) {
-            echo json_encode(['success' => false, 'message' => 'Vui lòng đăng nhập']);
+            $this->jsonResponse(['success' => false, 'message' => 'Vui lòng đăng nhập']);
             return;
         }
 
@@ -58,30 +60,30 @@ class CustomerController extends Controller {
 
         // Validate
         if (empty($fullname)) {
-            echo json_encode(['success' => false, 'message' => 'Vui lòng nhập họ tên']);
+            $this->jsonResponse(['success' => false, 'message' => 'Vui lòng nhập họ tên']);
             return;
         }
 
         if (empty($email)) {
-            echo json_encode(['success' => false, 'message' => 'Vui lòng nhập email']);
+            $this->jsonResponse(['success' => false, 'message' => 'Vui lòng nhập email']);
             return;
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo json_encode(['success' => false, 'message' => 'Email không hợp lệ']);
+            $this->jsonResponse(['success' => false, 'message' => 'Email không hợp lệ']);
             return;
         }
 
         // Kiểm tra email đã tồn tại chưa
         $userModel = $this->model('UserModel');
         if ($userModel->isEmailExists($email, $userId)) {
-            echo json_encode(['success' => false, 'message' => 'Email đã được sử dụng']);
+            $this->jsonResponse(['success' => false, 'message' => 'Email đã được sử dụng']);
             return;
         }
 
         // Kiểm tra phone đã tồn tại chưa (nếu có nhập)
         if (!empty($phone) && $userModel->isPhoneExists($phone, $userId)) {
-            echo json_encode(['success' => false, 'message' => 'Số điện thoại đã được sử dụng']);
+            $this->jsonResponse(['success' => false, 'message' => 'Số điện thoại đã được sử dụng']);
             return;
         }
 
@@ -95,16 +97,17 @@ class CustomerController extends Controller {
         $result = $userModel->updateProfile($userId, $data);
 
         if ($result) {
-            echo json_encode(['success' => true, 'message' => 'Cập nhật thông tin thành công!']);
+            $this->jsonResponse(['success' => true, 'message' => 'Cập nhật thông tin thành công!']);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Cập nhật thất bại, vui lòng thử lại']);
+            $this->jsonResponse(['success' => false, 'message' => 'Cập nhật thất bại, vui lòng thử lại']);
         }
     }
-    
+
     /**
      * Trang đơn hàng của tôi
      */
-    public function orders() {
+    public function orders()
+    {
         // Kiểm tra đăng nhập
         if (!isset($_SESSION['user_id']) && !isset($_SESSION['users_id'])) {
             header('Location: ' . BASE_URL . 'auth/login');
@@ -174,7 +177,8 @@ class CustomerController extends Controller {
     }
 
     // Notifications
-    public function notifications() {
+    public function notifications()
+    {
         if (isset($_SESSION['users_id']) && !empty($_SESSION['users_id'])) {
             $nm = $this->model('NotificationModel');
             $notes = $nm->getByUserId($_SESSION['users_id']);
@@ -186,17 +190,23 @@ class CustomerController extends Controller {
     }
 
     // Mark single notification read (AJAX)
-    public function markNotificationRead() {
-        header('Content-Type: application/json');
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') { echo json_encode(['success' => false]); return; }
+    public function markNotificationRead()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->jsonResponse(['success' => false]);
+            return;
+        }
 
         $nid = (int)($_POST['id'] ?? 0);
-        if ($nid <= 0) { echo json_encode(['success' => false]); return; }
+        if ($nid <= 0) {
+            $this->jsonResponse(['success' => false]);
+            return;
+        }
 
         if (isset($_SESSION['users_id']) && !empty($_SESSION['users_id'])) {
             $nm = $this->model('NotificationModel');
             $ok = $nm->markRead($nid, $_SESSION['users_id']);
-            echo json_encode(['success' => (bool)$ok]);
+            $this->jsonResponse(['success' => (bool)$ok]);
             return;
         }
 
@@ -205,38 +215,42 @@ class CustomerController extends Controller {
             foreach ($_SESSION['guest_notifications'] as &$n) {
                 if ((int)($n['id'] ?? 0) === $nid) {
                     $n['is_read'] = 1;
-                    echo json_encode(['success' => true]);
+                    $this->jsonResponse(['success' => true]);
                     return;
                 }
             }
         }
-        echo json_encode(['success' => false]);
+        $this->jsonResponse(['success' => false]);
     }
 
     // Mark all notifications read (AJAX)
-    public function markAllNotificationsRead() {
-        header('Content-Type: application/json');
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') { echo json_encode(['success' => false]); return; }
+    public function markAllNotificationsRead()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->jsonResponse(['success' => false]);
+            return;
+        }
 
         if (isset($_SESSION['users_id']) && !empty($_SESSION['users_id'])) {
             $nm = $this->model('NotificationModel');
             $ok = $nm->markAllRead($_SESSION['users_id']);
-            echo json_encode(['success' => (bool)$ok]);
+            $this->jsonResponse(['success' => (bool)$ok]);
             return;
         }
 
         // Guest
         if (isset($_SESSION['guest_notifications']) && is_array($_SESSION['guest_notifications'])) {
             foreach ($_SESSION['guest_notifications'] as &$n) $n['is_read'] = 1;
-            echo json_encode(['success' => true]);
+            $this->jsonResponse(['success' => true]);
             return;
         }
 
-        echo json_encode(['success' => false]);
+        $this->jsonResponse(['success' => false]);
     }
 
     // Wishlist page (reads DB for logged users, session for guests)
-    public function wishlist() {
+    public function wishlist()
+    {
         $list = [];
         $productModel = $this->model('ProductModel');
 
@@ -246,12 +260,12 @@ class CustomerController extends Controller {
             foreach ($rows as $r) {
                 $list[] = [
                     'product_id' => $r['product_id'],
-                    'product_name'=> $r['product_name'],
-                    'image'=> $r['image'] ?? 'images/product-page/default.jpg',
-                    'price'=> $r['price'],
-                    'original_price'=> $r['original_price'] ?? 0,
-                    'author'=> $r['author'] ?? 'Chưa có thông tin',
-                    'discount'=> (isset($r['original_price']) && $r['original_price']>$r['price']) ? round(100-($r['price']/$r['original_price']*100)) : 0
+                    'product_name' => $r['product_name'],
+                    'image' => $r['image'] ?? 'images/product-page/default.jpg',
+                    'price' => $r['price'],
+                    'original_price' => $r['original_price'] ?? 0,
+                    'author' => $r['author'] ?? 'Chưa có thông tin',
+                    'discount' => (isset($r['original_price']) && $r['original_price'] > $r['price']) ? round(100 - ($r['price'] / $r['original_price'] * 100)) : 0
                 ];
             }
         } else {
@@ -267,12 +281,12 @@ class CustomerController extends Controller {
                 foreach ($products as $p) {
                     $list[] = [
                         'product_id' => $p['product_id'],
-                        'product_name'=> $p['title'],
-                        'image'=> $p['image_url'] ?? 'images/product-page/default.jpg',
-                        'price'=> $p['price'],
-                        'original_price'=> $p['old_price'] ?? 0,
-                        'author'=> $p['author'] ?? 'Chưa có thông tin',
-                        'discount'=> (isset($p['old_price']) && $p['old_price']>$p['price']) ? round(100-($p['price']/$p['old_price']*100)) : 0
+                        'product_name' => $p['title'],
+                        'image' => $p['image_url'] ?? 'images/product-page/default.jpg',
+                        'price' => $p['price'],
+                        'original_price' => $p['old_price'] ?? 0,
+                        'author' => $p['author'] ?? 'Chưa có thông tin',
+                        'discount' => (isset($p['old_price']) && $p['old_price'] > $p['price']) ? round(100 - ($p['price'] / $p['old_price'] * 100)) : 0
                     ];
                 }
             }
@@ -288,48 +302,113 @@ class CustomerController extends Controller {
     }
 
     // API add wishlist (POST)
-    public function addWishlist() {
-        header('Content-Type: application/json');
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') { echo json_encode(['success'=>false,'message'=>'Method not allowed']); return; }
+    public function addWishlist()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->jsonResponse(['success' => false, 'message' => 'Method not allowed']);
+            return;
+        }
         $pid = (int)($_POST['product_id'] ?? 0);
-        if ($pid <= 0) { echo json_encode(['success'=>false,'message'=>'Invalid product']); return; }
+        if ($pid <= 0) {
+            $this->jsonResponse(['success' => false, 'message' => 'Invalid product']);
+            return;
+        }
 
         if (isset($_SESSION['users_id']) && !empty($_SESSION['users_id'])) {
             $wm = $this->model('WishlistModel');
+            $exists = $wm->exists($_SESSION['users_id'], $pid);
+            if ($exists) {
+                $this->jsonResponse([
+                    'success' => true,
+                    'state' => true,
+                    'message' => 'Sản phẩm đã có trong yêu thích'
+                ]);
+                return;
+            }
             $ok = $wm->add($_SESSION['users_id'], $pid);
-            echo json_encode(['success' => (bool)$ok]);
+            $this->jsonResponse([
+                'success' => (bool)$ok,
+                'state' => (bool)$ok,
+                'message' => $ok ? 'Đã thêm vào yêu thích' : 'Không thể thêm vào yêu thích'
+            ]);
             return;
         }
 
         // guest: add to session array
         if (session_status() === PHP_SESSION_NONE) session_start();
         if (!isset($_SESSION['guest_wishlist']) || !is_array($_SESSION['guest_wishlist'])) $_SESSION['guest_wishlist'] = [];
-        if (!in_array($pid, $_SESSION['guest_wishlist'])) $_SESSION['guest_wishlist'][] = $pid;
+        $exists = in_array($pid, $_SESSION['guest_wishlist']);
+        if (!$exists) $_SESSION['guest_wishlist'][] = $pid;
         $_SESSION['guest_wishlist'] = array_values(array_unique($_SESSION['guest_wishlist']));
-        echo json_encode(['success'=>true, 'guest'=>true, 'count'=>count($_SESSION['guest_wishlist'])]);
+        $this->jsonResponse([
+            'success' => true,
+            'guest' => true,
+            'state' => true,
+            'count' => count($_SESSION['guest_wishlist']),
+            'message' => $exists ? 'Sản phẩm đã có trong yêu thích' : 'Đã thêm vào yêu thích'
+        ]);
     }
 
     // API remove wishlist (POST)
-    public function removeWishlist() {
-        header('Content-Type: application/json');
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') { echo json_encode(['success'=>false,'message'=>'Method not allowed']); return; }
+    public function removeWishlist()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->jsonResponse(['success' => false, 'message' => 'Method not allowed']);
+            return;
+        }
         $pid = (int)($_POST['product_id'] ?? 0);
-        if ($pid <= 0) { echo json_encode(['success'=>false,'message'=>'Invalid product']); return; }
+        if ($pid <= 0) {
+            $this->jsonResponse(['success' => false, 'message' => 'Invalid product']);
+            return;
+        }
 
         if (isset($_SESSION['users_id']) && !empty($_SESSION['users_id'])) {
             $wm = $this->model('WishlistModel');
+            $exists = $wm->exists($_SESSION['users_id'], $pid);
+            if (!$exists) {
+                $this->jsonResponse([
+                    'success' => true,
+                    'state' => false,
+                    'message' => 'Sản phẩm đã được xóa khỏi yêu thích'
+                ]);
+                return;
+            }
             $ok = $wm->remove($_SESSION['users_id'], $pid);
-            echo json_encode(['success' => (bool)$ok]);
+            $this->jsonResponse([
+                'success' => (bool)$ok,
+                'state' => !$ok ? true : false,
+                'message' => $ok ? 'Đã xóa khỏi yêu thích' : 'Không thể xóa khỏi yêu thích'
+            ]);
             return;
         }
 
         // guest: remove from session
         if (session_status() === PHP_SESSION_NONE) session_start();
         if (!isset($_SESSION['guest_wishlist']) || !is_array($_SESSION['guest_wishlist'])) {
-            echo json_encode(['success'=>false,'message'=>'Not found']); return;
+            $this->jsonResponse(['success' => true, 'guest' => true, 'state' => false, 'count' => 0, 'message' => 'Sản phẩm đã được xóa khỏi yêu thích']);
+            return;
         }
         $_SESSION['guest_wishlist'] = array_values(array_diff($_SESSION['guest_wishlist'], [$pid]));
-        echo json_encode(['success'=>true, 'guest'=>true, 'count'=>count($_SESSION['guest_wishlist'])]);
+        $this->jsonResponse([
+            'success' => true,
+            'guest' => true,
+            'state' => false,
+            'count' => count($_SESSION['guest_wishlist']),
+            'message' => 'Đã xóa khỏi yêu thích'
+        ]);
+    }
+
+    /**
+     * Helper: sạch sẽ trả về JSON (dọn buffer trước, set header)
+     */
+    private function jsonResponse($data)
+    {
+        while (ob_get_level() > 0) {
+            ob_end_clean();
+        }
+
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        exit;
     }
 }
-

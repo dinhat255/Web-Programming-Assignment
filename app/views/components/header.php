@@ -327,6 +327,15 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
             // Xóa flag sau khi đã set
             <?php unset($_SESSION['need_sync_cart']); ?>
         <?php endif; ?>
+
+        // Hàm kiểm tra đăng nhập trước khi đi tới giỏ hàng
+        function goToCart() {
+            if (!window.isLoggedIn) {
+                window.location.href = BASE_URL + 'auth/login';
+                return;
+            }
+            window.location.href = BASE_URL + 'cart';
+        }
     </script>
 
     <!-- Load cart.js -->
@@ -385,7 +394,7 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
                                     </div>
                                 <?php endif; ?>
 
-                                <a href="<?= $base ?>cart" title="Giỏ hàng" aria-label="Giỏ hàng" class="position-relative cart-link">
+                                <a href="javascript:void(0)" onclick="goToCart()" title="Giỏ hàng" aria-label="Giỏ hàng" class="position-relative cart-link">
                                     <i class="fas fa-basket-shopping" aria-hidden="true"></i>
                                     <?php if ($cartCount > 0): ?>
                                         <span class="cart-badge" aria-live="polite" aria-atomic="true"><?= e($cartCount) ?></span>
