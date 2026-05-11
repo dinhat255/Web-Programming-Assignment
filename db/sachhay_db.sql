@@ -687,7 +687,6 @@ ALTER TABLE `customer`
 -- Indexes for table `news`
 --
 ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `FK_News_Author` (`author_id`);
 
 --
