@@ -18,8 +18,7 @@
 <div class="page-body">
     <div class="container-xl">
         <div class="card">
-<<<<<<< HEAD
-=======
+
         <div class="row mb-3">
     <div class="col-md-6">
         <div class="input-group">
@@ -28,7 +27,6 @@
         </div>
     </div>
 </div>
->>>>>>> master
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap datatable">
                     <thead>
@@ -72,8 +70,7 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-=======
+
 
 <script>
 document.getElementById('newsSearchInput').addEventListener('keyup', function() {
@@ -93,4 +90,3 @@ document.getElementById('newsSearchInput').addEventListener('keyup', function() 
     });
 });
 </script>
->>>>>>> master
