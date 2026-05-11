@@ -112,11 +112,11 @@
         ];
         foreach($newBooks as $idx => $nb): ?>
         <div class="col-md-3 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="<?= $idx * 100 ?>">
-            <a href="<?= BASE_URL ?>public/product/detail?id=<?= $nb['id'] ?>" 
+            <a href="<?= BASE_URL ?>product/detail?id=<?= $nb['id'] ?>" 
                class="product-card book-item" 
                data-title="<?= $nb['title'] ?>"
-               data-image="<?= BASE_URL ?>public/images/home-page/<?= $nb['img'] ?>"
-               data-url="<?= BASE_URL ?>public/product/detail?id=<?= $nb['id'] ?>">
+               data-image="<?= BASE_URL ?>images/home-page/<?= $nb['img'] ?>"
+               data-url="<?= BASE_URL ?>product/detail?id=<?= $nb['id'] ?>">
                 <div class="product-image">
                     <img src="<?= BASE_URL ?>images/home-page/<?= $nb['img'] ?>" alt="<?= $nb['title'] ?>">
                 </div>
