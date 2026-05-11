@@ -1,521 +1,186 @@
 ﻿<?php require_once APP_ROOT . '/views/components/header.php'; ?>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
 <style>
-    /* =========================================
-       CUSTOM STYLES THÊM VÀO ĐỂ LÀM ĐẸP GIAO DIỆN
-       ========================================= */
-    .section-title {
-        color: var(--sachhay-red);
-        font-weight: 700;
-        margin-bottom: 30px;
-        position: relative;
-        padding-bottom: 15px;
-        text-align: center;
+    /* CSS Bổ sung cho trang chủ */
+    .hero-section {
+        background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('<?= BASE_URL ?>images/home-page/library.jpg') no-repeat center center;
+        background-size: cover; height: 400px; display: flex; align-items: center; color: white;
+        border-radius: 16px; margin-bottom: 40px; margin-top: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
-    .section-title::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100px;
-        height: 4px;
-        background: linear-gradient(to right, var(--sachhay-red), var(--sachhay-orange));
-        border-radius: 2px;
-    }
+    body.cyber-mode .hero-section { border: 1px solid #00f2ff; box-shadow: 0 0 20px rgba(0,242,255,0.2); }
 
-    /* --- Hero Slider (Swiper) --- */
-    .hero-swiper {
-        width: 100%;
-        height: 500px;
-        border-radius: 12px;
-        margin-bottom: 40px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
+    .hero-title { font-size: 3rem; font-weight: 800; margin-bottom: 15px; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); }
+    .hero-subtitle { font-size: 1.2rem; margin-bottom: 30px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
 
-    .hero-slide {
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        align-items: center;
-        position: relative;
-    }
+    .btn-hero { background-color: var(--sachhay-orange); color: white; padding: 12px 30px; border-radius: 30px; font-weight: 600; text-decoration: none; transition: 0.3s; display: inline-block; }
+    .btn-hero:hover { background-color: #fff; color: var(--sachhay-dark); transform: translateY(-3px); }
 
-    .hero-slide::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
-    }
+    .section-title { color: var(--sachhay-red); font-weight: 700; margin-bottom: 30px; text-align: center; position: relative; padding-bottom: 15px; }
+    .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--sachhay-red); border-radius: 2px; }
 
-    .hero-content {
-        position: relative;
-        z-index: 10;
-        color: white;
-        padding: 0 50px;
-        max-width: 700px;
-    }
-
-    .hero-title {
-        font-size: 3.5rem;
-        font-weight: 800;
-        margin-bottom: 15px;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    }
-
-    .hero-subtitle {
-        font-size: 1.2rem;
-        margin-bottom: 30px;
-        line-height: 1.6;
-    }
-
-    .btn-hero {
-        background-color: var(--sachhay-orange);
-        color: white;
-        padding: 12px 30px;
-        border-radius: 30px;
-        font-weight: bold;
-        text-decoration: none;
-        transition: 0.3s;
-        display: inline-block;
-    }
-
-    .btn-hero:hover {
-        background-color: var(--sachhay-red);
-        color: white;
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(200, 155, 92, 0.4);
-    }
-
-    /* --- Category Cards --- */
-    .category-section {
-        background-color: white;
-        padding: 40px 0;
-        border-radius: 12px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    }
-
-    .category-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-        border-radius: 10px;
-        transition: 0.3s;
-        text-decoration: none;
-        color: var(--sachhay-dark);
-        border: 1px solid #f0f0f0;
-    }
-
-    .category-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(139, 94, 60, 0.1);
-        border-color: var(--sachhay-orange);
-    }
-
-    .category-icon {
-        font-size: 2.5rem;
-        color: var(--sachhay-red);
-        margin-bottom: 10px;
-        transition: 0.3s;
-    }
-
-    .category-card:hover .category-icon {
-        transform: scale(1.1);
-    }
-
-    /* --- Product Cards --- */
+    /* ---- THẺ SÁCH SIÊU GỌN CHUYÊN NGHIỆP ---- */
     .product-card {
-        background: white;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        transition: 0.3s;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        text-decoration: none;
-        color: inherit;
-        border: 1px solid #eee;
+        background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: 0.3s; display: block; text-decoration: none; color: inherit; position: relative; border: 1px solid rgba(0,0,0,0.05);
+    }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--sachhay-orange); }
+    
+    body.cyber-mode .product-card { border-color: rgba(0,242,255,0.2); }
+    body.cyber-mode .product-card:hover { box-shadow: 0 10px 25px rgba(0,242,255,0.3); border-color: #00f2ff; }
+
+    /* Badge "HOT" */
+    .product-card::before {
+        content: 'HOT'; position: absolute; top: 10px; left: 10px; background: #ef4444; color: white;
+        font-size: 10px; font-weight: bold; padding: 4px 8px; border-radius: 15px; z-index: 5;
     }
 
-    .product-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-        border-color: var(--sachhay-orange);
-    }
+    .product-image { height: 160px; padding: 15px; display: flex; align-items: center; justify-content: center; background: #fff; }
+    body.cyber-mode .product-image { background: #0f172a; }
+    .product-image img { max-height: 130px; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: 0.3s; }
+    .product-card:hover .product-image img { transform: scale(1.08); }
 
-    .product-image {
-        height: 250px;
-        padding: 20px;
-        background: #fdfbf9;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    .product-info { padding: 15px; text-align: center; }
+    .product-title { font-weight: 700; font-size: 0.95rem; height: 1.2em; -webkit-line-clamp: 1; overflow: hidden; margin-bottom: 5px; }
+    .product-author { color: var(--sachhay-gray); font-size: 0.8rem; margin-bottom: 8px; height: 1.2em; overflow: hidden; }
+    .product-price { color: var(--sachhay-red); font-weight: 800; font-size: 1.1rem; }
 
-    .product-image img {
-        max-height: 100%;
-        max-width: 100%;
-        object-fit: contain;
-        transition: 0.5s;
+    /* Vòng quay may mắn Button */
+    .lucky-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white;
+        padding: 12px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
     }
-
-    .product-card:hover .product-image img {
-        transform: scale(1.05);
-    }
-
-    .product-info {
-        padding: 15px;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .product-title {
-        font-weight: bold;
-        font-size: 1.1rem;
-        margin-bottom: 5px;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    .product-author {
-        color: #777;
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-    }
-
-    .product-price-wrap {
-        margin-top: auto;
-    }
-
-    .product-price {
-        color: var(--sachhay-red);
-        font-weight: 700;
-        font-size: 1.2rem;
-    }
-
-    .product-old-price {
-        text-decoration: line-through;
-        color: #aaa;
-        font-size: 0.9rem;
-        margin-left: 10px;
-    }
-
-    /* --- Parallax Promotion Section --- */
-    .promotion-parallax {
-        background: linear-gradient(rgba(139, 94, 60, 0.85), rgba(43, 33, 27, 0.85)), url('<?= BASE_URL ?>images/home-page/library.jpg') center center;
-        background-attachment: fixed; /* Tạo hiệu ứng Parallax */
-        background-size: cover;
-        color: white;
-        padding: 80px 0;
-        border-radius: 12px;
-        text-align: center;
-        margin: 60px 0;
-    }
-
-    .counter-item h3 {
-        font-size: 3rem;
-        font-weight: 900;
-        color: var(--sachhay-orange);
-        margin-bottom: 5px;
-    }
-
-    /* --- News Cards --- */
-    .news-card {
-        border: none;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        transition: 0.3s;
-    }
-    .news-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-    .news-card img {
-        height: 200px;
-        object-fit: cover;
-    }
+    .lucky-btn:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(118, 75, 162, 0.6); }
+    body.cyber-mode .lucky-btn { background: linear-gradient(135deg, #00f2ff 0%, #7000ff 100%); box-shadow: 0 0 15px #00f2ff; }
 </style>
 
-<div class="container mt-4">
-    
-    <div class="swiper hero-swiper" data-aos="fade-in">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide hero-slide" style="background-image: url('<?= BASE_URL ?>images/home-page/library.jpg');">
-                <div class="hero-content">
-                    <h1 class="hero-title" data-aos="slide-right" data-aos-delay="200">SachHay <br> Tri thức cho cuộc sống</h1>
-                    <p class="hero-subtitle" data-aos="slide-right" data-aos-delay="400">Hệ thống nhà sách trực tuyến hàng đầu Việt Nam. Hàng ngàn đầu sách đa dạng, giao hàng nhanh chóng, ưu đãi ngập tràn.</p>
-                    <a href="<?= BASE_URL ?>product" class="btn-hero" data-aos="zoom-in" data-aos-delay="600">Mua sắm ngay <i class="fas fa-arrow-right ms-2"></i></a>
-                </div>
-            </div>
-            <div class="swiper-slide hero-slide" style="background-image: url('<?= BASE_URL ?>images/home-page/doc-sach-hieu-qua.jpg');">
-                <div class="hero-content">
-                    <h1 class="hero-title">Đánh thức tiềm năng của bạn</h1>
-                    <p class="hero-subtitle">Khám phá kho tàng sách phát triển bản thân và kỹ năng sống giúp bạn trở thành phiên bản tốt nhất của chính mình.</p>
-                    <a href="<?= BASE_URL ?>product" class="btn-hero">Khám phá <i class="fas fa-book-open ms-2"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-button-next" style="color: var(--sachhay-orange);"></div>
-        <div class="swiper-button-prev" style="color: var(--sachhay-orange);"></div>
-        <div class="swiper-pagination"></div>
-    </div>
-
-    <div class="category-section mb-5" data-aos="fade-up">
-        <h2 class="section-title">Danh mục nổi bật</h2>
-        <div class="row px-4">
-            <div class="col-lg-2 col-md-4 col-6 mb-3" data-aos="zoom-in" data-aos-delay="100">
-                <a href="#" class="category-card">
-                    <i class="fas fa-book category-icon"></i>
-                    <span class="fw-bold">Văn học</span>
-                </a>
-            </div>
-            <div class="col-lg-2 col-md-4 col-6 mb-3" data-aos="zoom-in" data-aos-delay="200">
-                <a href="#" class="category-card">
-                    <i class="fas fa-briefcase category-icon"></i>
-                    <span class="fw-bold">Kinh tế</span>
-                </a>
-            </div>
-            <div class="col-lg-2 col-md-4 col-6 mb-3" data-aos="zoom-in" data-aos-delay="300">
-                <a href="#" class="category-card">
-                    <i class="fas fa-brain category-icon"></i>
-                    <span class="fw-bold">Tâm lý</span>
-                </a>
-            </div>
-            <div class="col-lg-2 col-md-4 col-6 mb-3" data-aos="zoom-in" data-aos-delay="400">
-                <a href="#" class="category-card">
-                    <i class="fas fa-child category-icon"></i>
-                    <span class="fw-bold">Thiếu nhi</span>
-                </a>
-            </div>
-            <div class="col-lg-2 col-md-4 col-6 mb-3" data-aos="zoom-in" data-aos-delay="500">
-                <a href="#" class="category-card">
-                    <i class="fas fa-language category-icon"></i>
-                    <span class="fw-bold">Ngoại ngữ</span>
-                </a>
-            </div>
-            <div class="col-lg-2 col-md-4 col-6 mb-3" data-aos="zoom-in" data-aos-delay="600">
-                <a href="#" class="category-card">
-                    <i class="fas fa-graduation-cap category-icon"></i>
-                    <span class="fw-bold">Giáo khoa</span>
-                </a>
-            </div>
+<div class="container overflow-hidden">
+    <div class="hero-section" data-aos="zoom-out" data-aos-duration="1000">
+        <div class="hero-content p-5">
+            <h1 class="hero-title">Kho tàng tri thức vô tận</h1>
+            <p class="hero-subtitle">Hơn 50,000 đầu sách đang chờ bạn khám phá. Giao hàng thần tốc 2h.</p>
+            <a href="<?= BASE_URL ?>product" class="btn-hero"><i class="fas fa-shopping-bag"></i> Khám phá ngay</a>
         </div>
     </div>
 
-    <div class="mb-5" data-aos="fade-up">
-        <h2 class="section-title">Sản phẩm bán chạy</h2>
-        <div class="swiper product-swiper" style="padding: 15px 5px;">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="#" class="product-card">
-                        <div class="product-image">
-                            <img src="<?= BASE_URL ?>images/home-page/dac-nhan-tam.jpg" alt="Đắc Nhân Tâm" loading="lazy">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Đắc Nhân Tâm</h3>
-                            <div class="product-author">Dale Carnegie</div>
-                            <div class="product-price-wrap">
-                                <span class="product-price">85,000đ</span>
-                                <span class="product-old-price">100,000đ</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" class="product-card">
-                        <div class="product-image">
-                            <img src="<?= BASE_URL ?>images/home-page/nha-gia-kim.jpg" alt="Nhà Giả Kim" loading="lazy">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Nhà Giả Kim</h3>
-                            <div class="product-author">Paulo Coelho</div>
-                            <div class="product-price-wrap">
-                                <span class="product-price">75,000đ</span>
-                                <span class="product-old-price">90,000đ</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" class="product-card">
-                        <div class="product-image">
-                            <img src="<?= BASE_URL ?>images/home-page/nha-lanh-dao-khong-chuc-danh.jpg" alt="Nhà Lãnh Đạo Không Chức Danh" loading="lazy">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Nhà Lãnh Đạo Không Chức Danh</h3>
-                            <div class="product-author">Robin Sharma</div>
-                            <div class="product-price-wrap">
-                                <span class="product-price">95,000đ</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" class="product-card">
-                        <div class="product-image">
-                            <img src="<?= BASE_URL ?>images/home-page/doi-ngan-dung-ngu-dai.jpg" alt="Đời Ngắn Đừng Ngủ Dài" loading="lazy">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Đời Ngắn Đừng Ngủ Dài</h3>
-                            <div class="product-author">Robin Sharma</div>
-                            <div class="product-price-wrap">
-                                <span class="product-price">88,000đ</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" class="product-card">
-                        <div class="product-image">
-                            <img src="<?= BASE_URL ?>images/home-page/tu-duy-nhanh-va-cham.jpg" alt="Tư Duy Nhanh và Chậm" loading="lazy">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Tư Duy Nhanh Và Chậm</h3>
-                            <div class="product-author">Daniel Kahneman</div>
-                            <div class="product-price-wrap">
-                                <span class="product-price">120,000đ</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="swiper-pagination position-relative mt-3"></div>
-        </div>
+    <div class="text-center mb-5" data-aos="fade-up">
+        <button onclick="pickRandomBook()" class="lucky-btn">
+            <i class="fas fa-dice"></i> Hôm nay đọc gì? (Gợi ý ngẫu nhiên)
+        </button>
     </div>
 
-    <div class="promotion-parallax" data-aos="fade-up">
-        <div class="container">
-            <h2 class="mb-3 fw-bold" style="font-size: 2.5rem;">Tháng Hội Sách - Giảm Giá Sập Sàn</h2>
-            <p class="mb-5 fs-5">Nhập mã <strong>SACHHAY50</strong> để được giảm ngay 50% cho tất cả đầu sách ngoại văn.</p>
-            
-            <div class="row text-center mt-4">
-                <div class="col-md-3 col-6 counter-item mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <h3>100+</h3>
-                    <p>Cửa hàng toàn quốc</p>
+    <div class="row mb-5" data-aos="fade-up">
+        <div class="col-md-12"><h2 class="section-title">Sản phẩm bán chạy</h2></div>
+        
+        <?php
+        // Mảng sách tự tạo (Dùng index làm ID giả)
+        $books = [
+            ['id' => 1, 'title' => 'Đắc Nhân Tâm', 'author' => 'Dale Carnegie', 'price' => '85,000đ', 'img' => 'dac-nhan-tam.jpg'],
+            ['id' => 2, 'title' => 'Nhà Giả Kim', 'author' => 'Paulo Coelho', 'price' => '75,000đ', 'img' => 'nha-gia-kim.jpg'],
+            ['id' => 3, 'title' => 'Nhà Lãnh Đạo Không Chức Danh', 'author' => 'Robin Sharma', 'price' => '95,000đ', 'img' => 'nha-lanh-dao-khong-chuc-danh.jpg'],
+            ['id' => 4, 'title' => 'Đời Ngắn Đừng Ngủ Dài', 'author' => 'Robin Sharma', 'price' => '88,000đ', 'img' => 'doi-ngan-dung-ngu-dai.jpg']
+        ];
+        foreach($books as $idx => $b): ?>
+        <div class="col-md-3 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="<?= $idx * 100 ?>">
+            <a href="<?= BASE_URL ?>product/detail?id=<?= $b['id'] ?>" 
+               class="product-card book-item" 
+               data-title="<?= $b['title'] ?>"
+               data-image="<?= BASE_URL ?>images/home-page/<?= $b['img'] ?>"
+               data-url="<?= BASE_URL ?>product/detail?id=<?= $b['id'] ?>">
+                <div class="product-image">
+                    <img src="<?= BASE_URL ?>images/home-page/<?= $b['img'] ?>" alt="<?= $b['title'] ?>">
                 </div>
-                <div class="col-md-3 col-6 counter-item mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <h3>50K+</h3>
-                    <p>Tựa sách đa dạng</p>
+                <div class="product-info">
+                    <h3 class="product-title"><?= $b['title'] ?></h3>
+                    <div class="product-author"><?= $b['author'] ?></div>
+                    <div class="product-price"><?= $b['price'] ?></div>
                 </div>
-                <div class="col-md-3 col-6 counter-item mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <h3>1M+</h3>
-                    <p>Khách hàng tin dùng</p>
-                </div>
-                <div class="col-md-3 col-6 counter-item mb-4" data-aos="fade-up" data-aos-delay="400">
-                    <h3>24/7</h3>
-                    <p>Hỗ trợ khách hàng</p>
-                </div>
-            </div>
-            
-            <a href="#" class="btn-hero mt-3">Săn mã giảm giá ngay</a>
+            </a>
         </div>
+        <?php endforeach; ?>
     </div>
 
-    <div class="mb-5">
-        <h2 class="section-title" data-aos="fade-up">Tin tức & Bài viết</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="card news-card h-100">
-                    <img src="<?= BASE_URL ?>images/home-page/loi-ich-doc-sach.jpg" class="card-img-top" alt="Lợi ích đọc sách" loading="lazy">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">Lợi ích của việc đọc sách mỗi ngày</h5>
-                        <p class="card-text text-muted">Đọc sách không chỉ giúp mở rộng kiến thức mà còn cải thiện trí nhớ, tăng khả năng tập trung hiệu quả...</p>
-                        <a href="#" class="btn btn-outline-danger mt-auto align-self-start">Đọc tiếp <i class="fas fa-angle-right"></i></a>
-                    </div>
+    <div class="row mb-5" data-aos="fade-up">
+        <div class="col-md-12"><h2 class="section-title">Sách mới phát hành</h2></div>
+        
+        <?php
+        $newBooks = [
+            ['id' => 5, 'title' => 'Tư Duy Nhanh và Chậm', 'author' => 'Daniel Kahneman', 'price' => '120,000đ', 'img' => 'tu-duy-nhanh-va-cham.jpg'],
+            ['id' => 6, 'title' => 'Tư Duy Tích Cực', 'author' => 'Trần Đình Hoành', 'price' => '92,000đ', 'img' => 'tu-duy-tich-cuc.jpg'],
+            ['id' => 7, 'title' => 'Hiểu Về Trái Tim', 'author' => 'Minh Niệm', 'price' => '75,000đ', 'img' => 'hieu-ve-trai-tim.jpg'],
+            ['id' => 8, 'title' => 'Dám Bị Ghét', 'author' => 'Kishimi Ichiro', 'price' => '85,000đ', 'img' => 'dam-bi-ghet.jpg']
+        ];
+        foreach($newBooks as $idx => $nb): ?>
+        <div class="col-md-3 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="<?= $idx * 100 ?>">
+            <a href="<?= BASE_URL ?>product/detail?id=<?= $nb['id'] ?>" 
+               class="product-card book-item" 
+               data-title="<?= $nb['title'] ?>"
+               data-image="<?= BASE_URL ?>images/home-page/<?= $nb['img'] ?>"
+               data-url="<?= BASE_URL ?>product/detail?id=<?= $nb['id'] ?>">
+                <div class="product-image">
+                    <img src="<?= BASE_URL ?>images/home-page/<?= $nb['img'] ?>" alt="<?= $nb['title'] ?>">
                 </div>
-            </div>
-            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="card news-card h-100">
-                    <img src="<?= BASE_URL ?>images/home-page/top-10-cuon-sach-nen-doc.jpg" class="card-img-top" alt="Top 10 sách" loading="lazy">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">Top 10 cuốn sách nên đọc trong đời</h5>
-                        <p class="card-text text-muted">Danh sách 10 cuốn sách kinh điển mà mỗi người nên đọc ít nhất một lần để thay đổi tư duy và cuộc sống...</p>
-                        <a href="#" class="btn btn-outline-danger mt-auto align-self-start">Đọc tiếp <i class="fas fa-angle-right"></i></a>
-                    </div>
+                <div class="product-info">
+                    <h3 class="product-title"><?= $nb['title'] ?></h3>
+                    <div class="product-author"><?= $nb['author'] ?></div>
+                    <div class="product-price"><?= $nb['price'] ?></div>
                 </div>
-            </div>
-            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="card news-card h-100">
-                    <img src="<?= BASE_URL ?>images/home-page/doc-sach-hieu-qua.jpg" class="card-img-top" alt="Đọc sách hiệu quả" loading="lazy">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">Phương pháp đọc sách siêu tốc</h5>
-                        <p class="card-text text-muted">Làm thế nào để đọc một cuốn sách trong thời gian ngắn mà vẫn ghi nhớ được toàn bộ nội dung quan trọng?</p>
-                        <a href="#" class="btn btn-outline-danger mt-auto align-self-start">Đọc tiếp <i class="fas fa-angle-right"></i></a>
-                    </div>
-                </div>
-            </div>
+            </a>
         </div>
+        <?php endforeach; ?>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: true, offset: 50 });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // 1. Khởi tạo AOS Animation (Chỉ chạy 1 lần khi cuộn tới)
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 50
-        });
+    function pickRandomBook() {
+        const books = document.querySelectorAll('.book-item');
+        if(books.length === 0) return;
+        
+        // Random 1 cuốn sách
+        const randomIdx = Math.floor(Math.random() * books.length);
+        const selectedBook = books[randomIdx];
+        
+        // Lấy Dữ liệu từ thẻ HTML
+        const title = selectedBook.getAttribute('data-title');
+        const imageUrl = selectedBook.getAttribute('data-image');
+        const detailUrl = selectedBook.getAttribute('data-url');
+        
+        const isCyber = document.body.classList.contains('cyber-mode');
 
-        // 2. Khởi tạo Hero Slider
-        const heroSwiper = new Swiper('.hero-swiper', {
-            loop: true,
-            effect: 'fade',
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-
-        // 3. Khởi tạo Product Carousel (Vuốt ngang trên điện thoại, hiển thị 4 cột trên PC)
-        const productSwiper = new Swiper('.product-swiper', {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            autoplay: {
-                delay: 3000,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                // Trên điện thoại (Mobile)
-                576: {
-                    slidesPerView: 2,
-                },
-                // Trên iPad (Tablet)
-                768: {
-                    slidesPerView: 3,
-                },
-                // Trên PC
-                992: {
-                    slidesPerView: 4,
+        // Hiện Popup tích hợp Hình ảnh và Nút
+        if (typeof Swal !== 'undefined') {
+            Swal.fire({
+                title: 'Hôm nay bạn nên đọc:',
+                text: title,
+                imageUrl: imageUrl,       // Hiện ảnh sách
+                imageHeight: 200,         
+                imageAlt: title,
+                showCancelButton: true,   // Hiện nút Hủy/Quay lại
+                confirmButtonText: '<i class="fas fa-book-open"></i> Xem chi tiết',
+                cancelButtonText: 'Quay lại',
+                confirmButtonColor: isCyber ? '#7000ff' : '#8B5E3C',
+                cancelButtonColor: '#6c757d',
+                background: isCyber ? '#1e293b' : '#fff',
+                color: isCyber ? '#00f2ff' : '#000'
+            }).then((result) => {
+                // Nếu bấm nút "Xem chi tiết", tự động chuyển trang
+                if (result.isConfirmed) {
+                    window.location.href = detailUrl;
                 }
+            });
+        } else {
+            if(confirm("Hôm nay bạn nên đọc: " + title + "\nBạn có muốn xem chi tiết cuốn sách này không?")) {
+                window.location.href = detailUrl;
             }
-        });
-    });
+        }
+    }
 </script>
 
 <?php require_once APP_ROOT . '/views/components/footer.php'; ?>
