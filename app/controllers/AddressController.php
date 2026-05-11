@@ -1,22 +1,23 @@
 ﻿<?php
 require_once APP_ROOT . '/models/UserAddress.php';
 
-class AddressController extends Controller {
+class AddressController extends Controller
+{
     private $userAddressModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->userAddressModel = new UserAddress();
     }
 
     /**
      * Lấy danh sách địa chỉ của user (AJAX)
      */
-    public function getAddresses() {
-        header('Content-Type: application/json');
-
+    public function getAddresses()
+    {
         // Kiểm tra đăng nhập - thử cả user_id và users_id
         if (!isset($_SESSION['user_id']) && !isset($_SESSION['users_id'])) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Vui lòng đăng nhập',
                 'debug' => [
@@ -30,7 +31,7 @@ class AddressController extends Controller {
         $userId = $_SESSION['user_id'] ?? $_SESSION['users_id'] ?? null;
         $addresses = $this->userAddressModel->getAddressesByUserId($userId);
 
-        echo json_encode([
+        $this->jsonResponse([
             'success' => true,
             'addresses' => $addresses
         ]);
@@ -39,7 +40,8 @@ class AddressController extends Controller {
     /**
      * Thêm địa chỉ mới (AJAX)
      */
-    public function addAddress() {
+    public function addAddress()
+    {
         header('Content-Type: application/json');
 
         // Debug session
@@ -48,7 +50,7 @@ class AddressController extends Controller {
 
         // Kiểm tra đăng nhập - thử cả user_id và users_id
         if (!isset($_SESSION['user_id']) && !isset($_SESSION['users_id'])) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Vui lòng đăng nhập',
                 'debug' => [
@@ -69,9 +71,11 @@ class AddressController extends Controller {
         $streetAddress = $_POST['street_address'] ?? '';
         $isDefault = isset($_POST['is_default']) ? (int)$_POST['is_default'] : 0;
 
-        if (empty($recipientName) || empty($recipientPhone) || empty($provinceName) ||
-            empty($wardName) || empty($streetAddress)) {
-            echo json_encode([
+        if (
+            empty($recipientName) || empty($recipientPhone) || empty($provinceName) ||
+            empty($wardName) || empty($streetAddress)
+        ) {
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Vui lòng điền đầy đủ thông tin'
             ]);
@@ -79,8 +83,8 @@ class AddressController extends Controller {
         }
 
         // Validate số điện thoại Việt Nam
-        if (!preg_match('/(84|0[3|5|7|8|9])+([0-9]{8})\b/', $recipientPhone)) {
-            echo json_encode([
+        if (!preg_match('/(84|0[3|5|7|8|9])+([0-9]{8})\\b/', $recipientPhone)) {
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Số điện thoại không hợp lệ'
             ]);
@@ -93,7 +97,7 @@ class AddressController extends Controller {
         // Kiểm tra trùng lặp
         $duplicate = $this->userAddressModel->checkDuplicateAddress($userId, $recipientPhone, $fullAddress);
         if ($duplicate) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Địa chỉ này đã tồn tại',
                 'address_id' => $duplicate['address_id']
@@ -116,14 +120,14 @@ class AddressController extends Controller {
         $addressId = $this->userAddressModel->addAddress($data);
 
         if ($addressId) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => true,
                 'message' => 'Đã lưu địa chỉ thành công',
                 'address_id' => $addressId,
                 'address' => array_merge($data, ['address_id' => $addressId])
             ]);
         } else {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Lỗi khi lưu địa chỉ'
             ]);
@@ -133,11 +137,12 @@ class AddressController extends Controller {
     /**
      * Cập nhật địa chỉ (AJAX)
      */
-    public function updateAddress() {
+    public function updateAddress()
+    {
         header('Content-Type: application/json');
 
         if (!isset($_SESSION['user_id']) && !isset($_SESSION['users_id'])) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Vui lòng đăng nhập'
             ]);
@@ -149,7 +154,7 @@ class AddressController extends Controller {
 
         // Validate
         if (!$addressId) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Thiếu address_id'
             ]);
@@ -159,7 +164,7 @@ class AddressController extends Controller {
         // Kiểm tra quyền sở hữu
         $existingAddress = $this->userAddressModel->getAddressById($addressId, $userId);
         if (!$existingAddress) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Địa chỉ không tồn tại hoặc không thuộc về bạn'
             ]);
@@ -174,9 +179,11 @@ class AddressController extends Controller {
         $streetAddress = $_POST['street_address'] ?? '';
         $isDefault = isset($_POST['is_default']) ? (int)$_POST['is_default'] : 0;
 
-        if (empty($recipientName) || empty($recipientPhone) || empty($provinceName) ||
-            empty($wardName) || empty($streetAddress)) {
-            echo json_encode([
+        if (
+            empty($recipientName) || empty($recipientPhone) || empty($provinceName) ||
+            empty($wardName) || empty($streetAddress)
+        ) {
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Vui lòng điền đầy đủ thông tin'
             ]);
@@ -199,12 +206,12 @@ class AddressController extends Controller {
         $success = $this->userAddressModel->updateAddress($addressId, $userId, $data);
 
         if ($success) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => true,
                 'message' => 'Đã cập nhật địa chỉ'
             ]);
         } else {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Lỗi khi cập nhật địa chỉ'
             ]);
@@ -214,11 +221,12 @@ class AddressController extends Controller {
     /**
      * Xóa địa chỉ (AJAX)
      */
-    public function deleteAddress() {
+    public function deleteAddress()
+    {
         header('Content-Type: application/json');
 
         if (!isset($_SESSION['user_id'])) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Vui lòng đăng nhập'
             ]);
@@ -229,7 +237,7 @@ class AddressController extends Controller {
         $addressId = $_POST['address_id'] ?? 0;
 
         if (!$addressId) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Thiếu address_id'
             ]);
@@ -239,12 +247,12 @@ class AddressController extends Controller {
         $success = $this->userAddressModel->deleteAddress($addressId, $userId);
 
         if ($success) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => true,
                 'message' => 'Đã xóa địa chỉ'
             ]);
         } else {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Lỗi khi xóa địa chỉ'
             ]);
@@ -254,11 +262,12 @@ class AddressController extends Controller {
     /**
      * Set địa chỉ làm mặc định (AJAX)
      */
-    public function setDefaultAddress() {
+    public function setDefaultAddress()
+    {
         header('Content-Type: application/json');
 
         if (!isset($_SESSION['user_id'])) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Vui lòng đăng nhập'
             ]);
@@ -269,7 +278,7 @@ class AddressController extends Controller {
         $addressId = $_POST['address_id'] ?? 0;
 
         if (!$addressId) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Thiếu address_id'
             ]);
@@ -279,16 +288,29 @@ class AddressController extends Controller {
         $success = $this->userAddressModel->setDefaultAddress($addressId, $userId);
 
         if ($success) {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => true,
                 'message' => 'Đã đặt làm địa chỉ mặc định'
             ]);
         } else {
-            echo json_encode([
+            $this->jsonResponse([
                 'success' => false,
                 'message' => 'Lỗi khi đặt địa chỉ mặc định'
             ]);
         }
     }
-}
 
+    /**
+     * Helper: sạch sẽ trả về JSON (dọn buffer trước, set header)
+     */
+    private function jsonResponse($data)
+    {
+        while (ob_get_level() > 0) {
+            ob_end_clean();
+        }
+
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+}
