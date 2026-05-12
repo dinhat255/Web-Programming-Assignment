@@ -1,4 +1,14 @@
 ﻿<?php require_once APP_ROOT . '/views/components/header.php'; ?>
+<?php
+$product = $product ?? null;
+$relatedProducts = $relatedProducts ?? [];
+
+if (empty($product)) {
+    echo '<div class="container"><div class="no-results"><h4>Không tìm thấy sản phẩm.</h4></div></div>';
+    require_once APP_ROOT . '/views/components/footer.php';
+    return;
+}
+?>
 
 <style>
     .breadcrumb-section {
@@ -349,6 +359,7 @@
         font-size: 0.9rem;
         display: -webkit-box;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
         height: 2.5em;

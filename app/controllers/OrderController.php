@@ -4,7 +4,9 @@ require_once APP_ROOT . '/models/CartModel.php';
 
 class OrderController extends Controller
 {
+    /** @var Order */
     private $orderModel;
+    /** @var CartModel */
     private $cartModel;
 
     public function __construct()
@@ -184,7 +186,7 @@ class OrderController extends Controller
     /**
      * Xem chi tiết đơn hàng
      */
-    public function detail($orderId)
+    public function detail(int $orderId)
     {
         // Kiểm tra đăng nhập
         if (!isset($_SESSION['user_id']) && !isset($_SESSION['users_id'])) {
@@ -254,7 +256,7 @@ class OrderController extends Controller
     /**
      * Helper: sạch sẽ trả về JSON (dọn buffer trước, set header)
      */
-    private function jsonResponse($data)
+    private function jsonResponse(array $data): void
     {
         while (ob_get_level() > 0) {
             ob_end_clean();

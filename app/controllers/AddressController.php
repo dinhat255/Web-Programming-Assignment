@@ -3,6 +3,7 @@ require_once APP_ROOT . '/models/UserAddress.php';
 
 class AddressController extends Controller
 {
+    /** @var UserAddress */
     private $userAddressModel;
 
     public function __construct()
@@ -303,7 +304,7 @@ class AddressController extends Controller
     /**
      * Helper: sạch sẽ trả về JSON (dọn buffer trước, set header)
      */
-    private function jsonResponse($data)
+    private function jsonResponse(array $data): void
     {
         while (ob_get_level() > 0) {
             ob_end_clean();

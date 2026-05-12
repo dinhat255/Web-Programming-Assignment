@@ -3,7 +3,9 @@
 
     class CartController extends Controller
     {
+        /** @var CartModel */
         private $cartModel;
+        /** @var ProductModel */
         private $productModel;
 
         public function __construct()
@@ -201,7 +203,7 @@
             return isset($_SESSION['users_id']) && !empty($_SESSION['users_id']);
         }
 
-        private function getCartItemsFromLocal($localCartItems)
+        private function getCartItemsFromLocal(array $localCartItems): array
         {
             $cartItems = [];
             if (empty($localCartItems) || !is_array($localCartItems)) {
@@ -244,7 +246,7 @@
         /**
          * Helper: Tính tổng tiền
          */
-        private function calculateSummary($cartItems)
+        private function calculateSummary(array $cartItems): array
         {
             $subtotal = 0;
             foreach ($cartItems as $item) {
@@ -266,7 +268,7 @@
         /**
          * Helper: JSON response
          */
-        private function jsonResponse($data)
+        private function jsonResponse(array $data): void
         {
             // Dọn mọi output đang buffer (BOM/whitespace/debug) để JSON luôn sạch.
             while (ob_get_level() > 0) {

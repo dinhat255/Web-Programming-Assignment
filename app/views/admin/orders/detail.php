@@ -298,6 +298,26 @@
     }
 </style>
 
+<?php
+$order = $order ?? null;
+$items = $items ?? [];
+if (empty($order)):
+?>
+    <div class="admin-card">
+        <div class="card-body">
+            <div style="color:#ff003c; font-weight:600;">
+                Không tìm thấy đơn hàng hoặc dữ liệu chưa được truyền vào view.
+            </div>
+            <div style="margin-top:12px;">
+                <a href="<?= BASE_URL ?>admin/orders" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Quay lại danh sách
+                </a>
+            </div>
+        </div>
+    </div>
+    <?php return; ?>
+<?php endif; ?>
+
 <div class="card-header-actions">
     <h2 class="card-title">Chi tiết đơn hàng #<?= $order['order_id'] ?></h2>
     <a href="<?= BASE_URL ?>admin/orders" class="btn btn-secondary">

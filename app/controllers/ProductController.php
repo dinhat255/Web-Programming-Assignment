@@ -1,4 +1,5 @@
 ﻿<?php
+
 /**
  * PRODUCT CONTROLLER
  * Trang Danh sách sản phẩm và Chi tiết sản phẩm
@@ -6,7 +7,9 @@
 
 class ProductController extends Controller
 {
+    /** @var ProductModel */
     private $productModel;
+    /** @var CategoryModel */
     private $categoryModel;
 
     public function __construct()
@@ -78,7 +81,7 @@ class ProductController extends Controller
     /**
      * Trang chi tiết sản phẩm
      */
-    public function detail($id)
+    public function detail(int $id)
     {
         $product = $this->productModel->getProductDetailsById($id);
 
@@ -106,4 +109,3 @@ class ProductController extends Controller
     // ✅ ĐÃ XÓA method addToCart() CŨ
     // Giờ dùng CartController::add() để quản lý giỏ hàng
 }
-

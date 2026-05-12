@@ -1,4 +1,14 @@
-﻿<style>
+﻿<?php
+$product = $product ?? null;
+$categories = $categories ?? [];
+
+if (empty($product)) {
+    echo '<div class="admin-card">Không tìm thấy sản phẩm để chỉnh sửa.</div>';
+    return;
+}
+?>
+
+<style>
     /* ================================================== */
     /* BỘ CSS SCI-FI CHO FORM SẢN PHẨM                    */
     /* ================================================== */

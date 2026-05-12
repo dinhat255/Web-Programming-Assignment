@@ -1,4 +1,14 @@
 ﻿<?php require_once APP_ROOT . '/views/components/header.php'; ?>
+<?php
+$products = $products ?? [];
+$categories = $categories ?? [];
+$wishlistIds = $wishlistIds ?? [];
+$search = $search ?? '';
+$selectedCategory = $selectedCategory ?? '';
+$totalProducts = $totalProducts ?? 0;
+$currentPage = $currentPage ?? 1;
+$totalPages = $totalPages ?? 1;
+?>
 
 <style>
     .breadcrumb-section {
@@ -260,6 +270,7 @@
         font-size: 0.9rem;
         display: -webkit-box;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
         height: 2.5em;
@@ -272,6 +283,7 @@
         margin-bottom: 10px;
         display: -webkit-box;
         -webkit-line-clamp: 1;
+        line-clamp: 1;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }

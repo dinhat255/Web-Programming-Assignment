@@ -401,7 +401,7 @@ class CustomerController extends Controller
     /**
      * Helper: sạch sẽ trả về JSON (dọn buffer trước, set header)
      */
-    private function jsonResponse($data)
+    private function jsonResponse(array $data): void
     {
         while (ob_get_level() > 0) {
             ob_end_clean();

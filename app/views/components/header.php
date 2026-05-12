@@ -7,9 +7,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Helper: an toàn khi echo
-function e($v)
+function e(string $v): string
 {
-    return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8');
+    return htmlspecialchars($v, ENT_QUOTES, 'UTF-8');
 }
 
 // Cart count - lấy từ database nếu đã đăng nhập
