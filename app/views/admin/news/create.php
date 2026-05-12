@@ -1,205 +1,134 @@
 ﻿<style>
-    .form-label {
-        font-weight: 600;
-        color: #2c3e50;
-        margin-bottom: 0.5rem;
+    .admin-card {
+        background: rgba(30, 41, 59, 0.6) !important;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 242, 255, 0.2) !important;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        overflow: hidden;
+        margin-bottom: 30px;
     }
-
-    .form-label .text-danger {
-        margin-left: 3px;
+    .card-header-actions {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 20px 25px;
+        border-bottom: 1px solid rgba(0, 242, 255, 0.2);
     }
-
-    .form-control, .form-select {
-        border-radius: 6px;
-        border: 1px solid #d1d5db;
-        padding: 0.625rem 0.875rem;
-        transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .form-control:focus, .form-select:focus {
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        outline: none;
-    }
-
-    textarea.form-control {
-        resize: vertical;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-
-    .card {
-        border: none;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-    }
-
-    .card-header {
-        background-color: #f8f9fa;
-        border-bottom: 1px solid #e9ecef;
-        padding: 1.25rem 1.5rem;
-        border-radius: 8px 8px 0 0;
-    }
-
     .card-title {
-        color: #1e293b;
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin: 0;
+        font-family: 'Orbitron', sans-serif;
+        color: #00f2ff;
+        font-size: 18px; font-weight: 700; margin: 0;
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
+        text-transform: uppercase;
+    }
+    .card-body { padding: 25px; }
+    .card-footer { 
+        padding: 20px 25px; 
+        border-top: 1px solid rgba(0, 242, 255, 0.2); 
+        display: flex; justify-content: flex-end; gap: 15px; 
     }
 
-    .card-body {
-        padding: 1.5rem;
+    .sci-fi-label {
+        color: #94a3b8; font-weight: 600; letter-spacing: 1px; margin-bottom: 10px; display: block;
+        font-family: 'Orbitron', sans-serif; font-size: 12px; text-transform: uppercase;
     }
+    .sci-fi-label .text-danger { color: #ff003c !important; text-shadow: 0 0 5px #ff003c; margin-left: 3px; }
 
-    .card-footer {
-        background-color: #f8f9fa;
-        border-top: 1px solid #e9ecef;
-        padding: 1rem 1.5rem;
-        border-radius: 0 0 8px 8px;
+    .sci-fi-input {
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(0, 242, 255, 0.3);
+        color: #00f2ff;
+        border-radius: 8px; padding: 12px 15px; width: 100%; transition: all 0.3s;
+        font-family: 'Courier New', Courier, monospace; font-size: 14px;
     }
+    .sci-fi-input:focus { outline: none; border-color: #00f2ff; box-shadow: 0 0 15px rgba(0, 242, 255, 0.2); background: rgba(3, 7, 18, 0.9); }
+    .sci-fi-input::placeholder { color: rgba(0, 242, 255, 0.3); font-weight: normal; }
+    select.sci-fi-input option { background: #0f172a; color: #00f2ff; }
+    textarea.sci-fi-input { resize: vertical; }
 
-    .btn-primary {
-        background-color: #3b82f6;
-        border-color: #3b82f6;
-        padding: 0.5rem 1.5rem;
-        font-weight: 500;
-        border-radius: 6px;
-    }
+    .help-text { font-size: 11px; color: #64748b; margin-top: 5px; font-family: 'Courier New', Courier, monospace; }
 
-    .btn-primary:hover {
-        background-color: #2563eb;
-        border-color: #2563eb;
+    .btn {
+        padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s;
+        display: inline-flex; align-items: center; gap: 8px; font-size: 13px; background: transparent;
+        font-family: 'Orbitron', sans-serif; text-decoration: none;
     }
-
-    .btn-link {
-        color: #6b7280;
-        text-decoration: none;
-        padding: 0.5rem 1.5rem;
-    }
-
-    .btn-link:hover {
-        color: #374151;
-    }
+    .btn-primary { color: #00f2ff; border: 1px solid #00f2ff; }
+    .btn-primary:hover { background: #00f2ff; color: #000; box-shadow: 0 0 15px #00f2ff; }
+    .btn-secondary { color: #94a3b8; border: 1px solid #94a3b8; }
+    .btn-secondary:hover { background: #94a3b8; color: #000; box-shadow: 0 0 15px #94a3b8; }
 
     .image-preview {
-        max-width: 200px;
-        max-height: 200px;
-        margin-top: 10px;
-        border-radius: 6px;
-        border: 1px solid #e5e7eb;
-        display: none;
-    }
-
-    .help-text {
-        font-size: 0.875rem;
-        color: #6b7280;
-        margin-top: 0.25rem;
-    }
-
-    @media (max-width: 768px) {
-        .card-body {
-            padding: 1rem;
-        }
+        max-width: 200px; max-height: 200px; margin-top: 10px; border-radius: 6px;
+        border: 1px solid rgba(0, 242, 255, 0.3); display: none; box-shadow: 0 0 10px rgba(0,242,255,0.1);
     }
 </style>
 
-<div class="page-header d-print-none">
-    <div class="container-xl">
-        <div class="row g-2 align-items-center">
-            <div class="col">
-                <h2 class="page-title">Thêm bài viết mới</h2>
-                <div class="text-muted mt-1">Tạo và đăng bài viết tin tức mới</div>
+<div class="admin-card">
+    <div class="card-header-actions">
+        <h2 class="card-title"><i class="fas fa-plus-circle"></i> THÊM BÀI VIẾT MỚI</h2>
+        <a href="<?= BASE_URL ?>admin/news" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> QUAY LẠI
+        </a>
+    </div>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        <div class="card-body">
+            <div class="mb-4">
+                <label class="sci-fi-label">Tiêu đề bài viết <span class="text-danger">*</span></label>
+                <input type="text" class="sci-fi-input" name="title" required placeholder="Nhập tiêu đề bài viết...">
+                <div class="help-text">Tiêu đề nên ngắn gọn, súc tích và thu hút</div>
             </div>
-            <div class="col-auto ms-auto d-print-none">
-                <a href="<?= BASE_URL ?>admin/news" class="btn btn-outline-secondary">
-                    <i class="fas fa-arrow-left"></i> Quay lại
-                </a>
+
+            <div class="row" style="display:flex; gap: 20px; margin-bottom: 20px;">
+                <div style="flex: 1;">
+                    <label class="sci-fi-label">Danh mục <span class="text-danger">*</span></label>
+                    <select class="sci-fi-input" name="category" required>
+                        <option value="">-- Chọn danh mục --</option>
+                        <option value="kien-thuc">Kiến thức</option>
+                        <option value="sach-hay">Sách hay</option>
+                        <option value="van-hoa">Văn hóa đọc</option>
+                        <option value="giao-duc">Giáo dục</option>
+                        <option value="cong-nghe">Công nghệ</option>
+                        <option value="ky-nang">Kỹ năng sống</option>
+                    </select>
+                </div>
+                <div style="flex: 1;">
+                    <label class="sci-fi-label">Ngày đăng</label>
+                    <input type="date" class="sci-fi-input" name="published_date" value="<?= date('Y-m-d') ?>">
+                    <div class="help-text">Mặc định là ngày hôm nay</div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="sci-fi-label">Hình ảnh đại diện</label>
+                <input type="file" class="sci-fi-input" name="image" accept="image/*" onchange="previewImage(this)">
+                <div class="help-text">Định dạng: JPG, PNG, GIF. Kích thước tối đa: 2MB</div>
+                <img id="imagePreview" class="image-preview" alt="Preview">
+            </div>
+
+            <div class="mb-4">
+                <label class="sci-fi-label">Tóm tắt ngắn <span class="text-danger">*</span></label>
+                <textarea class="sci-fi-input" name="summary" rows="3" required placeholder="Nhập tóm tắt ngắn gọn về bài viết..."></textarea>
+                <div class="help-text">Tóm tắt hiển thị trong danh sách bài viết (khoảng 150-200 ký tự)</div>
+            </div>
+
+            <div class="mb-4">
+                <label class="sci-fi-label">Nội dung chi tiết <span class="text-danger">*</span></label>
+                <textarea class="sci-fi-input" name="content" rows="12" required placeholder="Nhập nội dung chi tiết bài viết (hỗ trợ HTML)..."></textarea>
+                <div class="help-text">Bạn có thể sử dụng HTML để định dạng nội dung. Ví dụ: &lt;p&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;ul&gt;, &lt;ol&gt;, &lt;h2&gt;, &lt;h3&gt;</div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="page-body">
-    <div class="container-xl">
-        <form action="" method="POST" enctype="multipart/form-data" class="card">
-            <div class="card-header">
-                <h3 class="card-title">
-                    <i class="fas fa-newspaper me-2"></i>Thông tin bài viết
-                </h3>
-            </div>
-            <div class="card-body">
-                <div class="mb-3">
-                    <label class="form-label">
-                        Tiêu đề bài viết <span class="text-danger">*</span>
-                    </label>
-                    <input type="text" class="form-control" name="title" required
-                           placeholder="Nhập tiêu đề bài viết...">
-                    <div class="help-text">Tiêu đề nên ngắn gọn, súc tích và thu hút</div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">
-                            Danh mục <span class="text-danger">*</span>
-                        </label>
-                        <select class="form-select" name="category" required>
-                            <option value="">-- Chọn danh mục --</option>
-                            <option value="kien-thuc">Kiến thức</option>
-                            <option value="sach-hay">Sách hay</option>
-                            <option value="van-hoa">Văn hóa đọc</option>
-                            <option value="giao-duc">Giáo dục</option>
-                            <option value="cong-nghe">Công nghệ</option>
-                            <option value="ky-nang">Kỹ năng sống</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Ngày đăng</label>
-                        <input type="date" class="form-control" name="published_date"
-                               value="<?= date('Y-m-d') ?>">
-                        <div class="help-text">Mặc định là ngày hôm nay</div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Hình ảnh đại diện</label>
-                    <input type="file" class="form-control" name="image" accept="image/*"
-                           onchange="previewImage(this)">
-                    <div class="help-text">Định dạng: JPG, PNG, GIF. Kích thước tối đa: 2MB</div>
-                    <img id="imagePreview" class="image-preview" alt="Preview">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">
-                        Tóm tắt ngắn <span class="text-danger">*</span>
-                    </label>
-                    <textarea class="form-control" name="summary" rows="3" required
-                              placeholder="Nhập tóm tắt ngắn gọn về bài viết..."></textarea>
-                    <div class="help-text">Tóm tắt hiển thị trong danh sách bài viết (khoảng 150-200 ký tự)</div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">
-                        Nội dung chi tiết <span class="text-danger">*</span>
-                    </label>
-                    <textarea class="form-control" name="content" rows="12" required
-                              placeholder="Nhập nội dung chi tiết bài viết (hỗ trợ HTML)..."></textarea>
-                    <div class="help-text">
-                        Bạn có thể sử dụng HTML để định dạng nội dung.
-                        Ví dụ: &lt;p&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;ul&gt;, &lt;ol&gt;, &lt;h2&gt;, &lt;h3&gt;
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-footer text-end">
-                <a href="<?= BASE_URL ?>admin/news" class="btn btn-link">
-                    <i class="fas fa-times"></i> Hủy
-                </a>
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i> Đăng bài
-                </button>
-            </div>
-        </form>
-    </div>
+        <div class="card-footer">
+            <a href="<?= BASE_URL ?>admin/news" class="btn btn-secondary">
+                <i class="fas fa-times"></i> HỦY BỎ
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i> ĐĂNG BÀI
+            </button>
+        </div>
+    </form>
 </div>
 
 <script>
@@ -217,4 +146,3 @@
         }
     }
 </script>
-
