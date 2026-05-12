@@ -10,7 +10,11 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         :root {
             --neon-cyan: #00f2ff;
@@ -27,7 +31,8 @@
             background-image: radial-gradient(circle at 50% 50%, #111827 0%, #030712 100%);
             color: #e2e8f0;
             display: flex;
-            flex-direction: column; /* Chuyển sang bố cục dọc */
+            flex-direction: column;
+            /* Chuyển sang bố cục dọc */
             min-height: 100vh;
         }
 
@@ -36,16 +41,18 @@
             width: 100% !important;
             height: 70px !important;
             position: fixed;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(0, 242, 255, 0.3);
             z-index: 1100;
             display: flex !important;
-            flex-direction: row !important; /* Dàn hàng ngang */
+            flex-direction: row !important;
+            /* Dàn hàng ngang */
             align-items: center;
             padding: 0 2%;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
         }
 
         .sidebar-header {
@@ -62,7 +69,11 @@
             text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
         }
 
-        .sidebar-toggle { display: none !important; } /* Ẩn nút toggle vì không cần thu gọn */
+        .sidebar-toggle {
+            display: none !important;
+        }
+
+        /* Ẩn nút toggle vì không cần thu gọn */
 
         /* DÀN MENU NGANG */
         .sidebar-nav {
@@ -73,9 +84,18 @@
             margin-left: 20px;
         }
 
-        .nav-section { display: flex; align-items: center; margin: 0 !important; }
-        .nav-section-title { display: none !important; } /* Ẩn tiêu đề nhóm */
-        
+        .nav-section {
+            display: flex;
+            align-items: center;
+            margin: 0 !important;
+        }
+
+        .nav-section-title {
+            display: none !important;
+        }
+
+        /* Ẩn tiêu đề nhóm */
+
         .nav-section ul {
             display: flex !important;
             flex-direction: row !important;
@@ -92,15 +112,21 @@
             border: none !important;
         }
 
-        .nav-link:hover, .nav-link.active {
+        .nav-link:hover,
+        .nav-link.active {
             color: var(--neon-cyan) !important;
             background: rgba(0, 242, 255, 0.05) !important;
             text-shadow: 0 0 8px rgba(0, 242, 255, 0.4);
         }
 
         .nav-link.active::after {
-            content: ''; position: absolute; bottom: 0; left: 15%;
-            width: 70%; height: 2px; background: var(--neon-cyan);
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 15%;
+            width: 70%;
+            height: 2px;
+            background: var(--neon-cyan);
             box-shadow: 0 0 10px var(--neon-cyan);
         }
 
@@ -120,12 +146,23 @@
             border-radius: 4px;
             position: relative;
             animation: logout-glow 2s infinite;
-            display: flex; align-items: center; gap: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         @keyframes logout-glow {
-            0%, 100% { box-shadow: 0 0 5px rgba(255, 0, 60, 0.2); text-shadow: 0 0 5px rgba(255, 0, 60, 0.2); }
-            50% { box-shadow: 0 0 15px rgba(255, 0, 60, 0.6); text-shadow: 0 0 10px rgba(255, 0, 60, 0.8); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 5px rgba(255, 0, 60, 0.2);
+                text-shadow: 0 0 5px rgba(255, 0, 60, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 15px rgba(255, 0, 60, 0.6);
+                text-shadow: 0 0 10px rgba(255, 0, 60, 0.8);
+            }
         }
 
         .logout-link:hover {
@@ -136,8 +173,10 @@
 
         /* 3. ĐIỀU CHỈNH NỘI DUNG CHÍNH */
         .admin-main {
-            margin-left: 0 !important; /* Xóa lề trái */
-            padding-top: 70px; /* Đẩy xuống để không bị menu đè */
+            margin-left: 0 !important;
+            /* Xóa lề trái */
+            padding-top: 70px;
+            /* Đẩy xuống để không bị menu đè */
         }
 
         .admin-header {
@@ -146,15 +185,177 @@
             padding: 20px 40px !important;
         }
 
-        .admin-content { padding: 30px 5%; }
+        .admin-content {
+            padding: 30px 5%;
+        }
 
         /* Card phong cách hiện đại */
-        .card, .admin-card {
+        .card,
+        .admin-card {
             background: rgba(30, 41, 59, 0.6) !important;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
             border-radius: 12px !important;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Responsive admin layout */
+        @media (max-width: 991.98px) {
+            .admin-sidebar {
+                height: auto !important;
+                flex-wrap: wrap;
+                padding: 10px 12px;
+            }
+
+            .sidebar-header {
+                padding: 0 !important;
+                margin-right: 12px;
+            }
+
+            .sidebar-logo-text {
+                font-size: 14px;
+            }
+
+            .sidebar-nav {
+                width: 100%;
+                margin-left: 0;
+                overflow-x: auto;
+                padding: 6px 0 !important;
+            }
+
+            .nav-section {
+                margin-right: 12px;
+            }
+
+            .nav-section ul {
+                flex-wrap: nowrap;
+                gap: 6px;
+            }
+
+            .nav-link {
+                font-size: 12px;
+                padding: 8px 10px !important;
+                display: inline-flex;
+                align-items: center;
+                white-space: nowrap;
+            }
+
+            .sidebar-footer {
+                width: 100%;
+                margin-top: 6px;
+            }
+
+            .logout-link {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+            .admin-main {
+                padding-top: 120px;
+            }
+
+            .admin-content .row {
+                flex-direction: column !important;
+                gap: 16px !important;
+            }
+
+            .admin-content .col-md-4,
+            .admin-content .col-md-6,
+            .admin-content .col-md-8 {
+                width: 100% !important;
+                flex: 1 1 100% !important;
+            }
+
+            .admin-content .card-header-actions {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .admin-content .filter-bar {
+                padding: 16px 18px;
+            }
+
+            .admin-content .filter-bar>div {
+                flex-wrap: wrap;
+            }
+
+            .admin-content .table-container {
+                overflow-x: auto;
+            }
+
+            .admin-content table {
+                min-width: 640px;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .admin-sidebar {
+                align-items: flex-start;
+            }
+
+            .sidebar-header {
+                width: 100%;
+                margin-bottom: 6px;
+            }
+
+            .sidebar-logo-text {
+                display: none;
+            }
+
+            .sidebar-nav {
+                width: 100%;
+                overflow-x: visible;
+            }
+
+            .nav-section {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .nav-section ul {
+                width: 100%;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .nav-link-text {
+                display: none;
+            }
+
+            .nav-link {
+                width: 44px;
+                height: 36px;
+                padding: 0 !important;
+                justify-content: center;
+            }
+
+            .nav-link i {
+                font-size: 16px;
+            }
+
+            .admin-main {
+                padding-top: 140px;
+            }
+
+            .admin-content {
+                padding: 20px 4%;
+            }
+
+            .admin-content .btn,
+            .admin-content .filter-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .sidebar-footer {
+                width: 100%;
+                margin-top: 8px;
+            }
+
+            .logout-link {
+                justify-content: center;
+            }
         }
     </style>
 </head>

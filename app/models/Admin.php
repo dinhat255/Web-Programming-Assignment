@@ -1,9 +1,11 @@
 ﻿<?php
-class Admin extends DB {
+class Admin extends DB
+{
 
     // ================= TASK 1: QUẢN LÝ CẤU HÌNH (SETTINGS) =================
-    
-    public function getSettings() {
+
+    public function getSettings()
+    {
         $result = $this->all("SELECT * FROM settings");
         $settings = [];
         if ($result) {
@@ -14,32 +16,38 @@ class Admin extends DB {
         return $settings;
     }
 
-    public function updateSetting($key, $value) {
-        return $this->query("UPDATE settings SET value = :value WHERE key_name = :key", 
+    public function updateSetting($key, $value)
+    {
+        return $this->query(
+            "UPDATE settings SET value = :value WHERE key_name = :key",
             ['value' => $value, 'key' => $key]
         );
     }
 
     // ================= TASK 1: QUẢN LÝ LIÊN HỆ (CONTACTS) =================
 
-    public function getAllContacts() {
+    public function getAllContacts()
+    {
         return $this->all("SELECT * FROM contacts ORDER BY created_at DESC");
     }
 
-    public function deleteContact($id) {
+    public function deleteContact($id)
+    {
         return $this->query("DELETE FROM contacts WHERE id = :id", ['id' => $id]);
     }
 
     // ================= TASK 2: QUẢN LÝ TRANG (PAGES) =================
 
-    public function getPageContent($pageName) {
+    public function getPageContent($pageName)
+    {
         $result = $this->single("SELECT content FROM pages WHERE page_name = :page", ['page' => $pageName]);
         return $result ? $result['content'] : '';
     }
 
-    public function updatePageContent($pageName, $content) {
+    public function updatePageContent($pageName, $content)
+    {
         $check = $this->getPageContent($pageName);
-        
+
         if ($check !== '') {
             $sql = "UPDATE pages SET content = :content, updated_at = NOW() WHERE page_name = :page";
         } else {
@@ -50,23 +58,27 @@ class Admin extends DB {
 
     // ================= TASK 2: QUẢN LÝ HỎI ĐÁP (QA) =================
 
-    public function getAllQA() {
+    public function getAllQA()
+    {
         return $this->all("SELECT * FROM qa ORDER BY id DESC");
     }
 
-    public function createQA($question, $answer, $category) {
+    public function createQA($question, $answer, $category)
+    {
         $sql = "INSERT INTO qa (question, answer, category) VALUES (:q, :a, :c)";
         return $this->query($sql, ['q' => $question, 'a' => $answer, 'c' => $category]);
     }
 
-    public function deleteQA($id) {
+    public function deleteQA($id)
+    {
         return $this->query("DELETE FROM qa WHERE id = :id", ['id' => $id]);
     }
 
 
 
-// ================= QUẢN LÝ TIN TỨC (NEWS) =================
-    public function getAllArticles() {
+    // ================= QUẢN LÝ TIN TỨC (NEWS) =================
+    public function getAllArticles()
+    {
         $sql = "SELECT n.*, u.fullname as author_name
                 FROM news n
                 LEFT JOIN users u ON n.author_id = u.user_id
@@ -74,7 +86,8 @@ class Admin extends DB {
         return $this->all($sql);
     }
 
-    public function getArticleById($id) {
+    public function getArticleById($id)
+    {
         $sql = "SELECT n.*, u.fullname as author_name
                 FROM news n
                 LEFT JOIN users u ON n.author_id = u.user_id
@@ -83,7 +96,8 @@ class Admin extends DB {
         return $this->single($sql, ['id' => $id]);
     }
 
-    public function addArticle($data) {
+    public function addArticle($data)
+    {
         $sql = "INSERT INTO news (title, summary, content, category, image_url, published_date, author_id)
                 VALUES (:title, :summary, :content, :category, :image_url, :published_date, :author_id)";
         return $this->query($sql, [
@@ -97,7 +111,8 @@ class Admin extends DB {
         ]);
     }
 
-    public function updateArticle($id, $data) {
+    public function updateArticle($id, $data)
+    {
         $sql = "UPDATE news
                 SET title = :title,
                     summary = :summary,
@@ -123,26 +138,31 @@ class Admin extends DB {
         return $this->query($sql, $params);
     }
 
-    public function deleteArticle($id) {
+    public function deleteArticle($id)
+    {
         return $this->query("DELETE FROM news WHERE id = :id", ['id' => $id]);
     }
 
     // ================= QUẢN LÝ SẢN PHẨM (PRODUCTS) =================
-    public function getAllProducts() {
+    public function getAllProducts()
+    {
         return $this->all("SELECT * FROM product ORDER BY product_id DESC");
     }
 
-    public function getProductById($id) {
+    public function getProductById($id)
+    {
         return $this->single("SELECT * FROM product WHERE product_id = :id", ['id' => $id]);
     }
 
-    public function addProduct($data) {
+    public function addProduct($data)
+    {
         $sql = "INSERT INTO product (title, price, old_price, description, stock_quantity, publisher)
                 VALUES (:title, :price, :old_price, :description, :stock_quantity, :publisher)";
         return $this->query($sql, $data);
     }
 
-    public function updateProduct($id, $data) {
+    public function updateProduct($id, $data)
+    {
         $sql = "UPDATE product SET title=:title, price=:price, old_price=:old_price,
                 description=:description, stock_quantity=:stock_quantity, publisher=:publisher
                 WHERE product_id=:id";
@@ -150,13 +170,15 @@ class Admin extends DB {
         return $this->query($sql, $data);
     }
 
-    public function deleteProduct($id) {
+    public function deleteProduct($id)
+    {
         return $this->query("DELETE FROM product WHERE product_id = :id", ['id' => $id]);
     }
 
     // ================= QUẢN LÝ ĐƠN HÀNG (ORDERS) =================
 
-    public function getAllOrders() {
+    public function getAllOrders()
+    {
         $sql = "SELECT
                     o.order_id,
                     o.user_id,
@@ -180,7 +202,8 @@ class Admin extends DB {
         return $this->all($sql);
     }
 
-    public function getOrderById($orderId) {
+    public function getOrderById($orderId)
+    {
         $sql = "SELECT
                     o.order_id,
                     o.user_id,
@@ -204,7 +227,8 @@ class Admin extends DB {
         return $this->single($sql, ['order_id' => $orderId]);
     }
 
-    public function getOrderItems($orderId) {
+    public function getOrderItems($orderId)
+    {
         $sql = "SELECT
                     op.product_id,
                     op.quantity,
@@ -222,16 +246,30 @@ class Admin extends DB {
         return $this->all($sql, ['order_id' => $orderId]);
     }
 
-    public function updateOrderStatus($orderId, $status) {
+    public function updateOrderStatus($orderId, $status)
+    {
         $sql = "UPDATE orders SET status = :status, updated_at = NOW() WHERE order_id = :order_id";
         return $this->query($sql, ['status' => $status, 'order_id' => $orderId]);
     }
 
-    public function deleteOrder($orderId) {
-        return $this->query("DELETE FROM orders WHERE order_id = :order_id", ['order_id' => $orderId]);
+    public function deleteOrder($orderId)
+    {
+        $this->con->beginTransaction();
+
+        try {
+            // Xóa voucher của đơn hàng trước (không có cascade)
+            $this->query("DELETE FROM order_voucher WHERE order_id = :order_id", ['order_id' => $orderId]);
+            $result = $this->query("DELETE FROM orders WHERE order_id = :order_id", ['order_id' => $orderId]);
+            $this->con->commit();
+            return $result;
+        } catch (PDOException $e) {
+            $this->con->rollBack();
+            throw $e;
+        }
     }
 
-    public function getOrderStats() {
+    public function getOrderStats()
+    {
         $sql = "SELECT
                     COUNT(*) as total_orders,
                     SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending_orders,
@@ -245,7 +283,8 @@ class Admin extends DB {
 
     // ================= QUẢN LÝ KHÁCH HÀNG (CUSTOMERS) =================
 
-    public function getAllCustomers() {
+    public function getAllCustomers()
+    {
         $sql = "SELECT
                     u.user_id,
                     u.fullname,
@@ -265,7 +304,8 @@ class Admin extends DB {
         return $this->all($sql);
     }
 
-    public function getCustomerById($customerId) {
+    public function getCustomerById($customerId)
+    {
         $sql = "SELECT
                     u.user_id,
                     u.fullname,
@@ -281,7 +321,8 @@ class Admin extends DB {
         return $this->single($sql, ['customer_id' => $customerId]);
     }
 
-    public function getCustomerOrders($customerId) {
+    public function getCustomerOrders($customerId)
+    {
         $sql = "SELECT
                     o.order_id,
                     o.created_at as created_date,
@@ -298,7 +339,8 @@ class Admin extends DB {
         return $this->all($sql, ['customer_id' => $customerId]);
     }
 
-    public function getCustomerStats($customerId) {
+    public function getCustomerStats($customerId)
+    {
         $sql = "SELECT
                     COUNT(DISTINCT o.order_id) as total_orders,
                     SUM(CASE WHEN o.status = 'completed' THEN o.total_amount ELSE 0 END) as total_spent,
@@ -309,7 +351,8 @@ class Admin extends DB {
         return $this->single($sql, ['customer_id' => $customerId]);
     }
 
-    public function deleteCustomer($customerId) {
+    public function deleteCustomer($customerId)
+    {
         // Xóa customer record
         $this->query("DELETE FROM customer WHERE user_id = :id", ['id' => $customerId]);
         // Xóa user record
@@ -318,7 +361,8 @@ class Admin extends DB {
 
     // ================= QUẢN LÝ DANH MỤC (CATEGORIES) =================
 
-    public function getAllCategories() {
+    public function getAllCategories()
+    {
         // Kiểm tra xem bảng category_product có tồn tại không
         try {
             $sql = "SELECT
@@ -344,18 +388,21 @@ class Admin extends DB {
         }
     }
 
-    public function getCategoryById($categoryId) {
+    public function getCategoryById($categoryId)
+    {
         $sql = "SELECT * FROM category WHERE category_id = :category_id";
         return $this->single($sql, ['category_id' => $categoryId]);
     }
 
-    public function createCategory($data) {
+    public function createCategory($data)
+    {
         $sql = "INSERT INTO category (category_name, description)
                 VALUES (:category_name, :description)";
         return $this->query($sql, $data);
     }
 
-    public function updateCategory($categoryId, $data) {
+    public function updateCategory($categoryId, $data)
+    {
         $sql = "UPDATE category
                 SET category_name = :category_name,
                     description = :description
@@ -364,7 +411,8 @@ class Admin extends DB {
         return $this->query($sql, $data);
     }
 
-    public function deleteCategory($categoryId) {
+    public function deleteCategory($categoryId)
+    {
         // Xóa liên kết category-product trước (nếu có ON DELETE CASCADE thì không cần)
         $this->query("DELETE FROM category_product WHERE category_id = :id", ['id' => $categoryId]);
         // Xóa category
@@ -372,27 +420,29 @@ class Admin extends DB {
     }
 
     // Lấy danh sách bình luận của 1 bài viết cụ thể
-    public function getCommentsByArticle($newsId) {
+    public function getCommentsByArticle($newsId)
+    {
         $sql = "SELECT c.*, u.fullname 
                 FROM comments c
                 JOIN users u ON c.user_id = u.user_id
                 WHERE c.news_id = :news_id
                 ORDER BY c.created_at DESC";
-        
+
         $result = $this->query($sql, [':news_id' => $newsId]);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // Xóa 1 bình luận
-    public function deleteComment($id) {
+    public function deleteComment($id)
+    {
         $sql = "DELETE FROM comments WHERE id = :id";
         return $this->query($sql, [':id' => $id]);
     }
-    public function updateContactStatus($id, $status) {
+    public function updateContactStatus($id, $status)
+    {
         return $this->query("UPDATE contacts SET status = :status WHERE id = :id", [
             'status' => $status,
             'id' => $id
         ]);
     }
-
 }

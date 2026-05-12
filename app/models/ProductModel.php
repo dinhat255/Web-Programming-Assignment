@@ -80,7 +80,7 @@ class ProductModel extends DB
             FROM product p
             LEFT JOIN author_of_product aop ON p.product_id = aop.product_id
             LEFT JOIN category_product cp ON p.product_id = cp.product_id";
-    
+
     $params = [];
     $whereClauses = [];
 
@@ -151,9 +151,9 @@ class ProductModel extends DB
             LIMIT :limit";
 
     $params = [
-        ':category_id' => $categoryId,
-        ':current_product_id' => $currentProductId,
-        ':limit' => $limit
+      ':category_id' => $categoryId,
+      ':current_product_id' => $currentProductId,
+      ':limit' => $limit
     ];
 
     $result = $this->query($sql, $params);
@@ -201,7 +201,7 @@ class ProductModel extends DB
             :publisher, :published_date, :supplier, :year, :language, :pages, :product_type, :weight, :dimensions, :size)";
 
     $result = $this->query($sql, $data);
-    return $this->pdo->lastInsertId(); // Trả về ID sản phẩm vừa tạo
+    return $this->con->lastInsertId(); // Trả về ID sản phẩm vừa tạo
   }
 
   /**
@@ -236,8 +236,23 @@ class ProductModel extends DB
    */
   public function deleteProduct($productId)
   {
-    $sql = "DELETE FROM product WHERE product_id = :product_id";
-    return $this->query($sql, [':product_id' => $productId]);
+    $this->con->beginTransaction();
+
+    try {
+      // Xóa các bản ghi phụ thuộc trước (không có cascade)
+      $this->query("DELETE FROM order_product WHERE product_id = :product_id", [':product_id' => $productId]);
+      $this->query("DELETE FROM author_of_product WHERE product_id = :product_id", [':product_id' => $productId]);
+      $this->query("DELETE FROM category_product WHERE product_id = :product_id", [':product_id' => $productId]);
+      $this->query("DELETE FROM product_image WHERE product_id = :product_id", [':product_id' => $productId]);
+      $this->query("DELETE FROM productreview WHERE product_id = :product_id", [':product_id' => $productId]);
+
+      $result = $this->query("DELETE FROM product WHERE product_id = :product_id", [':product_id' => $productId]);
+      $this->con->commit();
+      return $result;
+    } catch (PDOException $e) {
+      $this->con->rollBack();
+      throw $e;
+    }
   }
 
   /**
@@ -331,15 +346,17 @@ class ProductModel extends DB
     $stmt->execute($productIds);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
-  public function getById($id) {
-        return $this->single("SELECT id, name, image, price, old_price, author, rating, sold FROM products WHERE id = :id", ['id'=>$id]);
-    }
+  public function getById($id)
+  {
+    return $this->single("SELECT id, name, image, price, old_price, author, rating, sold FROM products WHERE id = :id", ['id' => $id]);
+  }
 
-  public function getByIds(array $ids) {
-        if (empty($ids)) return [];
-        $in = implode(',', array_fill(0, count($ids), '?'));
-        // your DB->all may not accept positional params; adapt if needed
-        $sql = "SELECT id, name, image, price, old_price, author, rating, sold FROM products WHERE id IN ($in)";
-        return $this->all($sql, $ids);
+  public function getByIds(array $ids)
+  {
+    if (empty($ids)) return [];
+    $in = implode(',', array_fill(0, count($ids), '?'));
+    // your DB->all may not accept positional params; adapt if needed
+    $sql = "SELECT id, name, image, price, old_price, author, rating, sold FROM products WHERE id IN ($in)";
+    return $this->all($sql, $ids);
   }
 }

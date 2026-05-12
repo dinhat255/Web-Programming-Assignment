@@ -114,11 +114,43 @@
         transition: all 0.3s;
     }
 
+    .form-control::placeholder {
+        color: rgba(226, 232, 240, 0.6);
+    }
+
+    .form-control[type="file"] {
+        color: #e2e8f0;
+    }
+
+    .form-control[type="file"]::file-selector-button {
+        background: transparent;
+        color: #00f2ff;
+        border: 1px solid #00f2ff;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-right: 10px;
+        transition: all 0.3s;
+    }
+
+    .form-control[type="file"]::file-selector-button:hover {
+        background: #00f2ff;
+        color: #000;
+        box-shadow: 0 0 15px #00f2ff;
+    }
+
+    .form-control[type="file"]::file-selector-button:active {
+        transform: translateY(1px);
+        box-shadow: 0 0 10px #00f2ff;
+    }
+
     .form-control:focus,
     .form-select:focus {
         outline: none;
         border-color: #00f2ff;
         box-shadow: 0 0 0 2px rgba(0, 242, 255, 0.2);
+        background: rgba(15, 23, 42, 0.95);
+        color: #e2e8f0;
     }
 
     textarea.form-control {

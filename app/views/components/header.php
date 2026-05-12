@@ -368,6 +368,20 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
                         <div class="header-actions">
                             <div class="header-icons d-inline-flex align-items-center">
                                 <?php if ($user): ?>
+                                    <div class="btn-group d-inline-flex d-md-none">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-circle-user" aria-hidden="true"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a class="dropdown-item" href="<?= $base ?>customer"><i class="fas fa-user me-2"></i>Thông tin tài khoản</a></li>
+                                            <li><a class="dropdown-item" href="<?= $base ?>customer/orders"><i class="fas fa-box me-2"></i>Đơn hàng của tôi</a></li>
+                                            <li><a class="dropdown-item" href="<?= $base ?>customer/wishlist"><i class="fas fa-heart me-2"></i>Sản phẩm yêu thích</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item text-danger" href="<?= $base ?>auth/logout"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
+                                        </ul>
+                                    </div>
                                     <div class="btn-group d-none d-md-inline-flex">
                                         <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="fas fa-circle-user" aria-hidden="true"></i>
@@ -384,6 +398,9 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
                                         </ul>
                                     </div>
                                 <?php else: ?>
+                                    <a href="<?= $base ?>auth/login" class="d-inline-flex d-md-none" title="Đăng nhập" aria-label="Đăng nhập">
+                                        <i class="fas fa-right-to-bracket" aria-hidden="true"></i>
+                                    </a>
                                     <div class="d-none d-md-inline-flex align-items-center gap-2 me-1">
                                         <a href="<?= $base ?>auth/login" class="btn btn-sm btn-outline-secondary px-3" aria-label="Đăng nhập">
                                             <i class="fas fa-right-to-bracket me-1" aria-hidden="true"></i>Đăng nhập
