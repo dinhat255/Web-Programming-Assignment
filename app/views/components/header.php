@@ -45,7 +45,6 @@ $base = defined('BASE_URL') ? rtrim(BASE_URL, '/') . '/' : '/';
     <title><?= e($title ?? 'SachHay - Website Bán Sách Trực Tuyến') ?></title>
     <meta name="description" content="<?= e($description ?? 'SachHay - Website bán sách trực tuyến với hàng ngàn đầu sách đa dạng. Mua sách online giá tốt, giao hàng nhanh chóng, ưu đãi hấp dẫn.') ?>">
     <meta name="keywords" content="<?= e($keywords ?? 'mua sách online, bán sách trực tuyến, sachhay, sách giáo khoa, văn học, self-help, tiểu thuyết, sách thiếu nhi') ?>">
-    <meta name="author" content="Nhóm L01_6 - HCMUT">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->

@@ -1,83 +1,84 @@
-# BTL SachHay - Website Bán Sách Trực Tuyến
+# SachHay - Website Bán Sách Trực Tuyến
 
-> Dự án Bài Tập Lớn môn Lập Trình Web - Xây dựng website bán sách trực tuyến lấy cảm hứng từ mô hình nhà sách, sử dụng kiến trúc MVC thuần PHP
+> Dự án bài tập lớn môn Lập Trình Web: xây dựng website bán sách trực tuyến theo mô hình MVC tự viết.
 
-[![License](https://img.shields.io/badge/license-Educational-blue.svg)](LICENSE)
 [![PHP Version](https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php&logoColor=white)](https://php.net)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)](https://www.mysql.com/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 
-## 📋 Mô tả dự án
+## Mô tả dự án
 
-Website bán sách trực tuyến **BTL SachHay** là một nền tảng thương mại điện tử hoàn chỉnh, được phát triển với mục tiêu học tập và thực hành kiến trúc MVC. Dự án mô phỏng các tính năng cơ bản của một nhà sách trực tuyến với giao diện thân thiện và trải nghiệm người dùng tốt.
+SachHay là website bán sách trực tuyến cho phép người dùng tìm kiếm, xem chi tiết, thêm vào giỏ hàng và đặt mua. Hệ thống có phần quản trị để quản lý sản phẩm, danh mục, đơn hàng, người dùng và nội dung bài viết.
 
-### Chức năng cho Khách hàng (User)
+## Tính năng chính
 
-**Người dùng chưa đăng nhập (Guest):**
+**Khách/Thành viên:**
 
-- 🏠 Truy cập trang chủ với banner quảng cáo và sản phẩm nổi bật
-- 📚 Duyệt danh sách sản phẩm theo danh mục (Grid layout responsive)
-- 🔍 Tìm kiếm sản phẩm theo tên, tác giả
-- 📖 Xem chi tiết sản phẩm với thông tin đầy đủ
-- 📰 Đọc tin tức, bài viết về sách
-- ℹ️ Xem trang giới thiệu, hỏi đáp, liên hệ
-- 📝 Đăng ký tài khoản mới
-- 🔑 Đăng nhập vào hệ thống
+- Xem danh sách sách, tìm kiếm, lọc, sắp xếp
+- Xem chi tiết sản phẩm và sản phẩm liên quan
+- Giỏ hàng, đặt hàng, theo dõi đơn hàng
+- Đăng ký, đăng nhập, cập nhật thông tin
+- Trang giới thiệu, hỏi đáp, liên hệ, tin tức
 
-**Người dùng đã đăng nhập (Customer):**
+**Quản trị:**
 
-- 🛒 Thêm sản phẩm vào giỏ hàng
-- ➕➖ Quản lý giỏ hàng (CRUD)
-- 💰 Xem tổng tiền tự động khi cập nhật giỏ hàng
-- 👤 Xem và chỉnh sửa thông tin cá nhân
-- 📦 Xem lịch sử đơn hàng (Tất cả, Đang xử lý, Đang giao, Hoàn thành, Đã hủy)
-- ❤️ Quản lý danh sách sản phẩm yêu thích
-- 🔔 Nhận thông báo về đơn hàng và khuyến mãi
-- 🚪 Đăng xuất khỏi hệ thống
+- Dashboard tổng quan
+- Quản lý sản phẩm, danh mục
+- Quản lý đơn hàng và trạng thái
+- Quản lý khách hàng
+- Quản lý tin tức, hỏi đáp, liên hệ
+- Cấu hình thông tin website
 
-### 🔧 Chức năng cho Admin (Quản trị viên)
+## Công nghệ sử dụng
 
-**Dashboard & Analytics:**
+- Frontend: HTML5, CSS3, Bootstrap 5.3, JavaScript, AJAX
+- Backend: PHP 7.4+ (MVC tự xây dựng)
+- Database: MySQL/MariaDB
+- Môi trường: Apache (XAMPP/WAMP/LAMP)
 
-- 📊 Xem thống kê tổng quan (doanh thu, đơn hàng, sản phẩm, khách hàng)
-- 📈 Biểu đồ phân tích doanh số theo thời gian
+## Kiến trúc MVC
 
-**Quản lý sản phẩm:**
+Luồng xử lý:
 
-- ➕ Thêm sản phẩm mới với đầy đủ thông tin
-- ✏️ Chỉnh sửa thông tin sản phẩm
-- 🗑️ Xóa sản phẩm
-- 📁 Quản lý danh mục sản phẩm
-- 🖼️ Upload và quản lý hình ảnh sản phẩm
+1. Request vào entry point [public/index.php](public/index.php)
+2. Router ở [app/router.php](app/router.php) và core [app/core/App.php](app/core/App.php) phân tích URL
+3. Controller gọi Model truy vấn DB qua [app/core/DB.php](app/core/DB.php)
+4. Controller render View và trả HTML/JSON
 
-**Quản lý đơn hàng:**
+## Cấu trúc thư mục
 
-- 👀 Xem danh sách tất cả đơn hàng
-- 🔄 Cập nhật trạng thái đơn hàng
-- 📋 Xem chi tiết đơn hàng
+```
+BTL_SachHay/
+|-- app/      # Controllers, Models, Views, Core, Config
+|-- public/   # Entry point và tài nguyên tĩnh
+|-- db/       # SQL dump
+```
 
-**Quản lý nội dung:**
+## Hướng dẫn cài đặt
 
-- 📰 Thêm/sửa/xóa tin tức và bài viết
-- ❓ Quản lý câu hỏi/câu trả lời trong phần Q&A
-- 📧 Xem và trả lời các liên hệ từ khách hàng
+**Yêu cầu:** PHP >= 7.4, MySQL/MariaDB, Apache, PDO, PDO_MySQL.
 
-**Quản lý người dùng:**
+1. Clone hoặc tải về source
+2. Cấu hình DocumentRoot trỏ đến thư mục [public](public)
+3. Tạo database `sachhay_db` và import dump từ [db/sachhay_db.sql](db/sachhay_db.sql)
+4. Cập nhật kết nối DB trong [app/config/config.php](app/config/config.php)
+5. Bật Apache và MySQL, truy cập `http://localhost/`
 
-- 👥 Xem danh sách khách hàng
-- 🔐 Quản lý quyền truy cập (user/admin)
-- 🚫 Kích hoạt/vô hiệu hóa tài khoản
+**Tài khoản admin (demo):**
 
-**Cấu hình hệ thống:**
+```
+Email/SDT: admin@sachhay.vn
+Mật khẩu: admin
+```
 
-- ⚙️ Cấu hình thông tin website
-- 📝 Chỉnh sửa nội dung trang tĩnh (About, Contact)
+## Database
 
-### 💻 Công nghệ sử dụng
+Schema được định nghĩa trong [db/sachhay_db.sql](db/sachhay_db.sql) với các bảng chính: `users`, `product`, `orders`, `order_product`, `cart_items`, `user_addresses`, `news`, `qa`, `contacts`.
 
-**Backend:**
+## Đóng góp thành viên
 
-- PHP 7.4+ (thuần, không framework)
+Phân công và đóng góp được tổng hợp trong báo cáo, gồm các nhóm việc: giao diện, chức năng sản phẩm/đơn hàng, tin tức/qa, và quản trị.
+
 - Custom MVC Framework tự xây dựng
 - PDO (PHP Data Objects) cho database abstraction
 - Session-based authentication
@@ -97,23 +98,23 @@ Website bán sách trực tuyến **BTL SachHay** là một nền tảng thươn
 - Font Awesome 6 - Icons
 - Google Fonts (Roboto)
 
-**Development Tools:**
+**Công cụ phát triển:**
 
 - XAMPP (Apache + PHP + MySQL)
 - Git & GitHub cho version control
 - Visual Studio Code / PhpStorm
 - LaTeX (Overleaf) cho documentation
 
-**Architecture & Design Patterns:**
+**Kiến trúc & thiết kế:**
 
-- MVC (Model-View-Controller) Pattern
+- MVC (Model-View-Controller)
 - Repository Pattern cho data access
 - Front Controller Pattern (Router)
 - Dependency Injection (DI) cơ bản
 
-**Security:**
+**Bảo mật:**
 
-- PDO Prepared Statements (SQL Injection prevention)
+- PDO Prepared Statements (chống SQL Injection)
 - Password Hashing với `password_hash()` (bcrypt)
 - XSS Prevention với `htmlspecialchars()`
 - Session Security & Role-based Access Control
@@ -128,7 +129,7 @@ Website bán sách trực tuyến **BTL SachHay** là một nền tảng thươn
 - **Không sử dụng framework** - Code từ đầu để hiểu sâu về MVC
 - **Router linh hoạt** - URL-friendly với .htaccess rewriting
 - **Base Controller** - Kế thừa và tái sử dụng code
-- **Database Abstraction** - PDO wrapper cho queries an toàn
+- **Database Abstraction** - PDO wrapper cho truy vấn an toàn
 
 ### 🎨 Giao diện & UX
 
@@ -332,7 +333,7 @@ BTL_SachHay/
 | Đăng ký   | `/public/auth/register` | -            |
 | Đăng xuất | `/public/auth/logout`   | Đã đăng nhập |
 
-### Trang khách hàng (Yêu cầu đăng nhập)
+### Trang khách hàng (yêu cầu đăng nhập)
 
 | Chức năng           | URL                              |
 | ------------------- | -------------------------------- |
@@ -341,7 +342,7 @@ BTL_SachHay/
 | Sản phẩm yêu thích  | `/public/customer/wishlist`      |
 | Thông báo           | `/public/customer/notifications` |
 
-### Trang Admin (Yêu cầu role='admin')
+### Trang Admin (yêu cầu role='admin')
 
 | Chức năng        | URL                      |
 | ---------------- | ------------------------ |
@@ -426,7 +427,7 @@ Response to User
 - Role-based access control (admin/user)
 - Middleware check trong constructor của AdminController và CustomerController
 
-✅ **CSRF Protection (Cần bổ sung)**
+✅ **CSRF Protection (cần bổ sung)**
 
 - Chưa implement CSRF token cho forms
 
@@ -837,103 +838,14 @@ orders (1) ----< (N) order_details
 ### Sản phẩm cuối cùng:
 
 - ✅ Website thương mại điện tử bán sách hoàn chỉnh
-- ✅ Tài liệu báo cáo chi tiết về dự án (LaTeX)
 - ✅ Source code có cấu trúc rõ ràng, dễ bảo trì
 - ✅ Database schema được thiết kế chuẩn hóa
-
----
-
-## 📸 Screenshots
-
-### Giao diện khách hàng
-
-| Trang chủ                                | Danh sách sản phẩm                              | Chi tiết sản phẩm                               |
-| ---------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| ![Home](L01_Report/Images/home_page.png) | ![Products](L01_Report/Images/product_list.png) | ![Detail](L01_Report/Images/product_detail.png) |
-
-| Giỏ hàng                                 | Thông tin tài khoản                                | Đơn hàng                                  |
-| ---------------------------------------- | -------------------------------------------------- | ----------------------------------------- |
-| ![Cart](L01_Report/Images/cart_page.png) | ![Profile](L01_Report/Images/customer_profile.png) | ![Orders](L01_Report/Images/my_order.png) |
-
-### Giao diện Admin
-
-| Dashboard                                           | Quản lý sản phẩm                                  | Quản lý tin tức                           |
-| --------------------------------------------------- | ------------------------------------------------- | ----------------------------------------- |
-| ![Dashboard](L01_Report/Images/dashboard_admin.jpg) | ![Products](L01_Report/Images/products_admin.jpg) | ![News](L01_Report/Images/news_admin.jpg) |
 
 ---
 
 ## 👤 Thông tin dự án
 
 - **Repository owner:** @dinhat255
-
----
-
-## 📄 Tài liệu & Báo cáo
-
-### 📚 Documentation
-
-- **Báo cáo LaTeX:** [`L01_Report/main.pdf`](L01_Report/main.pdf) (36 trang)
-- **Source LaTeX:** [`L01_Report/`](L01_Report/)
-- **Database Schema:** [`db/sachhay_db.sql`](db/sachhay_db.sql)
-- **API Documentation:** Coming soon
-
-### 📖 Nội dung báo cáo
-
-1. **Giới thiệu** - E-commerce, mô hình nhà sách trực tuyến, mục tiêu dự án
-2. **Cơ sở lý thuyết** - HTML5, CSS3, JavaScript, PHP, MVC, Bootstrap
-3. **Thiết kế ứng dụng** - Database, MVC architecture, tính năng hệ thống
-4. **Hiện thực** - Screenshots, code snippets quan trọng
-5. **Hướng dẫn cài đặt** - Chi tiết từng bước
-6. **Triển khai** - Quy trình phát triển và cập nhật tính năng
-7. **Tài liệu tham khảo** - References
-
-### 🎬 Demo
-
-- **Live Demo:** Coming soon
-- **Video Demo:** Coming soon
-- **Screenshots:** Xem phần [Screenshots](#-screenshots) ở trên
-
----
-
-## 🎓 Học hỏi & Tham khảo
-
-### Tài liệu tham khảo chính
-
-1. **PHP Documentation** - https://www.php.net/docs.php
-2. **Bootstrap 5 Documentation** - https://getbootstrap.com/docs/5.3/
-3. **MySQL Documentation** - https://dev.mysql.com/doc/
-4. **MDN Web Docs** - https://developer.mozilla.org/
-5. **W3Schools** - https://www.w3schools.com/
-
-### Nguồn cảm hứng
-
-- **Mô hình nhà sách trực tuyến** - Tham khảo bố cục thương mại điện tử sách
-- **Tiki.vn** - https://tiki.vn/
-- **Shopee.vn** - https://shopee.vn/
-
-### Công cụ & Resources
-
-- **Font Awesome Icons** - https://fontawesome.com/
-- **Google Fonts** - https://fonts.google.com/
-- **Color Palette** - Tông nâu ấm, hiện đại, thân thiện với sách
-- **Stock Images** - Unsplash, Pexels
-
----
-
-## 📄 License
-
-Dự án này được phát triển cho **mục đích học tập** (Bài Tập Lớn môn Lập Trình Web - HCMUT).
-
-```
-Copyright (c) 2024 Dinhat255
-Trường Đại học Bách Khoa - ĐHQG TP.HCM
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software for educational purposes only.
-```
-
-⚠️ **Lưu ý:** Dự án này chỉ dùng để học tập và nghiên cứu. Không sử dụng cho mục đích thương mại.
 
 ---
 
@@ -971,45 +883,6 @@ Chúng em xin gửi lời cảm ơn chân thành đến:
 
 - **Email:** nguyenduynhat.250505@gmail.com
 - **Facebook Group:** [Link]
-
----
-
-## 🌟 Contributing
-
-Mọi đóng góp đều được chào đón! Nếu bạn muốn cải thiện dự án:
-
-1. Fork repository
-2. Tạo branch mới (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Tạo Pull Request
-
-### Coding Standards
-
-- Follow PSR-12 cho PHP code
-- Use meaningful variable/function names
-- Comment code khi cần thiết
-- Test trước khi commit
-
----
-
-## 📈 Changelog
-
-### Version 1.0.0 (2026-5-11)
-
-✅ **Initial Release**
-
-- Hoàn thành tất cả tính năng cơ bản
-- Giao diện User hoàn chỉnh
-- Admin Panel đầy đủ
-- Database schema hoàn thiện
-- Documentation đầy đủ (LaTeX Report)
-
-### Future Versions
-
-- [ ] Version 1.1.0 - Payment integration (VNPay, MoMo)
-- [ ] Version 1.2.0 - Email notifications
-- [ ] Version 2.0.0 - Mobile app (React Native)
 
 ---
 

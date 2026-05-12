@@ -1,0 +1,196 @@
+% ============================================
+% CHƯƠNG 1: GIỚI THIỆU
+% ============================================
+
+\section{Giới thiệu}
+
+% ------------------------------------------
+\subsection{Bối cảnh}
+
+Ngày nay, thương mại điện tử ngày càng phát triển và trở thành một hình thức mua sắm quen thuộc trong đời sống. Người dùng có thể dễ dàng tìm kiếm, lựa chọn và đặt mua sản phẩm thông qua các website bán hàng mà không cần đến trực tiếp cửa hàng. Trong đó, sách là một sản phẩm phù hợp để kinh doanh trực tuyến vì người mua có thể xem trước các thông tin như tên sách, tác giả, nhà xuất bản, giá bán và mô tả nội dung.
+
+Xuất phát từ thực tế đó, nhóm em lựa chọn xây dựng website bán sách trực tuyến với tên gọi \textbf{SachHay}. Website này giúp người dùng xem danh sách sách, tìm kiếm sách theo nhu cầu, xem thông tin chi tiết, thêm sách vào giỏ hàng và đặt mua một cách thuận tiện. Bên cạnh đó, hệ thống còn có chức năng đăng ký, đăng nhập tài khoản và trang quản trị để quản lý sách, danh mục, đơn hàng, người dùng cũng như các nội dung hiển thị trên website.
+
+\textbf{SachHay} là một website bán sách trực tuyến cho phép khách hàng mua sách thông qua Internet. Thay vì phải đến nhà sách truyền thống, người dùng có thể truy cập website để tìm kiếm, xem thông tin và đặt mua sách mọi lúc, mọi nơi.
+
+Một số lợi ích của website bán sách trực tuyến:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{4cm}|p{5cm}|p{5cm}|}
+		\hline
+		\textbf{Tiêu chí} & \textbf{Website SachHay} & \textbf{Nhà sách truyền thống} \\
+		\hline
+		Phạm vi tiếp cận & Người dùng có thể truy cập và mua sách ở nhiều nơi & Chủ yếu phục vụ khách hàng tại khu vực cửa hàng \\
+		\hline
+		Thời gian hoạt động & Có thể truy cập và đặt hàng 24/7 & Phụ thuộc vào giờ mở cửa \\
+		\hline
+		Tìm kiếm sản phẩm & Tìm kiếm nhanh theo tên sách, tác giả hoặc thể loại & Cần tìm trực tiếp tại các kệ sách \\
+		\hline
+		Quản lý sản phẩm & Dễ dàng thêm, sửa, xoá và cập nhật thông tin sách & Việc quản lý thường mất nhiều thời gian hơn \\
+		\hline
+		Trải nghiệm người dùng & Có tài khoản, giỏ hàng, đặt hàng và theo dõi thông tin mua sách & Mua hàng trực tiếp tại cửa hàng \\
+		\hline
+	\end{tabular}
+	\caption{So sánh website SachHay và nhà sách truyền thống}
+	\label{tab:sachhay-comparison}
+\end{table}
+
+Vì vậy, việc xây dựng website \textbf{SachHay} không chỉ giúp nhóm em vận dụng các kiến thức đã học như HTML, CSS, JavaScript, PHP và MySQL, mà còn giúp nhóm hiểu rõ hơn cách hoạt động của một website thương mại điện tử cơ bản. Đây là đề tài phù hợp với yêu cầu bài tập lớn và có tính ứng dụng thực tế.
+% ------------------------------------------
+
+% ------------------------------------------
+
+\subsection{Mục tiêu dự án}
+
+Dự án \textbf{SachHay} được thực hiện nhằm xây dựng một website bán sách trực tuyến đơn giản, dễ sử dụng và phù hợp với yêu cầu của bài tập lớn môn Lập trình Web. Thông qua dự án này, nhóm em có thể vận dụng các kiến thức đã học để thiết kế giao diện, xây dựng cơ sở dữ liệu và lập trình các chức năng cơ bản cho một website thương mại điện tử.
+
+\subsubsection{Mục tiêu học tập}
+
+Thông qua quá trình thực hiện dự án \textbf{SachHay}, nhóm em đặt ra các mục tiêu học tập sau:
+
+\begin{enumerate}
+	\item \textbf{Vận dụng kiến thức lập trình web}
+	\begin{itemize}
+		\item Sử dụng HTML5 và CSS3 để xây dựng giao diện website.
+		\item Sử dụng JavaScript để xử lý một số tương tác phía người dùng.
+		\item Sử dụng PHP để xử lý các chức năng phía máy chủ.
+		\item Sử dụng MySQL để lưu trữ và quản lý dữ liệu.
+	\end{itemize}
+	
+	\item \textbf{Hiểu cách hoạt động của website bán sách trực tuyến}
+	\begin{itemize}
+		\item Xây dựng chức năng hiển thị danh sách sách.
+		\item Xây dựng chức năng tìm kiếm và xem chi tiết sách.
+		\item Xây dựng giỏ hàng và chức năng đặt hàng cơ bản.
+		\item Tìm hiểu cách quản lý sách, đơn hàng và người dùng.
+	\end{itemize}
+	
+	\item \textbf{Rèn luyện kỹ năng thiết kế cơ sở dữ liệu}
+	\begin{itemize}
+		\item Thiết kế các bảng dữ liệu cần thiết cho website bán sách.
+		\item Xác định mối quan hệ giữa các bảng như người dùng, sách, danh mục, giỏ hàng và đơn hàng.
+		\item Thực hiện thêm, sửa, xoá và truy vấn dữ liệu bằng MySQL.
+	\end{itemize}
+	
+	\item \textbf{Tìm hiểu bảo mật cơ bản cho website}
+	\begin{itemize}
+		\item Kiểm tra dữ liệu đầu vào từ các biểu mẫu.
+		\item Hạn chế lỗi SQL Injection khi thao tác với cơ sở dữ liệu.
+		\item Mã hoá mật khẩu người dùng khi lưu vào hệ thống.
+		\item Phân quyền giữa khách hàng và quản trị viên.
+	\end{itemize}
+	
+	\item \textbf{Rèn luyện kỹ năng làm việc nhóm}
+	\begin{itemize}
+		\item Phân chia công việc cho từng thành viên.
+		\item Phối hợp trong quá trình xây dựng giao diện và chức năng.
+		\item Viết báo cáo, chuẩn bị demo và trình bày sản phẩm.
+	\end{itemize}
+\end{enumerate}
+
+\subsubsection{Mục tiêu sản phẩm}
+
+Về mặt sản phẩm, nhóm em hướng đến việc xây dựng website \textbf{SachHay} với giao diện thân thiện và các chức năng cơ bản cho khách hàng cũng như quản trị viên.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{4cm}|p{10cm}|}
+		\hline
+		\textbf{Sản phẩm} & \textbf{Mô tả} \\
+		\hline
+		Website SachHay & Cho phép người dùng xem danh sách sách, tìm kiếm sách, xem chi tiết sách, đăng ký, đăng nhập và đặt hàng. \\
+		\hline
+		Trang quản trị & Cho phép quản trị viên quản lý sách, danh mục, người dùng, đơn hàng, liên hệ và nội dung hiển thị trên website. \\
+		\hline
+		Cơ sở dữ liệu & Lưu trữ thông tin người dùng, sách, danh mục sách, giỏ hàng, đơn hàng và các dữ liệu liên quan. \\
+		\hline
+		Mã nguồn & Được tổ chức rõ ràng, dễ hiểu, có phân chia các phần giao diện, xử lý chức năng và kết nối cơ sở dữ liệu. \\
+		\hline
+		Báo cáo & Trình bày quá trình tìm hiểu, thiết kế, xây dựng website, cơ sở dữ liệu, chức năng và phân chia công việc trong nhóm. \\
+		\hline
+		Demo sản phẩm & Trình bày các chức năng chính của website SachHay và cách sử dụng hệ thống. \\
+		\hline
+	\end{tabular}
+	\caption{Các sản phẩm dự kiến của dự án SachHay}
+	\label{tab:sachhay-project-goals}
+\end{table}
+
+Nhìn chung, mục tiêu của dự án là xây dựng website \textbf{SachHay} - một website bán sách trực tuyến đơn giản nhưng có đầy đủ các chức năng quan trọng. Qua đó, nhóm em có thể hiểu rõ hơn quy trình phát triển một ứng dụng web từ khâu thiết kế giao diện, xây dựng cơ sở dữ liệu, lập trình chức năng đến kiểm thử và hoàn thiện sản phẩm.
+% ------------------------------------------
+\subsection{Phạm vi và giới hạn}
+
+\subsubsection{Phạm vi thực hiện}
+
+Dự án \textbf{SachHay} tập trung vào việc xây dựng một website bán sách trực tuyến với hai phân hệ chính là người dùng và quản trị viên. Ở mức chức năng hiện tại, hệ thống đáp ứng các nhu cầu cơ bản của một website thương mại điện tử chuyên về sách.
+
+\textbf{1. Phân hệ người dùng}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{8cm}|}
+\hline
+\textbf{Module} & \textbf{Tính năng} \\
+\hline
+Trang chủ & Hiển thị banner, sản phẩm nổi bật và danh mục sách \\
+\hline
+Danh sách sản phẩm & Xem danh sách sách, tìm kiếm theo từ khoá, lọc theo danh mục, sắp xếp \\
+\hline
+Chi tiết sản phẩm & Xem thông tin chi tiết, giá bán, tác giả, mô tả và sản phẩm liên quan \\
+\hline
+Giỏ hàng & Thêm sản phẩm, cập nhật số lượng, xoá sản phẩm và tính tổng tiền \\
+\hline
+Thanh toán & Nhập thông tin nhận hàng và tạo đơn đặt hàng \\
+\hline
+Tài khoản & Đăng ký, đăng nhập, đăng xuất và xem lịch sử đơn hàng \\
+\hline
+Thông tin chung & Giới thiệu, hỏi đáp, liên hệ \\
+\hline
+\end{tabular}
+\caption{Các module của phân hệ người dùng}
+\label{tab:user-modules}
+\end{table}
+
+\textbf{2. Phân hệ quản trị}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{8cm}|}
+\hline
+\textbf{Module} & \textbf{Tính năng} \\
+\hline
+Dashboard & Giao diện tổng quan cho quản trị viên \\
+\hline
+Sản phẩm & Xem danh sách, thêm, sửa, xoá và tìm kiếm sản phẩm \\
+\hline
+Đơn hàng & Xem chi tiết, cập nhật trạng thái và quản lý đơn hàng \\
+\hline
+Khách hàng & Xem danh sách người dùng và thông tin liên quan \\
+\hline
+Nội dung & Quản lý tin tức, câu hỏi - trả lời và liên hệ \\
+\hline
+Cài đặt & Quản lý thông tin website cơ bản \\
+\hline
+\end{tabular}
+\caption{Các module của phân hệ quản trị}
+\label{tab:admin-modules}
+\end{table}
+
+\subsubsection{Công nghệ sử dụng}
+
+\begin{itemize}
+    \item \textbf{Frontend:} HTML5, CSS3, Bootstrap 5.3, JavaScript, AJAX.
+    \item \textbf{Backend:} PHP 7.4+ theo mô hình MVC thuần.
+    \item \textbf{Database:} MySQL / MariaDB.
+    \item \textbf{Môi trường phát triển:} Apache, XAMPP, Visual Studio Code.
+\end{itemize}
+
+\subsubsection{Giới hạn hiện tại}
+
+\begin{itemize}
+    \item Chưa tích hợp cổng thanh toán trực tuyến.
+    \item Chưa có hệ thống email tự động cho đơn hàng và thông báo.
+    \item Chức năng báo cáo và thống kê mới ở mức cơ bản.
+\end{itemize}
+
+\subsubsection{Hướng phát triển}
+
+Trong tương lai, dự án có thể được mở rộng thêm các chức năng như thanh toán online, thông báo tự động, báo cáo doanh thu, đánh giá sản phẩm và tối ưu giao diện quản trị để sử dụng thực tế tốt hơn.

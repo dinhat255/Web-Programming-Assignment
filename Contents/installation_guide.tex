@@ -1,0 +1,122 @@
+% ============================================
+% CHƯƠNG 5: HƯỚNG DẪN CÀI ĐẶT
+% ============================================
+
+\section{Hướng dẫn cài đặt}
+
+Chương này hướng dẫn chi tiết cách cài đặt và chạy dự án SachHay trên máy local theo README.
+
+% ------------------------------------------
+\subsection{Yêu cầu hệ thống}
+
+\textbf{Phần mềm yêu cầu:}
+\begin{itemize}
+    \item PHP >= 7.4
+    \item MySQL/MariaDB
+    \item Apache Server (XAMPP/WAMP/LAMP)
+    \item Extension: PDO, PDO\_MySQL
+\end{itemize}
+
+% ------------------------------------------
+\subsection{Các bước cài đặt}
+
+\subsubsection{Bước 1: Tải dự án}
+
+\textbf{Clone từ Git}
+\begin{verbatim}
+git clone https://github.com/dinhat255/Web-Programming-Assignment.git
+\end{verbatim}
+
+Hoặc tải file zip, giải nén vào thư mục bất kỳ. Ví dụ:
+\begin{verbatim}
+D:\duong-dan\BTL_SachHay
+\end{verbatim}
+
+\subsubsection{Bước 2: Cấu hình DocumentRoot}
+
+Mở file \texttt{httpd.conf} và chỉnh \texttt{DocumentRoot} trỏ vào thư mục \texttt{public} của dự án:
+
+\begin{verbatim}
+DocumentRoot "D:/duong-dan/BTL_SachHay/public"
+<Directory "D:/duong-dan/BTL_SachHay/public">
+    AllowOverride All
+    Require all granted
+</Directory>
+\end{verbatim}
+
+\subsubsection{Bước 3: Import database}
+
+\begin{enumerate}
+    \item Mở phpMyAdmin
+    \item Tạo database mới tên \texttt{sachhay\_db}
+    \item Import file \texttt{db/sachhay\_db.sql}
+\end{enumerate}
+
+Hoặc chạy lệnh SQL:
+\begin{verbatim}
+CREATE DATABASE sachhay_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE sachhay_db;
+SOURCE db/sachhay_db.sql;
+\end{verbatim}
+
+\subsubsection{Bước 4: Cấu hình database}
+
+Mở file \texttt{app/config/config.php} và sửa các thông số:
+
+\begin{lstlisting}[style=phpstyle, caption=File cấu hình config.php]
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');           
+define('DB_PASS', '');               
+define('DB_NAME', 'sachhay_db');    
+define('DB_PORT', 3306);            
+
+define('PROJECT_NAME', 'BTL_SachHay'); 
+\end{lstlisting}
+
+% ------------------------------------------
+\subsection{Chạy ứng dụng}
+
+\subsubsection{Khởi động server}
+\begin{enumerate}
+    \item Bật Apache và MySQL trong XAMPP Control Panel
+    \item Truy cập: \texttt{http://localhost/}
+\end{enumerate}
+
+\subsubsection{Đăng nhập admin (tùy chọn)}
+
+Sau khi import database, sử dụng tài khoản:
+\begin{verbatim}
+Email/SDT: admin@sachhay.vn
+Mật khẩu: admin
+\end{verbatim}
+
+% ------------------------------------------
+\subsection{Các trang có thể truy cập}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{URL} & \textbf{Mô tả} \\
+\hline
+/ & Trang chủ \\
+/home & Trang chủ \\
+/product & Danh sách sản phẩm \\
+/product/detail/\{id\} & Chi tiết sản phẩm \\
+/cart & Giỏ hàng \\
+/customer & Thông tin tài khoản \\
+/customer/orders & Đơn hàng của tôi \\
+/customer/notifications & Thông báo \\
+/customer/wishlist & Sản phẩm yêu thích \\
+/news & Tin tức \\
+/news/detail/\{id\} & Chi tiết bài viết \\
+/home/about & Giới thiệu \\
+/home/qa & Hỏi đáp \\
+/contact & Liên hệ \\
+/auth/login & Đăng nhập \\
+/auth/register & Đăng ký \\
+\hline
+\end{tabular}
+\caption{Danh sách các routes}
+\label{tab:routes}
+\end{table}

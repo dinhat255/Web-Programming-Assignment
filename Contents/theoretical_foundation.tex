@@ -1,0 +1,429 @@
+% ============================================
+% CHƯƠNG 2: CƠ SỞ LÝ THUYẾT
+% ============================================
+
+\section{Cơ sở lý thuyết}
+
+Trong quá trình xây dựng website bán sách trực tuyến \textbf{SachHay}, nhóm em sử dụng các kiến thức và công nghệ đã được học trong môn Lập trình Web như HTML5, CSS3, JavaScript, PHP và MySQL. Bên cạnh đó, nhóm cũng tìm hiểu thêm về mô hình tổ chức mã nguồn, bảo mật ứng dụng web và SEO cơ bản để website có cấu trúc rõ ràng, dễ sử dụng và có khả năng mở rộng.
+
+Chương này trình bày các cơ sở lý thuyết liên quan đến các công nghệ được sử dụng trong dự án, bao gồm công nghệ phía giao diện người dùng, công nghệ phía máy chủ, cơ sở dữ liệu, bảo mật web và tối ưu hóa website.
+
+% ------------------------------------------
+\subsection{Công nghệ Frontend}
+
+Frontend là phần giao diện mà người dùng trực tiếp nhìn thấy và tương tác khi truy cập website. Đối với website bán sách \textbf{SachHay}, phần frontend bao gồm các trang như trang chủ, danh sách sách, chi tiết sách, giỏ hàng, đăng nhập, đăng ký, liên hệ và các trang giao diện khác.
+
+Các công nghệ frontend được sử dụng trong dự án gồm HTML5, CSS3, Bootstrap và JavaScript.
+
+\subsubsection{HTML5}
+
+HTML5, viết tắt của \textit{HyperText Markup Language version 5}, là ngôn ngữ đánh dấu được sử dụng để xây dựng cấu trúc nội dung cho trang web. HTML không phải là ngôn ngữ lập trình mà là ngôn ngữ dùng để mô tả các thành phần trên trang như tiêu đề, đoạn văn, hình ảnh, liên kết, biểu mẫu, bảng dữ liệu và các khối nội dung.
+
+Trong dự án \textbf{SachHay}, HTML5 được sử dụng để xây dựng cấu trúc cho các trang giao diện chính, ví dụ như:
+
+\begin{itemize}
+	\item Trang chủ giới thiệu website và các sách nổi bật.
+	\item Trang danh sách sách hiển thị các sản phẩm đang được bán.
+	\item Trang chi tiết sách hiển thị thông tin sách, tác giả, giá bán và mô tả.
+	\item Trang đăng nhập, đăng ký tài khoản.
+	\item Trang giỏ hàng và đặt hàng.
+	\item Trang quản trị dành cho quản trị viên.
+\end{itemize}
+
+Một trong những ưu điểm quan trọng của HTML5 là hỗ trợ các thẻ có ý nghĩa ngữ nghĩa, giúp mã nguồn dễ đọc hơn và giúp trình duyệt cũng như công cụ tìm kiếm hiểu rõ hơn cấu trúc của trang web.
+
+\textbf{Một số thẻ HTML5 thường được sử dụng trong dự án:}
+
+\begin{itemize}
+	\item \texttt{<header>}: Dùng để chứa phần đầu trang, thường gồm logo, thanh tìm kiếm và menu.
+	\item \texttt{<nav>}: Dùng để xây dựng thanh điều hướng của website.
+	\item \texttt{<main>}: Chứa nội dung chính của trang.
+	\item \texttt{<section>}: Chia nội dung thành từng khu vực riêng biệt.
+	\item \texttt{<article>}: Dùng cho các nội dung độc lập như bài viết hoặc tin tức.
+	\item \texttt{<footer>}: Chứa thông tin cuối trang như liên hệ, bản quyền, liên kết nhanh.
+	\item \texttt{<form>}: Dùng để tạo các biểu mẫu nhập liệu như đăng nhập, đăng ký, đặt hàng.
+	\item \texttt{<table>}: Dùng để hiển thị dữ liệu dạng bảng trong trang quản trị.
+\end{itemize}
+
+Ngoài ra, HTML5 còn hỗ trợ nhiều kiểu dữ liệu cho biểu mẫu như \texttt{email}, \texttt{number}, \texttt{tel}, \texttt{password}, giúp việc kiểm tra dữ liệu nhập từ người dùng trở nên thuận tiện hơn.
+
+\textbf{Vai trò của HTML5 trong website SachHay:}
+
+\begin{itemize}
+	\item Tạo cấu trúc cơ bản cho toàn bộ website.
+	\item Hỗ trợ xây dựng các biểu mẫu nhập liệu.
+	\item Giúp website có bố cục rõ ràng, dễ bảo trì.
+	\item Hỗ trợ tốt hơn cho SEO nhờ các thẻ ngữ nghĩa.
+\end{itemize}
+
+\subsubsection{CSS3}
+
+CSS3, viết tắt của \textit{Cascading Style Sheets Level 3}, là công nghệ được sử dụng để định dạng giao diện cho trang web. Nếu HTML dùng để tạo cấu trúc nội dung thì CSS dùng để điều chỉnh màu sắc, kích thước, khoảng cách, bố cục, font chữ và hiệu ứng hiển thị.
+
+Trong dự án \textbf{SachHay}, CSS3 được sử dụng để thiết kế giao diện thân thiện, dễ nhìn và phù hợp với một website bán sách trực tuyến. Các thành phần như menu, nút bấm, thẻ sản phẩm, bảng quản trị, form đăng nhập và giỏ hàng đều được định dạng bằng CSS.
+
+\textbf{Một số tính năng CSS3 được sử dụng:}
+
+\begin{itemize}
+	\item \textbf{Flexbox:} Hỗ trợ sắp xếp các thành phần theo hàng hoặc cột, thường dùng để căn giữa nội dung, bố trí menu, danh sách sản phẩm.
+	\item \textbf{CSS Grid:} Hỗ trợ tạo bố cục dạng lưới, phù hợp để hiển thị danh sách sách theo nhiều cột.
+	\item \textbf{Media Queries:} Giúp website hiển thị tốt trên nhiều kích thước màn hình khác nhau như điện thoại, máy tính bảng và máy tính để bàn.
+	\item \textbf{Transitions:} Tạo hiệu ứng chuyển động nhẹ khi người dùng rê chuột vào nút bấm hoặc sản phẩm.
+	\item \textbf{Border Radius và Box Shadow:} Giúp các khối nội dung, thẻ sách và nút bấm có giao diện mềm mại, hiện đại hơn.
+\end{itemize}
+
+\textbf{Vai trò của CSS3 trong website SachHay:}
+
+\begin{itemize}
+	\item Tạo giao diện đẹp và thống nhất cho toàn bộ website.
+	\item Giúp người dùng dễ thao tác khi tìm kiếm và đặt mua sách.
+	\item Hỗ trợ thiết kế responsive để website phù hợp với nhiều thiết bị.
+	\item Tăng trải nghiệm người dùng thông qua màu sắc, bố cục và hiệu ứng.
+\end{itemize}
+
+\subsubsection{Bootstrap}
+
+Bootstrap là một thư viện CSS phổ biến, cung cấp sẵn nhiều thành phần giao diện giúp quá trình thiết kế website nhanh chóng và thuận tiện hơn. Bootstrap hỗ trợ hệ thống lưới, nút bấm, biểu mẫu, thanh điều hướng, bảng, modal, card và nhiều thành phần giao diện khác.
+
+Trong dự án \textbf{SachHay}, Bootstrap có thể được sử dụng để hỗ trợ xây dựng giao diện responsive, đặc biệt là các thành phần như:
+
+\begin{itemize}
+	\item Thanh menu điều hướng.
+	\item Danh sách sách dạng card.
+	\item Form đăng nhập, đăng ký, liên hệ.
+	\item Bảng quản lý sách, người dùng, đơn hàng trong trang quản trị.
+	\item Nút bấm và thông báo.
+	\item Modal xác nhận xoá hoặc cập nhật dữ liệu.
+\end{itemize}
+
+\textbf{Ưu điểm của Bootstrap:}
+
+\begin{itemize}
+	\item Giúp xây dựng giao diện nhanh hơn.
+	\item Có sẵn hệ thống responsive phù hợp với nhiều thiết bị.
+	\item Cung cấp nhiều component thông dụng.
+	\item Dễ học, dễ sử dụng và có tài liệu hướng dẫn rõ ràng.
+	\item Giúp giao diện website thống nhất hơn.
+\end{itemize}
+
+\textbf{Hạn chế của Bootstrap:}
+
+\begin{itemize}
+	\item Nếu sử dụng quá nhiều mà không tùy chỉnh, giao diện có thể giống nhiều website khác.
+	\item Một số file CSS và JavaScript có thể làm tăng dung lượng tải trang.
+	\item Cần kết hợp thêm CSS riêng để tạo phong cách phù hợp với website SachHay.
+\end{itemize}
+
+Trong dự án, Bootstrap chỉ đóng vai trò hỗ trợ xây dựng giao diện. Nhóm vẫn cần tự thiết kế bố cục, màu sắc và các thành phần riêng để website có phong cách phù hợp với đề tài bán sách.
+
+\subsubsection{JavaScript}
+
+JavaScript là ngôn ngữ lập trình chạy phía trình duyệt, giúp website có khả năng tương tác với người dùng. Nếu chỉ sử dụng HTML và CSS, website chủ yếu hiển thị nội dung tĩnh. Khi kết hợp JavaScript, website có thể xử lý các thao tác như kiểm tra form, hiển thị thông báo, cập nhật giỏ hàng, xác nhận thao tác và gửi dữ liệu bất đồng bộ.
+
+Trong website \textbf{SachHay}, JavaScript được sử dụng cho các chức năng như:
+
+\begin{itemize}
+	\item Kiểm tra dữ liệu nhập trong form đăng nhập, đăng ký, liên hệ.
+	\item Hiển thị thông báo khi người dùng thêm sách vào giỏ hàng.
+	\item Xác nhận trước khi xóa sách, xóa người dùng hoặc xóa đơn hàng trong trang quản trị.
+	\item Tăng giảm số lượng sách trong giỏ hàng.
+	\item Xử lý một số hiệu ứng giao diện như menu, slider, nút quay lại đầu trang.
+\end{itemize}
+
+\textbf{Một số kỹ thuật JavaScript sử dụng trong dự án:}
+
+\begin{itemize}
+	\item \texttt{querySelector()} và \texttt{querySelectorAll()} để lấy các phần tử HTML.
+	\item \texttt{addEventListener()} để bắt sự kiện người dùng.
+	\item Kiểm tra dữ liệu form trước khi gửi lên server.
+	\item Thay đổi nội dung HTML bằng DOM.
+	\item Hiển thị hoặc ẩn các thành phần giao diện.
+\end{itemize}
+
+Việc sử dụng JavaScript giúp website trở nên linh hoạt hơn, giảm bớt thao tác không cần thiết và cải thiện trải nghiệm người dùng.
+
+% ------------------------------------------
+\subsection{Công nghệ Backend}
+
+Backend là phần xử lý phía máy chủ, chịu trách nhiệm tiếp nhận yêu cầu từ người dùng, xử lý dữ liệu, làm việc với cơ sở dữ liệu và trả kết quả về cho frontend. Đối với website \textbf{SachHay}, backend đóng vai trò quan trọng trong các chức năng như đăng nhập, đăng ký, quản lý sách, thêm vào giỏ hàng, đặt hàng và quản trị hệ thống.
+
+Công nghệ backend chính được sử dụng trong dự án là PHP kết hợp với cơ sở dữ liệu MySQL.
+
+\subsubsection{PHP}
+
+PHP, viết tắt của \textit{Hypertext Preprocessor}, là ngôn ngữ lập trình phía máy chủ được sử dụng phổ biến trong phát triển website. PHP có khả năng nhúng trực tiếp vào HTML, dễ học, dễ triển khai và đặc biệt phù hợp với các website sử dụng cơ sở dữ liệu MySQL.
+
+Trong dự án \textbf{SachHay}, PHP được sử dụng để xử lý các chức năng chính như:
+
+\begin{itemize}
+	\item Xử lý đăng ký và đăng nhập người dùng.
+	\item Quản lý phiên làm việc của người dùng bằng session.
+	\item Hiển thị danh sách sách từ cơ sở dữ liệu.
+	\item Tìm kiếm sách theo từ khóa.
+	\item Hiển thị chi tiết sách.
+	\item Xử lý thêm sách vào giỏ hàng.
+	\item Xử lý đặt hàng và lưu thông tin đơn hàng.
+	\item Quản lý sách, danh mục, người dùng và đơn hàng trong trang quản trị.
+\end{itemize}
+
+\textbf{Ưu điểm của PHP:}
+
+\begin{itemize}
+	\item Cú pháp tương đối dễ học đối với sinh viên mới học lập trình web.
+	\item Kết hợp tốt với HTML.
+	\item Hỗ trợ tốt cho MySQL.
+	\item Có thể triển khai dễ dàng trên nhiều môi trường máy chủ.
+	\item Phù hợp với yêu cầu của bài tập lớn.
+\end{itemize}
+
+\textbf{Một số thành phần PHP được sử dụng trong dự án:}
+
+\begin{itemize}
+	\item \textbf{Session:} Lưu trạng thái đăng nhập của người dùng.
+	\item \textbf{Cookie:} Có thể dùng để lưu một số thông tin tạm thời trên trình duyệt.
+	\item \textbf{PDO hoặc MySQLi:} Kết nối và thao tác với cơ sở dữ liệu.
+	\item \textbf{Include/Require:} Tái sử dụng các file giao diện như header, footer, sidebar.
+	\item \textbf{Form handling:} Nhận và xử lý dữ liệu từ các biểu mẫu.
+	\item \textbf{Upload file:} Hỗ trợ tải ảnh bìa sách lên server.
+\end{itemize}
+
+\subsubsection{MySQL}
+
+MySQL là hệ quản trị cơ sở dữ liệu quan hệ được sử dụng phổ biến trong các ứng dụng web. MySQL cho phép lưu trữ, truy vấn, thêm, sửa và xóa dữ liệu một cách có tổ chức.
+
+Trong website \textbf{SachHay}, MySQL được sử dụng để lưu trữ các dữ liệu như:
+
+\begin{itemize}
+	\item Thông tin người dùng.
+	\item Thông tin quản trị viên.
+	\item Danh mục sách.
+	\item Thông tin sách.
+	\item Giỏ hàng.
+	\item Đơn hàng.
+	\item Chi tiết đơn hàng.
+	\item Liên hệ hoặc phản hồi từ khách hàng.
+	\item Bài viết hoặc tin tức nếu website có chức năng này.
+\end{itemize}
+
+\textbf{Vai trò của MySQL trong dự án:}
+
+\begin{itemize}
+	\item Lưu trữ dữ liệu lâu dài cho website.
+	\item Hỗ trợ truy vấn danh sách sách, tìm kiếm sách và lọc theo danh mục.
+	\item Lưu thông tin đơn hàng sau khi người dùng đặt mua.
+	\item Hỗ trợ quản trị viên thêm, sửa, xoá và cập nhật dữ liệu.
+	\item Đảm bảo dữ liệu được tổ chức theo các bảng có quan hệ với nhau.
+\end{itemize}
+
+Một cơ sở dữ liệu được thiết kế tốt sẽ giúp hệ thống hoạt động ổn định, dễ mở rộng và dễ bảo trì hơn.
+
+\subsubsection{Mô hình MVC}
+
+MVC là viết tắt của \textit{Model - View - Controller}. Đây là mô hình tổ chức mã nguồn phổ biến trong phát triển phần mềm và website. Mục tiêu của MVC là tách ứng dụng thành ba phần chính để dễ quản lý, dễ bảo trì và dễ mở rộng.
+
+\begin{itemize}
+	\item \textbf{Model:} Chịu trách nhiệm xử lý dữ liệu và làm việc với cơ sở dữ liệu. Ví dụ: lấy danh sách sách, thêm sách mới, cập nhật thông tin người dùng, lưu đơn hàng.
+	\item \textbf{View:} Chịu trách nhiệm hiển thị giao diện cho người dùng. Ví dụ: trang danh sách sách, trang chi tiết sách, form đăng nhập, trang quản trị.
+	\item \textbf{Controller:} Chịu trách nhiệm tiếp nhận yêu cầu từ người dùng, gọi Model để xử lý dữ liệu và chọn View phù hợp để hiển thị kết quả.
+\end{itemize}
+
+\textbf{Ví dụ luồng xử lý theo mô hình MVC trong website SachHay:}
+
+\begin{enumerate}
+	\item Người dùng truy cập trang danh sách sách.
+	\item Controller nhận yêu cầu từ trình duyệt.
+	\item Controller gọi Model để lấy dữ liệu sách từ MySQL.
+	\item Model truy vấn cơ sở dữ liệu và trả dữ liệu về cho Controller.
+	\item Controller gửi dữ liệu sang View.
+	\item View hiển thị danh sách sách cho người dùng.
+\end{enumerate}
+
+\textbf{Lợi ích của mô hình MVC:}
+
+\begin{itemize}
+	\item Giúp mã nguồn được chia thành nhiều phần rõ ràng.
+	\item Dễ sửa lỗi và bảo trì.
+	\item Dễ phân chia công việc cho các thành viên trong nhóm.
+	\item Giao diện và xử lý dữ liệu không bị trộn lẫn quá nhiều.
+	\item Hỗ trợ mở rộng thêm chức năng mới trong tương lai.
+\end{itemize}
+
+Trong phạm vi bài tập lớn, nhóm em có thể áp dụng mô hình MVC ở mức cơ bản để tổ chức mã nguồn hợp lý, không sử dụng framework PHP có sẵn.
+
+% ------------------------------------------
+\subsection{Bảo mật ứng dụng web}
+
+Bảo mật là một phần quan trọng khi xây dựng website, đặc biệt là các website có chức năng đăng nhập, đăng ký, giỏ hàng và đặt hàng. Nếu không xử lý cẩn thận, website có thể gặp các lỗi như lộ thông tin người dùng, bị tấn công SQL Injection, XSS hoặc bị truy cập trái phép vào trang quản trị.
+
+Trong dự án \textbf{SachHay}, nhóm em tìm hiểu và áp dụng một số biện pháp bảo mật cơ bản sau.
+
+\subsubsection{Kiểm tra dữ liệu đầu vào}
+
+Dữ liệu đầu vào là dữ liệu do người dùng nhập vào thông qua các biểu mẫu như đăng ký, đăng nhập, tìm kiếm, liên hệ, đặt hàng hoặc thêm sản phẩm trong trang quản trị. Những dữ liệu này cần được kiểm tra trước khi xử lý để tránh lỗi hệ thống và hạn chế các hành vi tấn công.
+
+\textbf{Một số dữ liệu cần kiểm tra:}
+
+\begin{itemize}
+	\item Họ tên không được để trống.
+	\item Email phải đúng định dạng.
+	\item Mật khẩu phải có độ dài phù hợp.
+	\item Số điện thoại chỉ nên chứa chữ số.
+	\item Giá sách và số lượng phải là số hợp lệ.
+	\item File ảnh tải lên phải đúng định dạng cho phép.
+\end{itemize}
+
+Việc kiểm tra dữ liệu nên được thực hiện cả phía client bằng JavaScript và phía server bằng PHP. Kiểm tra phía client giúp người dùng nhận thông báo nhanh hơn, còn kiểm tra phía server giúp đảm bảo an toàn vì dữ liệu phía client có thể bị thay đổi.
+
+\subsubsection{Bảo mật mật khẩu}
+
+Mật khẩu là thông tin quan trọng của người dùng, vì vậy không nên lưu mật khẩu dưới dạng văn bản thuần trong cơ sở dữ liệu. Nếu cơ sở dữ liệu bị lộ, mật khẩu dạng văn bản thuần sẽ gây nguy hiểm cho tài khoản người dùng.
+
+Trong PHP, có thể sử dụng hàm \texttt{password\_hash()} để mã hóa mật khẩu trước khi lưu và hàm \texttt{password\_verify()} để kiểm tra mật khẩu khi đăng nhập.
+
+\textbf{Quy trình xử lý mật khẩu:}
+
+\begin{enumerate}
+	\item Người dùng đăng ký tài khoản và nhập mật khẩu.
+	\item Hệ thống mã hóa mật khẩu bằng \texttt{password\_hash()}.
+	\item Mật khẩu đã mã hóa được lưu vào cơ sở dữ liệu.
+	\item Khi đăng nhập, hệ thống dùng \texttt{password\_verify()} để so sánh mật khẩu người dùng nhập với mật khẩu đã mã hóa.
+\end{enumerate}
+
+Cách làm này giúp tăng tính an toàn cho hệ thống và hạn chế rủi ro khi dữ liệu bị truy cập trái phép.
+
+\subsubsection{Phòng chống SQL Injection}
+
+SQL Injection là một dạng tấn công trong đó kẻ tấn công chèn mã SQL độc hại vào các ô nhập liệu của website. Nếu hệ thống ghép trực tiếp dữ liệu người dùng vào câu lệnh SQL, kẻ tấn công có thể xem, sửa hoặc xóa dữ liệu trong cơ sở dữ liệu.
+
+Ví dụ, các chức năng dễ bị SQL Injection gồm:
+
+\begin{itemize}
+	\item Đăng nhập.
+	\item Tìm kiếm sách.
+	\item Xem chi tiết sách theo mã sách.
+	\item Thêm, sửa, xóa dữ liệu trong trang quản trị.
+\end{itemize}
+
+\textbf{Biện pháp phòng chống SQL Injection:}
+
+\begin{itemize}
+	\item Sử dụng Prepared Statements khi truy vấn cơ sở dữ liệu.
+	\item Không nối trực tiếp dữ liệu người dùng vào câu lệnh SQL.
+	\item Kiểm tra kiểu dữ liệu đầu vào.
+	\item Giới hạn quyền của tài khoản cơ sở dữ liệu.
+\end{itemize}
+
+Việc sử dụng Prepared Statements giúp dữ liệu người dùng được xử lý như tham số, không bị hiểu nhầm là một phần của câu lệnh SQL.
+
+\subsubsection{Phòng chống XSS}
+
+XSS, viết tắt của \textit{Cross-Site Scripting}, là lỗ hổng cho phép kẻ tấn công chèn mã JavaScript độc hại vào website. Khi người dùng khác truy cập trang có chứa đoạn mã đó, trình duyệt có thể thực thi mã độc và gây ảnh hưởng đến tài khoản hoặc dữ liệu người dùng.
+
+Trong website \textbf{SachHay}, XSS có thể xuất hiện ở các chức năng như:
+
+\begin{itemize}
+	\item Bình luận hoặc đánh giá sách.
+	\item Form liên hệ.
+	\item Tên người dùng.
+	\item Nội dung bài viết hoặc mô tả sản phẩm nếu không được xử lý đúng.
+\end{itemize}
+
+\textbf{Biện pháp phòng chống XSS:}
+
+\begin{itemize}
+	\item Sử dụng \texttt{htmlspecialchars()} khi hiển thị dữ liệu ra giao diện.
+	\item Kiểm tra và làm sạch dữ liệu nhập vào.
+	\item Không cho phép người dùng nhập trực tiếp các thẻ HTML nguy hiểm.
+	\item Giới hạn độ dài nội dung nhập vào.
+\end{itemize}
+
+Nhờ đó, các ký tự đặc biệt như \texttt{<}, \texttt{>}, \texttt{"} sẽ được chuyển đổi an toàn trước khi hiển thị trên trình duyệt.
+
+\subsubsection{Bảo mật session}
+
+Session được sử dụng để lưu trạng thái đăng nhập của người dùng trên server. Khi người dùng đăng nhập thành công, hệ thống tạo session để xác định người dùng trong các lần truy cập tiếp theo.
+
+Trong website \textbf{SachHay}, session được sử dụng để:
+
+\begin{itemize}
+	\item Ghi nhớ trạng thái đăng nhập của khách hàng.
+	\item Phân biệt người dùng thường và quản trị viên.
+	\item Bảo vệ các trang chỉ dành cho người đã đăng nhập.
+	\item Quản lý thông tin giỏ hàng nếu cần.
+\end{itemize}
+
+\textbf{Một số biện pháp bảo mật session:}
+
+\begin{itemize}
+	\item Tạo lại session ID sau khi đăng nhập thành công bằng \texttt{session\_regenerate\_id()}.
+	\item Kiểm tra quyền truy cập trước khi cho vào trang quản trị.
+	\item Hủy session khi người dùng đăng xuất.
+	\item Không lưu thông tin nhạy cảm trực tiếp trong session nếu không cần thiết.
+	\item Thiết lập thời gian hết hạn đăng nhập nếu cần.
+\end{itemize}
+
+Việc quản lý session đúng cách giúp hạn chế nguy cơ người dùng không có quyền truy cập vào các chức năng quản trị.
+
+\subsubsection{Phân quyền người dùng}
+
+Phân quyền là việc xác định người dùng được phép sử dụng những chức năng nào trong hệ thống. Đối với website \textbf{SachHay}, có thể chia thành các nhóm người dùng chính:
+
+\begin{itemize}
+	\item \textbf{Khách chưa đăng nhập:} Có thể xem trang chủ, xem danh sách sách, tìm kiếm sách, xem chi tiết sách, đăng ký và đăng nhập.
+	\item \textbf{Khách hàng đã đăng nhập:} Có thể cập nhật thông tin cá nhân, thêm sách vào giỏ hàng, đặt hàng và xem thông tin đơn hàng.
+	\item \textbf{Quản trị viên:} Có thể quản lý sách, danh mục, người dùng, đơn hàng, liên hệ và các nội dung khác của website.
+\end{itemize}
+
+Việc phân quyền giúp hệ thống an toàn hơn, tránh trường hợp người dùng thường truy cập trái phép vào các trang quản trị.
+
+% ------------------------------------------
+\subsection{SEO cơ bản}
+
+SEO, viết tắt của \textit{Search Engine Optimization}, là quá trình tối ưu website để giúp công cụ tìm kiếm hiểu nội dung trang web tốt hơn. Một website có SEO tốt sẽ dễ được tìm thấy hơn khi người dùng tìm kiếm trên Internet.
+
+Đối với website bán sách \textbf{SachHay}, SEO giúp các trang như danh sách sách, chi tiết sách, bài viết giới thiệu sách hoặc tin tức có khả năng hiển thị tốt hơn trên công cụ tìm kiếm.
+
+\textbf{Một số yếu tố SEO cơ bản được áp dụng trong dự án:}
+
+\begin{itemize}
+	\item \textbf{Tiêu đề trang:} Mỗi trang nên có tiêu đề rõ ràng, ví dụ: \textit{SachHay - Website bán sách trực tuyến}.
+	\item \textbf{Thẻ mô tả:} Mỗi trang nên có phần mô tả ngắn gọn về nội dung.
+	\item \textbf{Cấu trúc heading hợp lý:} Sử dụng các thẻ \texttt{h1}, \texttt{h2}, \texttt{h3} theo đúng thứ tự.
+	\item \textbf{URL thân thiện:} Đường dẫn nên ngắn gọn và dễ hiểu.
+	\item \textbf{Thuộc tính alt cho hình ảnh:} Ảnh bìa sách nên có mô tả để hỗ trợ SEO và khả năng truy cập.
+	\item \textbf{Tốc độ tải trang:} Hình ảnh nên được tối ưu dung lượng để website tải nhanh hơn.
+	\item \textbf{Thiết kế responsive:} Website cần hiển thị tốt trên điện thoại, máy tính bảng và máy tính.
+	\item \textbf{Nội dung rõ ràng:} Thông tin sách, tác giả, giá bán và mô tả cần được trình bày dễ đọc.
+\end{itemize}
+
+SEO không chỉ giúp website thân thiện hơn với công cụ tìm kiếm mà còn cải thiện trải nghiệm của người dùng khi truy cập website.
+
+% ------------------------------------------
+\subsection{Responsive Design}
+
+Responsive Design là kỹ thuật thiết kế giao diện giúp website tự điều chỉnh bố cục theo kích thước màn hình của thiết bị. Hiện nay, người dùng có thể truy cập website bằng nhiều thiết bị khác nhau như điện thoại, máy tính bảng, laptop hoặc máy tính để bàn. Vì vậy, website cần hiển thị tốt trên nhiều loại màn hình.
+
+Trong website \textbf{SachHay}, responsive design được áp dụng cho các phần như:
+
+\begin{itemize}
+	\item Thanh menu điều hướng.
+	\item Danh sách sách.
+	\item Trang chi tiết sách.
+	\item Giỏ hàng.
+	\item Form đăng nhập, đăng ký.
+	\item Trang quản trị.
+\end{itemize}
+
+\textbf{Một số kỹ thuật hỗ trợ responsive:}
+
+\begin{itemize}
+	\item Sử dụng hệ thống lưới của Bootstrap.
+	\item Sử dụng CSS Flexbox và CSS Grid.
+	\item Sử dụng Media Queries để thay đổi bố cục theo kích thước màn hình.
+	\item Tối ưu kích thước hình ảnh.
+	\item Đảm bảo nút bấm và ô nhập liệu dễ thao tác trên thiết bị di động.
+\end{itemize}
+
+Việc thiết kế responsive giúp website \textbf{SachHay} thân thiện hơn với người dùng và phù hợp với yêu cầu của một ứng dụng web hiện đại.
+
+% ------------------------------------------

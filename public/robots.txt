@@ -1,6 +1,5 @@
 ﻿# robots.txt for SachHay
 # Website: SachHay - Website Bán Sách Trực Tuyến
-# Author: Nhóm L01_6 - HCMUT
 
 # Allow all robots to index the site
 User-agent: *

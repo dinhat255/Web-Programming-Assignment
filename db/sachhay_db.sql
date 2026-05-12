@@ -72,13 +72,13 @@ CREATE TABLE `cart_items` (
 --
 
 INSERT INTO `cart_items` (`user_id`, `product_id`, `quantity`, `added_date`) VALUES
-(101, 1, 2, '2025-12-06 15:30:38'),
-(101, 2, 1, '2025-12-06 15:30:55'),
-(103, 2, 2, '2025-12-06 15:33:20'),
-(111, 2, 1, '2025-12-07 19:04:47'),
-(111, 3, 1, '2025-12-07 19:05:52'),
-(111, 9, 1, '2025-12-07 19:01:43'),
-(111, 11, 1, '2025-12-07 19:05:15');
+(101, 1, 2, '2026-12-06 15:30:38'),
+(101, 2, 1, '2026-12-06 15:30:55'),
+(103, 2, 2, '2026-12-06 15:33:20'),
+(111, 2, 1, '2026-12-07 19:04:47'),
+(111, 3, 1, '2026-12-07 19:05:52'),
+(111, 9, 1, '2026-12-07 19:01:43'),
+(111, 11, 1, '2026-12-07 19:05:15');
 
 -- --------------------------------------------------------
 
@@ -102,7 +102,7 @@ INSERT INTO `category` (`category_id`, `category_name`, `description`) VALUES
 (3, 'Kinh Tế', NULL),
 (4, 'Văn Phòng Phẩm', NULL),
 (5, 'Truyện Tranh', NULL),
-(6, 'Sách Thiếu nhi', ''),
+(6, 'Sách Thiếu Nhi', ''),
 (7, 'Tâm Lý Học', '');
 
 -- --------------------------------------------------------
@@ -168,8 +168,8 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `name`, `email`, `subject`, `message`, `status`, `created_at`) VALUES
-(1, 'Nguyễn Văn A', 'a@example.com', 'Về vấn đề giao hàng', 'Sản phẩm giao đến bị trễ 2 ngày so với dự kiến.', 'New', '2025-12-02 15:52:40'),
-(2, 'Trần Thị B', 'b@example.com', 'Hỏi về sách mới', 'Tôi có thể tìm sách X ở đâu?', 'New', '2025-12-02 15:52:40');
+(1, 'Nguyễn Văn A', 'a@example.com', 'Về vấn đề giao hàng', 'Sản phẩm giao đến bị trễ 2 ngày so với dự kiến.', 'New', '2026-12-02 15:52:40'),
+(2, 'Trần Thị B', 'b@example.com', 'Hỏi về sách mới', 'Tôi có thể tìm sách X ở đâu?', 'New', '2026-12-02 15:52:40');
 
 -- --------------------------------------------------------
 
@@ -242,10 +242,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `recipient_name`, `recipient_phone`, `shipping_address`, `payment_method`, `subtotal`, `shipping_fee`, `total_amount`, `status`, `note`, `created_at`, `updated_at`) VALUES
-(1, 111, 'đạt', '0919566866', 'ko biết nữa, Phường Mường Lay, Điện Biên', 'COD', 85000.00, 30000.00, 115000.00, 'completed', '', '2025-12-07 08:10:35', '2025-12-07 08:19:29'),
-(2, 111, 'bình', '0919566866', 'ko biết nữa, Phường Tân Giang, Cao Bằng', 'Credit Card', 92000.00, 30000.00, 122000.00, 'cancelled', '', '2025-12-07 08:27:45', '2025-12-07 11:55:04'),
-(3, 111, 'đạt', '0919566866', 'ko biết nữa, Phường Mường Lay, Điện Biên', 'E-wallet', 468000.00, 30000.00, 498000.00, 'processing', '', '2025-12-07 09:07:45', '2025-12-07 09:12:00'),
-(4, 111, 'đạt', '0919566866', 'ko biết nữa, Phường Mường Lay, Điện Biên', 'COD', 999000.00, 30000.00, 1029000.00, 'pending', '', '2025-12-07 11:48:36', '2025-12-07 11:48:36');
+(1, 111, 'Người Nhận 1', '0900000001', 'Địa chỉ 1, Phường A, Quận B, TP Hà Nội', 'COD', 85000.00, 30000.00, 115000.00, 'completed', '', '2026-12-07 08:10:35', '2026-12-07 08:19:29'),
+(2, 111, 'Người Nhận 2', '0900000002', 'Địa chỉ 2, Phường C, Quận D, TP Hà Nội', 'Credit Card', 92000.00, 30000.00, 122000.00, 'cancelled', '', '2026-12-07 08:27:45', '2026-12-07 11:55:04'),
+(3, 111, 'Người Nhận 3', '0900000003', 'Địa chỉ 3, Phường E, Quận F, TP Hà Nội', 'E-wallet', 468000.00, 30000.00, 498000.00, 'processing', '', '2026-12-07 09:07:45', '2026-12-07 09:12:00'),
+(4, 111, 'Người Nhận 4', '0900000004', 'Địa chỉ 4, Phường G, Quận H, TP Hà Nội', 'COD', 999000.00, 30000.00, 1029000.00, 'pending', '', '2026-12-07 11:48:36', '2026-12-07 11:48:36');
 
 -- --------------------------------------------------------
 
@@ -312,8 +312,8 @@ CREATE TABLE `pages` (
 --
 
 INSERT INTO `pages` (`id`, `page_name`, `content`, `created_at`, `updated_at`) VALUES
-(1, 'about', 'Đây là nội dung trang giới thiệu về cửa hàng sách SachHay.', '2025-12-02 15:53:28', '2025-12-02 15:53:28'),
-(2, 'terms', 'Các điều khoản sử dụng của website.', '2025-12-02 15:53:28', '2025-12-02 15:53:28');
+(1, 'about', 'Đây là nội dung trang giới thiệu về cửa hàng sách SachHay.', '2026-12-02 15:53:28', '2026-12-02 15:53:28'),
+(2, 'terms', 'Các điều khoản sử dụng của website.', '2026-12-02 15:53:28', '2026-12-02 15:53:28');
 
 -- --------------------------------------------------------
 
@@ -369,10 +369,10 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `title`, `publisher`, `published_date`, `supplier`, `description`, `year`, `language`, `pages`, `product_type`, `stock_quantity`, `price`, `old_price`, `weight`, `dimensions`, `size`) VALUES
-(1, 'Đắc Nhân Tâm - Tác phẩm kinh điển về nghệ thuật thu phục và ảnh hưởng người khác', 'NXB Tổng hợp TP.HCM', '2020-06-15', NULL, 'Đắc Nhân Tâm là quyển sách duy nhất về thể loại self-help bán chạy nhất mọi thời đại. Cuốn sách đã và đang thay đổi cuộc sống của hàng triệu người trên thế   \r\n     giới.', NULL, NULL, 400, NULL, 100, 85000.00, 100000.00, NULL, '13 x 20.5 cm', NULL),
+(1, 'Đắc Nhân Tâm - Tác phẩm kinh điển về nghệ thuật thu phục và ảnh hưởng người khác', 'NXB Tổng hợp TP.HCM', '2020-06-15', NULL, 'Đắc Nhân Tâm là quyển sách duy nhất về thể loại self-help bán chạy nhất mọi thời đại. Cuốn sách đã và đang thay đổi cuộc sống của hàng triệu người trên thế giới.', NULL, NULL, 400, NULL, 100, 85000.00, 100000.00, NULL, '13 x 20.5 cm', NULL),
 (2, 'Nhà Giả Kim - Phiên bản kỷ niệm 25 năm', 'NXB Trẻ', '2019-08-10', NULL, 'Một câu chuyện cổ tích dành cho người lớn, một câu chuyện cổ tích về việc theo đuổi giấc mơ và tìm kiếm ý nghĩa cuộc sống.', NULL, NULL, 162, NULL, 100, 75000.00, 90000.00, NULL, '11 x 18 cm', NULL),
 (3, 'Nhà Lãnh Đạo Không Chức Danh', 'NXB Lao Động', '2021-03-05', NULL, 'Cuốn sách truyền cảm hứng cho độc giả rằng ai cũng có thể trở thành một nhà lãnh đạo, không phải bởi chức vụ mà bởi hành động.', NULL, NULL, 224, NULL, 100, 95000.00, 110000.00, NULL, '14 x 20.5 cm', NULL),
-(4, 'Đời Ngắn Đừng Ngủ Dài', 'NXB Tổng hợp TP.HCM', '2020-11-20', NULL, 'Cuốn sách giúp bạn khám phá cách thức để thức dậy mỗi ngày với sự hăng hái, hiệu suất và cảm giác tuyệt vời.', NULL, NULL, 208, NULL, 100, 88000.00, 105000.00, NULL, '13 x 20.5 cm', NULL),
+(4, 'Đời Ngắn Đừng Ngủ Dài', 'NXB Tổng hợp TP.HCM', '2020-11-20', NULL, 'Cuốn sách giúp bạn khám phá cách thức đánh thức mỗi ngày với sự hăng hái, hiệu suất và cảm giác tuyệt vời.', NULL, NULL, 208, NULL, 100, 88000.00, 105000.00, NULL, '13 x 20.5 cm', NULL),
 (5, 'Tư Duy Nhanh và Tư Duy Chậm', 'NXB Chính Trị Quốc Gia', '2018-07-15', NULL, 'Cuốn sách khám phá hai hệ thống tư duy chi phối cách chúng ta suy nghĩ: hệ thống nhanh và hệ thống chậm.', NULL, NULL, 499, NULL, 100, 120000.00, 140000.00, NULL, '14 x 21 cm', NULL),
 (6, 'Tư Duy Tích Cực', 'NXB Trẻ', '2020-05-12', NULL, 'Cuốn sách giải thích cách tư duy ảnh hưởng đến thành công và cách phát triển tư duy tăng trưởng.', NULL, NULL, 320, NULL, 100, 92000.00, 110000.00, NULL, '14 x 21 cm', NULL),
 (7, 'Hiểu Về Trái Tim', 'NXB Tổng hợp TP.HCM', '2019-11-30', NULL, 'Cuốn sách giúp người đọc hiểu rõ hơn về bản thân và cảm xúc của mình, từ đó sống an nhiên và hạnh phúc hơn.', NULL, NULL, 280, NULL, 100, 75000.00, 90000.00, NULL, '13 x 20 cm', NULL),
@@ -457,8 +457,8 @@ CREATE TABLE `qa` (
 --
 
 INSERT INTO `qa` (`id`, `question`, `answer`, `category`, `user_id`, `status`, `created_at`) VALUES
-(1, 'SachHay hỗ trợ những phương thức thanh toán nào?', 'Chúng tôi chấp nhận thanh toán bằng Thẻ tín dụng, E-Wallet và COD (thanh toán khi nhận hàng).', 'Thanh toán', NULL, 'answered', '2025-12-02 15:50:37'),
-(2, 'Làm thế nào để đổi trả sản phẩm?', 'Vui lòng liên hệ bộ phận hỗ trợ trong vòng 7 ngày kể từ ngày nhận hàng để được hướng dẫn chi tiết.', 'Đổi trả', NULL, 'answered', '2025-12-02 15:50:37');
+(1, 'SachHay hỗ trợ những phương thức thanh toán nào?', 'Chúng tôi chấp nhận thanh toán bằng Thẻ tín dụng, E-Wallet và COD (thanh toán khi nhận hàng).', 'Thanh toán', NULL, 'answered', '2026-12-02 15:50:37'),
+(2, 'Làm thế nào để đổi trả sản phẩm?', 'Vui lòng liên hệ bộ phận hỗ trợ trong vòng 7 ngày kể từ ngày nhận hàng để được hướng dẫn chi tiết.', 'Đổi trả', NULL, 'answered', '2026-12-02 15:50:37');
 
 -- --------------------------------------------------------
 
@@ -477,9 +477,9 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `key_name`, `value`) VALUES
-(1, 'phone', '0901234567'),
-(2, 'email', 'contact@sachhay.vn'),
-(3, 'address', '123 Nguyen Hue St, Dist 1, HCMC');
+(1, 'phone', '1900-6656'),
+(2, 'email', 'info@sachhay.vn'),
+(3, 'address', '268 Lý Thường Kiệt, Quận 10, TP.HCM');
 
 -- --------------------------------------------------------
 
@@ -538,7 +538,7 @@ INSERT INTO `users` (`user_id`, `password`, `fullname`, `email`, `phone`, `role`
 (108, '$2y$10$8I0BJABP4rEETVQ8GWLGYuRMWxkb6UEGhWBtFryh7y/xA9ZCfso3.', 'Bùi Xuân H', 'bui.h@sachhay.vn', NULL, 'staff', NULL, '2023-08-22'),
 (109, '$2y$10$8I0BJABP4rEETVQ8GWLGYuRMWxkb6UEGhWBtFryh7y/xA9ZCfso3.', 'Dương Văn I', 'duong.i@sachhay.vn', NULL, 'staff', NULL, '2024-02-14'),
 (110, '$2y$10$8I0BJABP4rEETVQ8GWLGYuRMWxkb6UEGhWBtFryh7y/xA9ZCfso3.', 'Mai Thị K', 'mai.k@sachhay.vn', NULL, 'staff', NULL, '2024-04-10'),
-(111, '$2y$10$QqRyMiw8F3ylGvmhFj/8L.8Z1d8FG.GSupZtFEbJoOY6.8ZKbufsK', 'Hà Bình', 'binh.hathe2023@hcmut.edu.vn', NULL, 'Customer', NULL, '2025-12-02');
+(111, '$2y$10$6t7Iv2l13qnBSZvd2efpSOyAqUZZ6zHuR/mUaJWRgyljDNbjbhfby', 'User 111', 'user111@example.com', '0900000111', 'Customer', NULL, '2026-12-02');
 
 -- --------------------------------------------------------
 
@@ -565,8 +565,8 @@ CREATE TABLE `user_addresses` (
 --
 
 INSERT INTO `user_addresses` (`address_id`, `user_id`, `recipient_name`, `recipient_phone`, `province_name`, `ward_name`, `street_address`, `full_address`, `is_default`, `created_at`, `updated_at`) VALUES
-(1, 111, 'bình', '0919566866', 'Cao Bằng', 'Phường Tân Giang', 'ko biết nữa', 'ko biết nữa, Phường Tân Giang, Cao Bằng', 0, '2025-12-07 07:42:00', '2025-12-07 07:42:00'),
-(2, 111, 'đạt', '0919566866', 'Điện Biên', 'Phường Mường Lay', 'ko biết nữa', 'ko biết nữa, Phường Mường Lay, Điện Biên', 0, '2025-12-07 07:42:39', '2025-12-07 07:42:39');
+(1, 111, 'Người Nhận 1', '0900000001', 'Hà Nội', 'Phường A', 'Đường 1', 'Đường 1, Phường A, Hà Nội', 0, '2026-12-07 07:42:00', '2026-12-07 07:42:00'),
+(2, 111, 'Người Nhận 2', '0900000002', 'Hà Nội', 'Phường B', 'Đường 2', 'Đường 2, Phường B, Hà Nội', 0, '2026-12-07 07:42:39', '2026-12-07 07:42:39');
 
 -- --------------------------------------------------------
 
@@ -612,11 +612,11 @@ CREATE TABLE `voucher` (
 --
 
 INSERT INTO `voucher` (`voucher_code`, `usage_limit`, `used_count`, `start_time`, `end_time`, `min_order_value`, `max_sale_value`, `discount`) VALUES
-('FREE_SHIP', 500, 10, '2024-10-01 00:00:00', '2025-01-01 23:59:59', 150000.00, 30000.00, 15000.00),
+('FREE_SHIP', 500, 10, '2024-10-01 00:00:00', '2026-01-01 23:59:59', 150000.00, 30000.00, 15000.00),
 ('NO_MIN_01', 200, 150, '2024-05-01 00:00:00', '2024-12-31 23:59:59', 0.00, 5000.00, 5000.00),
 ('SALE_10K', 1000, 50, '2024-11-20 00:00:00', '2024-12-31 23:59:59', 100000.00, 10000.00, 10000.00),
-('TEST_OK', 10, 0, '2025-01-01 00:00:00', '2025-03-01 23:59:59', 200000.00, 25000.00, 10000.00),
-('VIP_20', 50, 5, '2024-11-01 00:00:00', '2025-11-01 23:59:59', 500000.00, 50000.00, 20000.00);
+('TEST_OK', 10, 0, '2026-01-01 00:00:00', '2026-03-01 23:59:59', 200000.00, 25000.00, 10000.00),
+('VIP_20', 50, 5, '2024-11-01 00:00:00', '2026-11-01 23:59:59', 500000.00, 50000.00, 20000.00);
 
 -- --------------------------------------------------------
 
@@ -1004,4 +1004,5 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
 
